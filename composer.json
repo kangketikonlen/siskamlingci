@@ -1,0 +1,17 @@
+{
+	"name": "fathtech/siakad",
+	"description": "Software Sistem Akademik Universitas adalah sebuah tools untuk mempermudah sebuah aktivitas administrasi akademik universitas. Pergunakan tools ini dengan sebaik - baiknya.",
+	"type": "project",
+	"authors": [
+		{
+			"name": "Fath Technology Solution",
+			"email": "developer@fathtech.co.id"
+		}
+	],
+	"minimum-stability": "stable",
+	"require": {
+		"php": ">=5.3.7",
+		"almasaeed2010/adminlte": "~3.0",
+		"phpoffice/phpspreadsheet": "^1.14"
+	}
+}
