@@ -1,6 +1,6 @@
 {
 	"name": "kangketikonlen/codeigniter-env",
-	"description": "Software Sistem Akademik Universitas adalah sebuah tools untuk mempermudah sebuah aktivitas administrasi akademik universitas. Pergunakan tools ini dengan sebaik - baiknya.",
+	"description": "Template awal framework codeigniter.",
 	"type": "project",
 	"authors": [
 		{
