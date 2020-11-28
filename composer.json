@@ -1,11 +1,11 @@
 {
-	"name": "fathtech/siakad",
+	"name": "kangketikonlen/codeigniter-env",
 	"description": "Software Sistem Akademik Universitas adalah sebuah tools untuk mempermudah sebuah aktivitas administrasi akademik universitas. Pergunakan tools ini dengan sebaik - baiknya.",
 	"type": "project",
 	"authors": [
 		{
-			"name": "Fath Technology Solution",
-			"email": "developer@fathtech.co.id"
+			"name": "Gilang Pratama Priadi",
+			"email": "pratamapriadi96@gmail.com"
 		}
 	],
 	"minimum-stability": "stable",
