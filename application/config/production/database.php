@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'fathtech.co.id',
-	'username' => 'u9921219_siakad',
+	'hostname' => 'localhost',
+	'username' => 'u9921219_samples_ci',
 	'password' => 'older45.,',
-	'database' => 'u9921219_siakad',
+	'database' => 'u9921219_samples_ci',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
