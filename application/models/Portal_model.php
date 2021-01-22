@@ -25,16 +25,33 @@ class Portal_model extends CI_Model
 		return password_verify($this->input->post('user_pass'), $password);
 	}
 
-	public function get_user()
+	public function search_users($data)
 	{
-		return $this->db->join($this->level, $this->level . '.level_id=' . $this->user . '.level_id')->where($this->user . '.user_login', $this->input->post('user_login'))->order_by('user_id', 'desc')->get($this->user)->row();
+		$this->db->join($this->level, $this->level . '.level_id=' . $this->user . '.level_id');
+		if ($data['user_platform'] == "Github") {
+			$this->db->where($this->user . '.user_github', $data['user_platform_id']);
+		} elseif ($data['user_platform'] == "Google") {
+			$this->db->where($this->user . '.user_google', $data['user_platform_id']);
+		} elseif ($data['user_platform'] == "Twitter") {
+			$this->db->where($this->user . '.user_twitter', $data['user_platform_id']);
+		} else {
+			$this->db->where($this->user . '.user_id', $data['user_platform_id']);
+		}
+		return $this->db->order_by('user_id', 'desc')->get($this->user)->row_array();
 	}
 
-	public function update_login()
+	public function simpan($data)
 	{
-		return $this->db->where(
-			'user_login',
-			$this->input->post('user_login')
-		)->update($this->user, array('last_login' => date('Y-m-d H:i:s')));
+		return $this->db->insert($this->user, $data);
+	}
+
+	public function get_user($user_login)
+	{
+		return $this->db->join($this->level, $this->level . '.level_id=' . $this->user . '.level_id')->where($this->user . '.user_login', $user_login)->order_by('user_id', 'desc')->get($this->user)->row_array();
+	}
+
+	public function update_login($user_login)
+	{
+		return $this->db->where('user_login', $user_login)->update($this->user, array('last_login' => date('Y-m-d H:i:s')));
 	}
 }
