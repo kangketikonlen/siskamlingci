@@ -1,5 +1,6 @@
 # Files Extensions
 .DS_Store
+.env
 
 # Folders
 application/cache/*
