@@ -12,6 +12,19 @@ class Modul_model extends CI_Model
 		return $this->datatables->generate();
 	}
 
+	public function get_modul()
+	{
+		return $this->db->where($this->modul . '.deleted', false)->where($this->modul . '.modul_id', $this->input->post('modul_id'))->or_where($this->modul . '.modul_urutan', $this->input->post('modul_urutan'))->get($this->modul)->num_rows();
+	}
+
+	public function reorder()
+	{
+		$this->db->where($this->modul . '.modul_id!=', $this->input->post('modul_id'));
+		$this->db->where($this->modul . '.modul_urutan>=', $this->input->post('modul_urutan'));
+		$this->db->set($this->modul . '.modul_urutan', '`modul_urutan`+ 1', FALSE);
+		return $this->db->update($this->modul);
+	}
+
 	public function simpan($data)
 	{
 		return $this->db->insert($this->modul, $data);

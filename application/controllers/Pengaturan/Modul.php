@@ -39,6 +39,7 @@ class Modul extends MY_Controller
 	public function simpan()
 	{
 		if ($this->input->post('modul_id') == "") {
+			$result = $this->m->get_modul();
 			$data = array(
 				'modul_urutan' => $this->input->post('modul_urutan'),
 				'modul_icon' => $this->input->post('modul_icon'),
@@ -46,6 +47,9 @@ class Modul extends MY_Controller
 				'created_by' => $this->session->userdata('nama'),
 				'created_date' => date('Y-m-d H:i:s')
 			);
+			if ($result > 0) {
+				$this->m->reorder();
+			}
 			$this->m->simpan($data);
 			$pesan = array(
 				'warning' => 'Berhasil!',
@@ -53,6 +57,7 @@ class Modul extends MY_Controller
 				'pesan' => 'Data berhasil di simpan'
 			);
 		} else {
+			$result = $this->m->get_data();
 			$data = array(
 				'modul_urutan' => $this->input->post('modul_urutan'),
 				'modul_icon' => $this->input->post('modul_icon'),
@@ -60,6 +65,9 @@ class Modul extends MY_Controller
 				'updated_by' => $this->session->userdata('nama'),
 				'updated_date' => date('Y-m-d H:i:s')
 			);
+			if ($result->modul_urutan != $this->input->post('modul_urutan')) {
+				$this->m->reorder();
+			}
 			$this->m->edit($data);
 			$pesan = array(
 				'warning' => 'Berhasil!',
