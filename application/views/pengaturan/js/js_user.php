@@ -63,26 +63,26 @@
 				}
 			},
 			columns: [{
-					render: function(data, type, row, meta) {
-						return meta.row + meta.settings._iDisplayStart + 1 + ".";
-					}
-				},
-				{
-					"data": "1"
-				},
-				{
-					"data": "2"
-				},
-				{
-					"data": "3"
-				},
-				{
-					"data": "4"
-				},
-				{
-					"data": "5",
-					"searchable": false
+				render: function(data, type, row, meta) {
+					return meta.row + meta.settings._iDisplayStart + 1 + ".";
 				}
+			},
+			{
+				"data": "1"
+			},
+			{
+				"data": "2"
+			},
+			{
+				"data": "3"
+			},
+			{
+				"data": "4"
+			},
+			{
+				"data": "5",
+				"searchable": false
+			}
 			],
 			rowCallback: function(row, data, iDisplayIndex) {
 				$("#overlay").fadeOut(300);
@@ -137,6 +137,48 @@
 				}
 			});
 		});
+
+		$(document).on('click','#reset',function(e){
+			e.preventDefault();
+			swal({
+				title: "Anda Yakin Ingin Mereset Password?",
+				text: "",
+				icon: "warning",
+				buttons: true,
+				dangerMode: true,
+			}).then((Oke) => {
+				if (Oke) {
+					$.ajax({
+						type: "POST",
+						url: "<?= base_url('pengaturan/user/reset_password/') ?>",
+						data: {user_id:$(this).attr("data")},
+						timeout: 5000,
+						beforeSend: function(xhr) {
+							$("#overlay").fadeIn(300);
+						},
+						success: function(response) {
+							$("#overlay").fadeOut(300);
+							var data = JSON.parse(response);
+
+							$("#password_reset").html(data.password_reset);
+							$("#modalReset").modal('show');
+						},
+						error: function(xhr, status, error) {
+							swal(error, "Please Ask Support or Refresh the Page!", "error").then((value) => {
+								$("#dtTable").DataTable().ajax.reload(function() {
+									$("#overlay").fadeOut(300)
+								}, false);
+							})
+						}
+					})
+				} else {
+					swal("Poof!", "Reset Password Dibatalkan", "error").then((value) => {
+						location.reload();
+					})
+				}
+			});
+		});
+
 		$(document).on('click', '#edit', function() {
 			$("#frmData").modal('show');
 			jQuery.ajax({
@@ -159,10 +201,10 @@
 						var ctrl = $('[name=' + key + ']', $('#Frm'));
 						switch (ctrl.prop("type")) {
 							case "select-one":
-								ctrl.val(value).change();
-								break;
+							ctrl.val(value).change();
+							break;
 							default:
-								ctrl.val(value);
+							ctrl.val(value);
 						}
 					});
 				},
@@ -240,5 +282,6 @@
 				}
 			})
 		});
+
 	});
 </script>
