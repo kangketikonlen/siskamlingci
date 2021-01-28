@@ -66,12 +66,54 @@ class Hak_akses extends MY_Controller
 		echo json_encode($pesan);
 	}
 
+	public function simpan_modul()
+	{
+		if ($this->input->post('modul_id') == "") {
+			$data = array(
+				'modul_roles' => $this->input->post('modul_roles'),
+				'created_by' => $this->session->userdata('nama'),
+				'created_date' => date('Y-m-d H:i:s')
+			);
+			$this->m->simpan_modul($data);
+			$pesan = array(
+				'warning' => 'Berhasil!',
+				'kode' => 'success',
+				'pesan' => 'Data berhasil di simpan'
+			);
+		} else {
+			$data = array(
+				'modul_roles' => $this->input->post('modul_roles'),
+				'updated_by' => $this->session->userdata('nama'),
+				'updated_date' => date('Y-m-d H:i:s')
+			);
+			$this->m->edit_modul($data);
+			$pesan = array(
+				'warning' => 'Berhasil!',
+				'kode' => 'success',
+				'pesan' => 'Data berhasil di perbarui'
+			);
+		}
+		echo json_encode($pesan);
+	}
+
 	public function get_data()
 	{
 		$result = $this->m->get_data();
 		$data = array(
 			'submodul_id' => $result->submodul_id,
+			'submodul_nama' => $result->submodul_root,
 			'submodul_roles' => $result->submodul_roles,
+		);
+		echo json_encode($data);
+	}
+
+	public function get_data_modul()
+	{
+		$result = $this->m->get_data_modul();
+		$data = array(
+			'modul_id' => $result->modul_id,
+			'modul_nama' => $result->modul_nama,
+			'modul_roles' => $result->modul_roles,
 		);
 		echo json_encode($data);
 	}

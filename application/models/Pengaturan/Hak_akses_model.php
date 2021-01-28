@@ -9,6 +9,9 @@ class Hak_akses_model extends CI_Model
 	{
 		$this->datatables->select('submodul_id, modul_nama, submodul_root, submodul_nama, submodul_roles');
 		$this->datatables->from($this->submodul);
+		if ($this->input->post('modul_id') != "") {
+			$this->datatables->where($this->submodul . '.modul_id', $this->input->post('modul_id'));
+		}
 		$this->datatables->where($this->submodul . '.deleted', FALSE);
 		$this->datatables->join($this->modul, $this->modul . '.modul_id=' . $this->submodul . '.modul_id');
 		$this->datatables->add_column('view', "<a id='edit' class='text-primary' data='$1' style='cursor:pointer'><i class='fa fa-edit'></i></a>", "submodul_id");
@@ -25,14 +28,29 @@ class Hak_akses_model extends CI_Model
 		return $this->db->insert($this->submodul, $data);
 	}
 
+	public function simpan_modul($data)
+	{
+		return $this->db->insert($this->modul, $data);
+	}
+
 	public function get_data()
 	{
 		return $this->db->where($this->submodul . '.deleted', false)->where($this->submodul . '.submodul_id', $this->input->post('submodul_id'))->get($this->submodul)->row();
 	}
 
+	public function get_data_modul()
+	{
+		return $this->db->where($this->modul . '.deleted', false)->where($this->modul . '.modul_id', $this->input->post('modul_id'))->get($this->modul)->row();
+	}
+
 	public function edit($data)
 	{
 		return $this->db->where($this->submodul . '.deleted', false)->where($this->submodul . '.submodul_id', $this->input->post('submodul_id'))->update($this->submodul, $data);
+	}
+
+	public function edit_modul($data)
+	{
+		return $this->db->where($this->modul . '.deleted', false)->where($this->modul . '.modul_id', $this->input->post('modul_id'))->update($this->modul, $data);
 	}
 
 	public function hapus($data)
