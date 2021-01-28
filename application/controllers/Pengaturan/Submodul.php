@@ -39,6 +39,7 @@ class Submodul extends MY_Controller
 	public function simpan()
 	{
 		if ($this->input->post('submodul_id') == "") {
+			$result = $this->m->get_submodul();
 			$data = array(
 				'modul_id' => $this->input->post('modul_id'),
 				'submodul_urutan' => $this->input->post('submodul_urutan'),
@@ -48,6 +49,9 @@ class Submodul extends MY_Controller
 				'created_by' => $this->session->userdata('nama'),
 				'created_date' => date('Y-m-d H:i:s')
 			);
+			if ($result > 0) {
+				$this->m->reorder();
+			}
 			$this->m->simpan($data);
 			$pesan = array(
 				'warning' => 'Berhasil!',

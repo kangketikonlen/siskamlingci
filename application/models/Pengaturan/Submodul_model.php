@@ -17,6 +17,11 @@ class Submodul_model extends CI_Model
 		return $this->datatables->generate();
 	}
 
+	public function get_submodul()
+	{
+		return $this->db->where($this->submodul . '.deleted', false)->where($this->submodul . '.modul_id', $this->input->post('modul_id'))->where($this->submodul . '.submodul_urutan', $this->input->post('submodul_urutan'))->get($this->submodul)->num_rows();
+	}
+
 	public function simpan($data)
 	{
 		return $this->db->insert($this->submodul, $data);
