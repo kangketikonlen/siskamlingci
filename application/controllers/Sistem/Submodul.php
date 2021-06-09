@@ -38,21 +38,24 @@ class Submodul extends MY_Controller
 
 	public function simpan()
 	{
+		$data = $this->input->post();
 		if ($this->input->post('submodul_id') == "") {
 			$result = $this->m->get_submodul();
-			$data = array(
-				'modul_id' => $this->input->post('modul_id'),
-				'submodul_urutan' => $this->input->post('submodul_urutan'),
-				'submodul_root' => $this->input->post('submodul_root'),
-				'submodul_nama' => $this->input->post('submodul_nama'),
-				'submodul_url' => $this->input->post('submodul_url'),
-				'created_by' => $this->session->userdata('nama'),
-				'created_date' => date('Y-m-d H:i:s')
-			);
+			$submodul = explode("/", $data['submodul_url']);
+			$data['created_by'] = $this->session->userdata('nama');
+			$data['created_date'] = date('Y-m-d H:i:s');
+
 			if ($result > 0) {
 				$this->m->reorder();
 			}
+
 			$this->m->simpan($data);
+
+			$this->create_controller($data, $submodul);
+			$this->create_model($submodul);
+			$this->create_view($submodul);
+			$this->create_js($submodul);
+
 			$pesan = array(
 				'warning' => 'Berhasil!',
 				'kode' => 'success',
@@ -60,19 +63,15 @@ class Submodul extends MY_Controller
 			);
 		} else {
 			$result = $this->m->get_data();
-			$data = array(
-				'modul_id' => $this->input->post('modul_id'),
-				'submodul_urutan' => $this->input->post('submodul_urutan'),
-				'submodul_root' => $this->input->post('submodul_root'),
-				'submodul_nama' => $this->input->post('submodul_nama'),
-				'submodul_url' => $this->input->post('submodul_url'),
-				'updated_by' => $this->session->userdata('nama'),
-				'updated_date' => date('Y-m-d H:i:s')
-			);
+			$data['updated_by'] = $this->session->userdata('nama');
+			$data['updated_date'] = date('Y-m-d H:i:s');
+
 			$this->m->edit($data);
+
 			if ($result->submodul_urutan != $this->input->post('submodul_urutan')) {
 				$this->m->reorder();
 			}
+
 			$pesan = array(
 				'warning' => 'Berhasil!',
 				'kode' => 'success',
@@ -82,18 +81,57 @@ class Submodul extends MY_Controller
 		echo json_encode($pesan);
 	}
 
+	public function create_controller($data, $submodul)
+	{
+		copy(
+			'./samples/controllers/samples.php',
+			'./application/controllers/' . ucfirst($submodul[0]) . '/' . ucfirst($submodul[1]) . '.php'
+		);
+
+		$path_to_file = './application/controllers/' . ucfirst($submodul[0]) . '/' . ucfirst($submodul[1]) . '.php';
+		$file_contents = file_get_contents($path_to_file);
+		$file_contents = str_replace("Model_folder/Samples_model", ucfirst($submodul[0]) . '/' . ucfirst($submodul[1] . '_model'), $file_contents);
+		$file_contents = str_replace("Samples_controller", ucfirst($submodul[1]), $file_contents);
+		$file_contents = str_replace("Samples Root", ucfirst($submodul[0]), $file_contents);
+		$file_contents = str_replace("Samples Title", $data['submodul_root'], $file_contents);
+		$file_contents = str_replace("samples_view/v_samples", strtolower($submodul[0]) . '/v_' . strtolower($submodul[1]), $file_contents);
+		$file_contents = str_replace("Samples", ucfirst($submodul[0]), $file_contents);
+		file_put_contents($path_to_file, $file_contents);
+	}
+
+	public function create_model($submodul)
+	{
+		copy(
+			'./samples/models/samples_model.php',
+			'./application/models/' . ucfirst($submodul[0]) . '/' . ucfirst($submodul[1]) . '_model.php'
+		);
+
+		$path_to_file = './application/models/' . ucfirst($submodul[0]) . '/' . ucfirst($submodul[1]) . '_model.php';
+		$file_contents = file_get_contents($path_to_file);
+		$file_contents = str_replace("Samples_model", ucfirst($submodul[1] . '_model'), $file_contents);
+		file_put_contents($path_to_file, $file_contents);
+	}
+
+	public function create_view($submodul)
+	{
+		copy(
+			'./samples/views/v_samples.php',
+			'./application/views/' . strtolower($submodul[0]) . '/v_' . strtolower($submodul[1]) . '.php'
+		);
+	}
+
+	public function create_js($submodul)
+	{
+		copy(
+			'./samples/views/js/js_samples.php',
+			'./application/views/' . strtolower($submodul[0]) . '/js/js_' . strtolower($submodul[1]) . '.php'
+		);
+	}
+
 	public function get_data()
 	{
 		$result = $this->m->get_data();
-		$data = array(
-			'submodul_id' => $result->submodul_id,
-			'modul_id' => $result->modul_id,
-			'submodul_urutan' => $result->submodul_urutan,
-			'submodul_root' => $result->submodul_root,
-			'submodul_nama' => $result->submodul_nama,
-			'submodul_url' => $result->submodul_url,
-		);
-		echo json_encode($data);
+		echo json_encode($result);
 	}
 
 	public function hapus()

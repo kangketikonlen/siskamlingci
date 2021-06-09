@@ -50,6 +50,22 @@ class Modul extends MY_Controller
 
 			$this->m->simpan($data);
 
+			if (!file_exists('./application/controllers/' . ucfirst($data['modul_nama']))) {
+				mkdir('./application/controllers/' . ucfirst($data['modul_nama']), 0777, true);
+			}
+
+			if (!file_exists('./application/models/' . ucfirst($data['modul_nama']))) {
+				mkdir('./application/models/' . ucfirst($data['modul_nama']), 0777, true);
+			}
+
+			if (!file_exists('./application/views/' . strtolower($data['modul_nama']))) {
+				mkdir('./application/views/' . strtolower($data['modul_nama']), 0777, true);
+			}
+
+			if (!file_exists('./application/views/' . strtolower($data['modul_nama'] . '/js/'))) {
+				mkdir('./application/views/' . strtolower($data['modul_nama'] . '/js/'), 0777, true);
+			}
+
 			$pesan = array(
 				'warning' => 'Berhasil!',
 				'kode' => 'success',
