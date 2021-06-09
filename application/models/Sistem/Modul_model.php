@@ -5,7 +5,7 @@ class Modul_model extends CI_Model
 
 	public function get_list_data()
 	{
-		$this->datatables->select('modul_id, modul_urutan, modul_icon, modul_nama');
+		$this->datatables->select('modul_id, modul_urutan, modul_icon, modul_nama, modul_background');
 		$this->datatables->from($this->modul);
 		$this->datatables->where($this->modul . '.deleted', FALSE);
 		$this->datatables->add_column('view', "<button id='edit' class='m-1 btn btn-sm btn-primary' data='$1'><i class='fa fa-pencil-alt'></i></button> <button id='hapus' class='m-1 btn btn-sm btn-danger' data='$1'><i class='fa fa-trash'></i></button>", "modul_id");

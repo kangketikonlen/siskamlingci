@@ -38,25 +38,22 @@ class Level extends MY_Controller
 
 	public function simpan()
 	{
+		$data = $this->input->post();
 		if ($this->input->post('level_id') == "") {
-			$data = array(
-				'level_nama' => $this->input->post('level_nama'),
-				'created_by' => $this->session->userdata('nama'),
-				'created_date' => date('Y-m-d H:i:s')
-			);
+			$data['created_by'] = $this->session->userdata('nama');
+			$data['created_date'] = date('Y-m-d H:i:s');
 			$this->m->simpan($data);
+
 			$pesan = array(
 				'warning' => 'Berhasil!',
 				'kode' => 'success',
 				'pesan' => 'Data berhasil di simpan'
 			);
 		} else {
-			$data = array(
-				'level_nama' => $this->input->post('level_nama'),
-				'updated_by' => $this->session->userdata('nama'),
-				'updated_date' => date('Y-m-d H:i:s')
-			);
+			$data['updated_by'] = $this->session->userdata('nama');
+			$data['updated_date'] = date('Y-m-d H:i:s');
 			$this->m->edit($data);
+
 			$pesan = array(
 				'warning' => 'Berhasil!',
 				'kode' => 'success',
@@ -69,11 +66,7 @@ class Level extends MY_Controller
 	public function get_data()
 	{
 		$result = $this->m->get_data();
-		$data = array(
-			'level_id' => $result->level_id,
-			'level_nama' => $result->level_nama
-		);
-		echo json_encode($data);
+		echo json_encode($result);
 	}
 
 	public function hapus()

@@ -40,9 +40,9 @@ class Info extends MY_Controller
 	{
 		$data = $this->input->post();
 		if ($this->input->post('info_id') == "") {
-			$this->m->simpan($data);
 			$data['created_by'] = $this->session->userdata('nama');
 			$data['created_date'] = date('Y-m-d H:i:s');
+			$this->m->simpan($data);
 
 			$pesan = array(
 				'warning' => 'Berhasil!',
@@ -50,9 +50,9 @@ class Info extends MY_Controller
 				'pesan' => 'Data berhasil di simpan'
 			);
 		} else {
-			$this->m->edit($data);
 			$data['updated_by'] = $this->session->userdata('nama');
 			$data['updated_date'] = date('Y-m-d H:i:s');
+			$this->m->edit($data);
 
 			$pesan = array(
 				'warning' => 'Berhasil!',

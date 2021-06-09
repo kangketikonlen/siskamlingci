@@ -7,6 +7,7 @@
 						<th>No.</th>
 						<th>Icon</th>
 						<th>Nama</th>
+						<th>#Hex</th>
 						<th><i class="fa fa-cogs"></i></th>
 					</thead>
 					<tbody></tbody>
@@ -45,6 +46,12 @@
 						<div class="form-group">
 							<label for="modul_nama">Nama</label>
 							<input type="text" name="modul_nama" id="modul_nama" class="form-control form-control-sm" placeholder="nama <?= strtolower($Title) ?>..." autocomplete="off" required="true">
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="form-group">
+							<label for="modul_background">#Hex Background</label>
+							<input type="text" name="modul_background" id="modul_background" class="form-control form-control-sm" placeholder="#000 <?= strtolower($Title) ?>..." autocomplete="off" required="true">
 						</div>
 					</div>
 				</div>

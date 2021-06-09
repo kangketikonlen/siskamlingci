@@ -6,6 +6,7 @@
 					<thead>
 						<th>No.</th>
 						<th>Nama</th>
+						<th>#Hex</th>
 						<th><i class="fa fa-cogs"></i></th>
 					</thead>
 					<tbody></tbody>
@@ -32,6 +33,12 @@
 							<label for="level_nama">Nama</label>
 							<input type="hidden" name="level_id" id="level_id">
 							<input type="text" name="level_nama" id="level_nama" class="form-control form-control-sm" placeholder="Masukkan nama level..." autocomplete="off" required="true">
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="form-group">
+							<label for="level_background">#Hex Background</label>
+							<input type="text" name="level_background" id="level_background" class="form-control form-control-sm" placeholder="Masukkan nama level..." autocomplete="off" required="true">
 						</div>
 					</div>
 				</div>
