@@ -11,7 +11,7 @@ class User_model extends CI_Model
 		$this->datatables->where($this->user . '.deleted', FALSE);
 		$this->datatables->where($this->user . '.user_id!=', 1);
 		$this->datatables->join($this->level, $this->level . '.level_id=' . $this->user . '.level_id');
-		$this->datatables->add_column('view', "<a id='edit' class='text-primary' data='$1' style='cursor:pointer'><i class='fa fa-edit'></i></a> | <a id='hapus' class='text-danger' data='$1' style='cursor:pointer'><i class='fa fa-trash'></i></a>", "user_id");
+		$this->datatables->add_column('view', "<button id='edit' class='m-1 btn btn-sm btn-primary' data='$1'><i class='fa fa-pencil-alt'></i></button> <button id='hapus' class='m-1 btn btn-sm btn-danger' data='$1'><i class='fa fa-trash'></i></button>", "user_id");
 		return $this->datatables->generate();
 	}
 

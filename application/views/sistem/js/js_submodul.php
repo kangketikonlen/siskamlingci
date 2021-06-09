@@ -1,5 +1,74 @@
 <script>
 	$(document).ready(function() {
+		$('#modul_id').select2({
+			theme: 'bootstrap4',
+			placeholder: '-- PILIH MODUL --',
+			allowClear: true
+		});
+
+		$.ajax({
+			type: "GET",
+			url: "<?= base_url('sistem/modul/options/') ?>",
+			beforeSend: function(xhr) {
+				$("#overlay").fadeIn(300);
+			},
+			success: function(data) {
+				$("#overlay").fadeOut(300);
+				var opts = $.parseJSON(data);
+				$.each(opts, function(i, d) {
+					$("#modul_id").append('<option value="' + d.id + '">' + d.text + '</option>');
+				});
+			},
+			error: function(xhr, status, error) {
+				swal(error, "Terjadi kegagalan saat memuat data. Sepertinya internetmu kurang stabil. Silahkan coba kembali saat internetmu stabil.", "error").then((value) => {
+					$("#dtTable").DataTable().ajax.reload(function() {
+						$("#overlay").fadeOut(300)
+					}, false);
+				})
+			}
+		});
+
+		$('#filter_modul_id').select2({
+			theme: 'bootstrap4',
+			placeholder: '-- FILTER MODUL --',
+			allowClear: true
+		});
+
+		$.ajax({
+			type: "GET",
+			url: "<?= base_url('sistem/modul/options/') ?>",
+			beforeSend: function(xhr) {
+				$("#overlay").fadeIn(300);
+			},
+			success: function(data) {
+				$("#overlay").fadeOut(300);
+				var opts = $.parseJSON(data);
+				$.each(opts, function(i, d) {
+					$("#filter_modul_id").append('<option value="' + d.id + '">' + d.text + '</option>');
+				});
+			},
+			error: function(xhr, status, error) {
+				swal(error, "Terjadi kegagalan saat memuat data. Sepertinya internetmu kurang stabil. Silahkan coba kembali saat internetmu stabil.", "error").then((value) => {
+					$("#dtTable").DataTable().ajax.reload(function() {
+						$("#overlay").fadeOut(300)
+					}, false);
+				})
+			}
+		});
+
+		$("#filter_modul_id").change(function() {
+			$("#dtTable").DataTable().ajax.reload(function() {
+				$("#overlay").fadeOut(300)
+			}, true);
+		});
+
+		$('#frmData').on('show.bs.modal', function(event) {
+			var modal = $(this)
+			var data = $("#filter_modul_id").val();
+			console.log(data);
+			modal.find('#modul_id').val(data).change();
+		})
+
 		$.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings) {
 			return {
 				"iStart": oSettings._iDisplayStart,
@@ -11,6 +80,7 @@
 				"iTotalPages": Math.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength)
 			};
 		};
+
 		var table = $("#dtTable").dataTable({
 			initComplete: function() {
 				$("#overlay").fadeOut(300);
@@ -26,10 +96,12 @@
 				[1, "asc"]
 			],
 			ajax: {
-				"url": "<?= base_url('pengaturan/modul/list_data/') ?>",
+				"url": "<?= base_url('sistem/submodul/list_data/') ?>",
 				"type": "POST",
-				"beforeSend": function(xhr) {
-					$("#overlay").fadeIn(300);
+				"data": function(d) {
+					return $.extend({}, d, {
+						'modul_id': $('#filter_modul_id').val(),
+					});
 				},
 				"error": function(xhr, status, error) {
 					swal(error, "Terjadi kegagalan saat memuat data. Sepertinya internetmu kurang stabil. Silahkan coba kembali saat internetmu stabil.", "error").then((value) => {
@@ -49,7 +121,13 @@
 					"data": "3"
 				},
 				{
-					"data": "4",
+					"data": "4"
+				},
+				{
+					"data": "5"
+				},
+				{
+					"data": "6",
 					"searchable": false
 				}
 			],
@@ -61,11 +139,12 @@
 				$('td:eq(0)', row).html();
 			}
 		});
+
 		$('#Frm').submit(function(e) {
 			e.preventDefault();
 			swal({
 				title: "Anda Yakin Ingin Menyimpan Data?",
-				text: "",
+				text: "Klik CANCEL jika ingin membatalkan!",
 				icon: "warning",
 				buttons: true,
 				dangerMode: true,
@@ -73,7 +152,7 @@
 				if (Oke) {
 					$.ajax({
 						type: "POST",
-						url: "<?= base_url('pengaturan/modul/simpan/') ?>",
+						url: "<?= base_url('sistem/submodul/simpan/') ?>",
 						data: $("#Frm").serialize(),
 						timeout: 5000,
 						beforeSend: function(xhr) {
@@ -106,14 +185,15 @@
 				}
 			});
 		});
+
 		$(document).on('click', '#edit', function() {
 			$("#frmData").modal('show');
 			jQuery.ajax({
 				type: "POST",
-				url: "<?= base_url('pengaturan/modul/get_data/') ?>",
+				url: "<?= base_url('sistem/submodul/get_data/') ?>",
 				dataType: 'json',
 				data: {
-					modul_id: $(this).attr("data")
+					submodul_id: $(this).attr("data")
 				},
 				beforeSend: function(xhr) {
 					$("#overlay").fadeIn(300);
@@ -124,7 +204,7 @@
 						var ctrl = $('[name=' + key + ']', $('#Frm'));
 						switch (ctrl.prop("type")) {
 							case "select-one":
-								append_select2(value);
+								ctrl.val(value).change();
 								break;
 							default:
 								ctrl.val(value);
@@ -140,10 +220,11 @@
 				}
 			});
 		});
+
 		$(document).on('click', '#hapus', function() {
 			swal({
 				title: "Anda Yakin Ingin Menghapus Data?",
-				text: "",
+				text: "Klik CANCEL jika ingin membatalkan!",
 				icon: "warning",
 				buttons: true,
 				dangerMode: true,
@@ -151,9 +232,9 @@
 				if (Oke) {
 					$.ajax({
 						type: "POST",
-						url: "<?= base_url('pengaturan/modul/hapus/') ?>",
+						url: "<?= base_url('sistem/submodul/hapus/') ?>",
 						data: {
-							modul_id: $(this).attr("data")
+							submodul_id: $(this).attr("data")
 						},
 						timeout: 5000,
 						beforeSend: function(xhr) {

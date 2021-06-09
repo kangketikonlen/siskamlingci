@@ -3,7 +3,7 @@
 <html lang="en" dir="ltr">
 <?php $this->load->view($Components['header']); ?>
 
-<body style="background-color:dimgrey">
+<body style="background-color:#687980">
 	<?php $this->load->view($Components['content']); ?>
 </body>
 

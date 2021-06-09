@@ -8,7 +8,7 @@ class Modul_model extends CI_Model
 		$this->datatables->select('modul_id, modul_urutan, modul_icon, modul_nama');
 		$this->datatables->from($this->modul);
 		$this->datatables->where($this->modul . '.deleted', FALSE);
-		$this->datatables->add_column('view', "<a id='edit' class='text-primary' data='$1' style='cursor:pointer'><i class='fa fa-edit'></i></a> | <a id='hapus' class='text-danger' data='$1' style='cursor:pointer'><i class='fa fa-trash'></i></a>", "modul_id");
+		$this->datatables->add_column('view', "<button id='edit' class='m-1 btn btn-sm btn-primary' data='$1'><i class='fa fa-pencil-alt'></i></button> <button id='hapus' class='m-1 btn btn-sm btn-danger' data='$1'><i class='fa fa-trash'></i></button>", "modul_id");
 		return $this->datatables->generate();
 	}
 

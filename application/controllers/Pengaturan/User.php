@@ -84,12 +84,7 @@ class User extends MY_Controller
 	public function get_data()
 	{
 		$result = $this->m->get_data();
-		$data = array(
-			'level_id' => $result->level_id,
-			'user_id' => $result->user_id,
-			'user_nama' => $result->user_nama
-		);
-		echo json_encode($data);
+		echo json_encode($result);
 	}
 
 	public function hapus()

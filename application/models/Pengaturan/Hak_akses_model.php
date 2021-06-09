@@ -14,7 +14,7 @@ class Hak_akses_model extends CI_Model
 		}
 		$this->datatables->where($this->submodul . '.deleted', FALSE);
 		$this->datatables->join($this->modul, $this->modul . '.modul_id=' . $this->submodul . '.modul_id');
-		$this->datatables->add_column('view', "<a id='edit' class='text-primary' data='$1' style='cursor:pointer'><i class='fa fa-edit'></i></a>", "submodul_id");
+		$this->datatables->add_column('view', "<button id='edit' class='m-1 btn btn-sm btn-primary' data='$1'><i class='fa fa-pencil-alt'></i></button>", "submodul_id");
 		return $this->datatables->generate();
 	}
 

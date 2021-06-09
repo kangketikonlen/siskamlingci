@@ -9,7 +9,7 @@ class Level_model extends CI_Model
 		$this->datatables->from($this->level);
 		$this->datatables->where($this->level . '.deleted', FALSE);
 		$this->datatables->where($this->level . '.level_id!=', 1);
-		$this->datatables->add_column('view', "<a id='edit' class='text-primary' data='$1' style='cursor:pointer'><i class='fa fa-edit'></i></a>", "level_id");
+		$this->datatables->add_column('view', "<button id='edit' class='m-1 btn btn-sm btn-primary' data='$1'><i class='fa fa-pencil-alt'></i></button> <button id='hapus' class='m-1 btn btn-sm btn-danger' data='$1'><i class='fa fa-trash'></i></button>", "level_id");
 		return $this->datatables->generate();
 	}
 

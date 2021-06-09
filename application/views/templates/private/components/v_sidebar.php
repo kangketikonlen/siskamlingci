@@ -1,14 +1,14 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4 sidebar-no-expand">
 	<!-- Brand Logo -->
-	<a href="<?= base_url() ?>" class="brand-link text-center">
-		<i class="fa fa-info-circle brand-logo"></i>
-		<span class="brand-text font-weight-light"><?= $this->session->userdata('AppInfo') ?></span>
+	<a href="<?= base_url() ?>" class="brand-link" style="font-size: small;">
+		<i class="fa fa-2x fa-info-circle brand-image" style="margin-top:-2px"></i>
+		<strong><u><span class="brand-text font-weight-light"><?= $this->session->userdata('AppInfo') ?></span></u></strong>
 	</a>
 	<!-- Sidebar -->
 	<div class="sidebar">
 		<!-- Sidebar Menu -->
 		<nav class="mt-2">
-			<ul class="nav nav-pills nav-sidebar flex-column text-sm nav-flat nav-legacy nav-compact" data-widget="treeview" role="menu" data-accordion="false">
+			<ul class="nav nav-pills nav-sidebar flex-column nav-compact" data-widget="treeview" role="menu" data-accordion="false">
 				<!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 				<li class="nav-item">

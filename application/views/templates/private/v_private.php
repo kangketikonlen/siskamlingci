@@ -2,7 +2,7 @@
 <html lang="en">
 <?php $this->load->view($Components['header']); ?>
 
-<body class="hold-transition sidebar-mini skin-green accent-info text-sm layout-fixed" style="height: auto;" cz-shortcut-listen="true">
+<body class="hold-transition sidebar-mini-xs dark-mode text-sm layout-fixed" style="height: auto;" cz-shortcut-listen="true">
 	<div id="overlay">
 		<div class="cv-spinner">
 			<img src="<?= base_url('assets/images/spinner/loading.gif') ?>">
@@ -22,7 +22,7 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1 class="m-0 text-dark"><?= $Title ?></h1>
+							<h1 class="m-0"><?= $Title ?></h1>
 						</div><!-- /.col -->
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">

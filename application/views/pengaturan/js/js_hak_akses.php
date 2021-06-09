@@ -8,7 +8,7 @@
 
 		$.ajax({
 			type: "GET",
-			url: "<?= base_url('pengaturan/modul/options/') ?>",
+			url: "<?= base_url('sistem/modul/options/') ?>",
 			beforeSend: function(xhr) {
 				$("#overlay").fadeIn(300);
 			},
@@ -45,6 +45,7 @@
 				"iTotalPages": Math.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength)
 			};
 		};
+
 		var table = $("#dtTable").dataTable({
 			initComplete: function() {
 				$("#overlay").fadeOut(300);
@@ -63,9 +64,6 @@
 					return $.extend({}, d, {
 						'modul_id': $('#filter_modul_id').val(),
 					});
-				},
-				"beforeSend": function(xhr) {
-					$("#overlay").fadeIn(300);
 				},
 				"error": function(xhr, status, error) {
 					swal(error, "Terjadi kegagalan saat memuat data. Sepertinya internetmu kurang stabil. Silahkan coba kembali saat internetmu stabil.", "error").then((value) => {
@@ -110,7 +108,7 @@
 			e.preventDefault();
 			swal({
 				title: "Anda Yakin Ingin Menyimpan Data?",
-				text: "",
+				text: "Klik CANCEL jika ingin membatalkan!",
 				icon: "warning",
 				buttons: true,
 				dangerMode: true,
@@ -164,7 +162,7 @@
 			e.preventDefault();
 			swal({
 				title: "Anda Yakin Ingin Menyimpan Data?",
-				text: "",
+				text: "Klik CANCEL jika ingin membatalkan!",
 				icon: "warning",
 				buttons: true,
 				dangerMode: true,

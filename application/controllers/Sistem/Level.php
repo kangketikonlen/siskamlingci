@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
-class Modul extends MY_Controller
+class Level extends MY_Controller
 {
 	public function __construct()
 	{
@@ -9,15 +9,15 @@ class Modul extends MY_Controller
 			$this->session->sess_destroy();
 			redirect('portal');
 		} else {
-			$this->load->model('Pengaturan/Modul_model', 'm');
+			$this->load->model('Sistem/Level_model', 'm');
 		}
 	}
 
 	public function index()
 	{
-		$data['Root'] = "Pengaturan";
-		$data['Title'] = "Pengaturan Modul";
-		$data['Breadcrumb'] = array('Pengaturan');
+		$data['Root'] = "Sistem";
+		$data['Title'] = "Daftar Level";
+		$data['Breadcrumb'] = array('Sistem');
 		$data['Template'] = "templates/private";
 		$data['Components'] = array(
 			'main' => "/v_private",
@@ -25,7 +25,7 @@ class Modul extends MY_Controller
 			'sidebar' => $data['Template'] . "/components/v_sidebar",
 			'navbar' => $data['Template'] . "/components/v_navbar",
 			'footer' => $data['Template'] . "/components/v_footer",
-			'content' => "pengaturan/v_modul"
+			'content' => "sistem/v_level"
 		);
 		$this->load->view('v_main', $data);
 	}
@@ -38,18 +38,12 @@ class Modul extends MY_Controller
 
 	public function simpan()
 	{
-		if ($this->input->post('modul_id') == "") {
-			$result = $this->m->get_modul();
+		if ($this->input->post('level_id') == "") {
 			$data = array(
-				'modul_urutan' => $this->input->post('modul_urutan'),
-				'modul_icon' => $this->input->post('modul_icon'),
-				'modul_nama' => $this->input->post('modul_nama'),
+				'level_nama' => $this->input->post('level_nama'),
 				'created_by' => $this->session->userdata('nama'),
 				'created_date' => date('Y-m-d H:i:s')
 			);
-			if ($result > 0) {
-				$this->m->reorder();
-			}
 			$this->m->simpan($data);
 			$pesan = array(
 				'warning' => 'Berhasil!',
@@ -57,17 +51,11 @@ class Modul extends MY_Controller
 				'pesan' => 'Data berhasil di simpan'
 			);
 		} else {
-			$result = $this->m->get_data();
 			$data = array(
-				'modul_urutan' => $this->input->post('modul_urutan'),
-				'modul_icon' => $this->input->post('modul_icon'),
-				'modul_nama' => $this->input->post('modul_nama'),
+				'level_nama' => $this->input->post('level_nama'),
 				'updated_by' => $this->session->userdata('nama'),
 				'updated_date' => date('Y-m-d H:i:s')
 			);
-			if ($result->modul_urutan != $this->input->post('modul_urutan')) {
-				$this->m->reorder();
-			}
 			$this->m->edit($data);
 			$pesan = array(
 				'warning' => 'Berhasil!',
@@ -82,10 +70,8 @@ class Modul extends MY_Controller
 	{
 		$result = $this->m->get_data();
 		$data = array(
-			'modul_id' => $result->modul_id,
-			'modul_urutan' => $result->modul_urutan,
-			'modul_icon' => $result->modul_icon,
-			'modul_nama' => $result->modul_nama
+			'level_id' => $result->level_id,
+			'level_nama' => $result->level_nama
 		);
 		echo json_encode($data);
 	}

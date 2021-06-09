@@ -46,7 +46,7 @@
 <div class="modal fade" id="frmData">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
-			<div class="modal-header bg-warning">
+			<div class="modal-header bg-primary">
 				<h4 class="modal-title">Formulir <?= $Title ?></h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
@@ -68,7 +68,7 @@
 					<?php endforeach ?>
 				</div>
 			</div>
-			<div class="modal-footer d-flex justify-content-center">
+			<div class="modal-footer">
 				<button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-save"></i> Simpan</button>
 			</div>
 			<?= form_close() ?>
@@ -78,7 +78,7 @@
 <div class="modal fade" id="frmSetup">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
-			<div class="modal-header bg-warning">
+			<div class="modal-header bg-primary">
 				<h4 class="modal-title">Formulir <?= $Title ?></h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
@@ -100,7 +100,7 @@
 					<?php endforeach ?>
 				</div>
 			</div>
-			<div class="modal-footer d-flex justify-content-center">
+			<div class="modal-footer">
 				<button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-save"></i> Simpan</button>
 			</div>
 			<?= form_close() ?>

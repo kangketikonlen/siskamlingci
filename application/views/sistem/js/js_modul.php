@@ -1,62 +1,5 @@
 <script>
 	$(document).ready(function() {
-		$('#modul_id').select2({
-			theme: 'bootstrap4',
-			placeholder: '-- PILIH MODUL --',
-			allowClear: true
-		});
-		$.ajax({
-			type: "GET",
-			url: "<?= base_url('pengaturan/modul/options/') ?>",
-			beforeSend: function(xhr) {
-				$("#overlay").fadeIn(300);
-			},
-			success: function(data) {
-				$("#overlay").fadeOut(300);
-				var opts = $.parseJSON(data);
-				$.each(opts, function(i, d) {
-					$("#modul_id").append('<option value="' + d.id + '">' + d.text + '</option>');
-				});
-			},
-			error: function(xhr, status, error) {
-				swal(error, "Terjadi kegagalan saat memuat data. Sepertinya internetmu kurang stabil. Silahkan coba kembali saat internetmu stabil.", "error").then((value) => {
-					$("#dtTable").DataTable().ajax.reload(function() {
-						$("#overlay").fadeOut(300)
-					}, false);
-				})
-			}
-		});
-		$('#filter_modul_id').select2({
-			theme: 'bootstrap4',
-			placeholder: '-- FILTER MODUL --',
-			allowClear: true
-		});
-		$.ajax({
-			type: "GET",
-			url: "<?= base_url('pengaturan/modul/options/') ?>",
-			beforeSend: function(xhr) {
-				$("#overlay").fadeIn(300);
-			},
-			success: function(data) {
-				$("#overlay").fadeOut(300);
-				var opts = $.parseJSON(data);
-				$.each(opts, function(i, d) {
-					$("#filter_modul_id").append('<option value="' + d.id + '">' + d.text + '</option>');
-				});
-			},
-			error: function(xhr, status, error) {
-				swal(error, "Terjadi kegagalan saat memuat data. Sepertinya internetmu kurang stabil. Silahkan coba kembali saat internetmu stabil.", "error").then((value) => {
-					$("#dtTable").DataTable().ajax.reload(function() {
-						$("#overlay").fadeOut(300)
-					}, false);
-				})
-			}
-		});
-		$("#filter_modul_id").change(function() {
-			$("#dtTable").DataTable().ajax.reload(function() {
-				$("#overlay").fadeOut(300)
-			}, true);
-		});
 		$.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings) {
 			return {
 				"iStart": oSettings._iDisplayStart,
@@ -83,16 +26,8 @@
 				[1, "asc"]
 			],
 			ajax: {
-				"url": "<?= base_url('pengaturan/submodul/list_data/') ?>",
+				"url": "<?= base_url('sistem/modul/list_data/') ?>",
 				"type": "POST",
-				"data": function(d) {
-					return $.extend({}, d, {
-						'modul_id': $('#filter_modul_id').val(),
-					});
-				},
-				"beforeSend": function(xhr) {
-					$("#overlay").fadeIn(300);
-				},
 				"error": function(xhr, status, error) {
 					swal(error, "Terjadi kegagalan saat memuat data. Sepertinya internetmu kurang stabil. Silahkan coba kembali saat internetmu stabil.", "error").then((value) => {
 						$("#dtTable").DataTable().ajax.reload(function() {
@@ -111,13 +46,7 @@
 					"data": "3"
 				},
 				{
-					"data": "4"
-				},
-				{
-					"data": "5"
-				},
-				{
-					"data": "6",
+					"data": "4",
 					"searchable": false
 				}
 			],
@@ -132,8 +61,8 @@
 		$('#Frm').submit(function(e) {
 			e.preventDefault();
 			swal({
-				title: "Anda Yakin Ingin Menyimpan Data?",
-				text: "",
+				title: "Sudah yakin ingin menyimpan data?",
+				text: "Klik CANCEL jika ingin membatalkan!",
 				icon: "warning",
 				buttons: true,
 				dangerMode: true,
@@ -141,9 +70,8 @@
 				if (Oke) {
 					$.ajax({
 						type: "POST",
-						url: "<?= base_url('pengaturan/submodul/simpan/') ?>",
+						url: "<?= base_url('sistem/modul/simpan/') ?>",
 						data: $("#Frm").serialize(),
-						timeout: 5000,
 						beforeSend: function(xhr) {
 							$("#overlay").fadeIn(300);
 						},
@@ -178,10 +106,10 @@
 			$("#frmData").modal('show');
 			jQuery.ajax({
 				type: "POST",
-				url: "<?= base_url('pengaturan/submodul/get_data/') ?>",
+				url: "<?= base_url('sistem/modul/get_data/') ?>",
 				dataType: 'json',
 				data: {
-					submodul_id: $(this).attr("data")
+					modul_id: $(this).attr("data")
 				},
 				beforeSend: function(xhr) {
 					$("#overlay").fadeIn(300);
@@ -192,7 +120,7 @@
 						var ctrl = $('[name=' + key + ']', $('#Frm'));
 						switch (ctrl.prop("type")) {
 							case "select-one":
-								ctrl.val(value).change();
+								append_select2(value);
 								break;
 							default:
 								ctrl.val(value);
@@ -210,8 +138,8 @@
 		});
 		$(document).on('click', '#hapus', function() {
 			swal({
-				title: "Anda Yakin Ingin Menghapus Data?",
-				text: "",
+				title: "Sudah yakin ingin menghapus data?",
+				text: "Klik CANCEL jika ingin membatalkan!",
 				icon: "warning",
 				buttons: true,
 				dangerMode: true,
@@ -219,11 +147,10 @@
 				if (Oke) {
 					$.ajax({
 						type: "POST",
-						url: "<?= base_url('pengaturan/submodul/hapus/') ?>",
+						url: "<?= base_url('sistem/modul/hapus/') ?>",
 						data: {
-							submodul_id: $(this).attr("data")
+							modul_id: $(this).attr("data")
 						},
-						timeout: 5000,
 						beforeSend: function(xhr) {
 							$("#overlay").fadeIn(300);
 						},

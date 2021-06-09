@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
-class Submodul extends MY_Controller
+class Modul extends MY_Controller
 {
 	public function __construct()
 	{
@@ -9,15 +9,15 @@ class Submodul extends MY_Controller
 			$this->session->sess_destroy();
 			redirect('portal');
 		} else {
-			$this->load->model('Pengaturan/Submodul_model', 'm');
+			$this->load->model('Sistem/Modul_model', 'm');
 		}
 	}
 
 	public function index()
 	{
-		$data['Root'] = "Pengaturan";
-		$data['Title'] = "Pengaturan Submodul";
-		$data['Breadcrumb'] = array('Pengaturan');
+		$data['Root'] = "Sistem";
+		$data['Title'] = "Daftar Modul Utama";
+		$data['Breadcrumb'] = array('Sistem');
 		$data['Template'] = "templates/private";
 		$data['Components'] = array(
 			'main' => "/v_private",
@@ -25,7 +25,7 @@ class Submodul extends MY_Controller
 			'sidebar' => $data['Template'] . "/components/v_sidebar",
 			'navbar' => $data['Template'] . "/components/v_navbar",
 			'footer' => $data['Template'] . "/components/v_footer",
-			'content' => "pengaturan/v_submodul"
+			'content' => "sistem/v_modul"
 		);
 		$this->load->view('v_main', $data);
 	}
@@ -38,14 +38,12 @@ class Submodul extends MY_Controller
 
 	public function simpan()
 	{
-		if ($this->input->post('submodul_id') == "") {
-			$result = $this->m->get_submodul();
+		if ($this->input->post('modul_id') == "") {
+			$result = $this->m->get_modul();
 			$data = array(
-				'modul_id' => $this->input->post('modul_id'),
-				'submodul_urutan' => $this->input->post('submodul_urutan'),
-				'submodul_root' => $this->input->post('submodul_root'),
-				'submodul_nama' => $this->input->post('submodul_nama'),
-				'submodul_url' => $this->input->post('submodul_url'),
+				'modul_urutan' => $this->input->post('modul_urutan'),
+				'modul_icon' => $this->input->post('modul_icon'),
+				'modul_nama' => $this->input->post('modul_nama'),
 				'created_by' => $this->session->userdata('nama'),
 				'created_date' => date('Y-m-d H:i:s')
 			);
@@ -61,18 +59,16 @@ class Submodul extends MY_Controller
 		} else {
 			$result = $this->m->get_data();
 			$data = array(
-				'modul_id' => $this->input->post('modul_id'),
-				'submodul_urutan' => $this->input->post('submodul_urutan'),
-				'submodul_root' => $this->input->post('submodul_root'),
-				'submodul_nama' => $this->input->post('submodul_nama'),
-				'submodul_url' => $this->input->post('submodul_url'),
+				'modul_urutan' => $this->input->post('modul_urutan'),
+				'modul_icon' => $this->input->post('modul_icon'),
+				'modul_nama' => $this->input->post('modul_nama'),
 				'updated_by' => $this->session->userdata('nama'),
 				'updated_date' => date('Y-m-d H:i:s')
 			);
-			$this->m->edit($data);
-			if ($result->submodul_urutan != $this->input->post('submodul_urutan')) {
+			if ($result->modul_urutan != $this->input->post('modul_urutan')) {
 				$this->m->reorder();
 			}
+			$this->m->edit($data);
 			$pesan = array(
 				'warning' => 'Berhasil!',
 				'kode' => 'success',
@@ -86,12 +82,10 @@ class Submodul extends MY_Controller
 	{
 		$result = $this->m->get_data();
 		$data = array(
-			'submodul_id' => $result->submodul_id,
 			'modul_id' => $result->modul_id,
-			'submodul_urutan' => $result->submodul_urutan,
-			'submodul_root' => $result->submodul_root,
-			'submodul_nama' => $result->submodul_nama,
-			'submodul_url' => $result->submodul_url,
+			'modul_urutan' => $result->modul_urutan,
+			'modul_icon' => $result->modul_icon,
+			'modul_nama' => $result->modul_nama
 		);
 		echo json_encode($data);
 	}

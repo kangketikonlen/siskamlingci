@@ -11,6 +11,7 @@
 				"iTotalPages": Math.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength)
 			};
 		};
+
 		var table = $("#dtTable").dataTable({
 			initComplete: function() {
 				$("#overlay").fadeOut(300);
@@ -23,11 +24,8 @@
 			processing: true,
 			serverSide: true,
 			ajax: {
-				"url": "<?= base_url('pengaturan/level/list_data/') ?>",
+				"url": "<?= base_url('sistem/level/list_data/') ?>",
 				"type": "POST",
-				"beforeSend": function(xhr) {
-					$("#overlay").fadeIn(300);
-				},
 				"error": function(xhr, status, error) {
 					swal(error, "Terjadi kegagalan saat memuat data. Sepertinya internetmu kurang stabil. Silahkan coba kembali saat internetmu stabil.", "error").then((value) => {
 						$("#dtTable").DataTable().ajax.reload(function() {
@@ -57,11 +55,12 @@
 				$('td:eq(0)', row).html();
 			}
 		});
+
 		$('#Frm').submit(function(e) {
 			e.preventDefault();
 			swal({
 				title: "Anda Yakin Ingin Menyimpan Data?",
-				text: "",
+				text: "Klik CANCEL jika ingin membatalkan!",
 				icon: "warning",
 				buttons: true,
 				dangerMode: true,
@@ -69,7 +68,7 @@
 				if (Oke) {
 					$.ajax({
 						type: "POST",
-						url: "<?= base_url('pengaturan/level/simpan/') ?>",
+						url: "<?= base_url('sistem/level/simpan/') ?>",
 						data: $("#Frm").serialize(),
 						timeout: 5000,
 						beforeSend: function(xhr) {
@@ -102,11 +101,12 @@
 				}
 			});
 		});
+
 		$(document).on('click', '#edit', function() {
 			$("#frmData").modal('show');
 			jQuery.ajax({
 				type: "POST",
-				url: "<?= base_url('pengaturan/level/get_data/') ?>",
+				url: "<?= base_url('sistem/level/get_data/') ?>",
 				dataType: 'json',
 				data: {
 					level_id: $(this).attr("data")
@@ -136,10 +136,11 @@
 				}
 			});
 		});
+
 		$(document).on('click', '#hapus', function() {
 			swal({
 				title: "Anda Yakin Ingin Menghapus Data?",
-				text: "",
+				text: "Klik CANCEL jika ingin membatalkan!",
 				icon: "warning",
 				buttons: true,
 				dangerMode: true,
@@ -147,7 +148,7 @@
 				if (Oke) {
 					$.ajax({
 						type: "POST",
-						url: "<?= base_url('pengaturan/level/hapus/') ?>",
+						url: "<?= base_url('sistem/level/hapus/') ?>",
 						data: {
 							level_id: $(this).attr("data")
 						},

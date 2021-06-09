@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
-class Level extends MY_Controller
+class Submodul extends MY_Controller
 {
 	public function __construct()
 	{
@@ -9,15 +9,15 @@ class Level extends MY_Controller
 			$this->session->sess_destroy();
 			redirect('portal');
 		} else {
-			$this->load->model('Pengaturan/Level_model', 'm');
+			$this->load->model('Sistem/Submodul_model', 'm');
 		}
 	}
 
 	public function index()
 	{
-		$data['Root'] = "Pengaturan";
-		$data['Title'] = "Pengaturan Level";
-		$data['Breadcrumb'] = array('Pengaturan');
+		$data['Root'] = "Sistem";
+		$data['Title'] = "Daftar Submodul";
+		$data['Breadcrumb'] = array('Sistem');
 		$data['Template'] = "templates/private";
 		$data['Components'] = array(
 			'main' => "/v_private",
@@ -25,7 +25,7 @@ class Level extends MY_Controller
 			'sidebar' => $data['Template'] . "/components/v_sidebar",
 			'navbar' => $data['Template'] . "/components/v_navbar",
 			'footer' => $data['Template'] . "/components/v_footer",
-			'content' => "pengaturan/v_level"
+			'content' => "sistem/v_submodul"
 		);
 		$this->load->view('v_main', $data);
 	}
@@ -38,12 +38,20 @@ class Level extends MY_Controller
 
 	public function simpan()
 	{
-		if ($this->input->post('level_id') == "") {
+		if ($this->input->post('submodul_id') == "") {
+			$result = $this->m->get_submodul();
 			$data = array(
-				'level_nama' => $this->input->post('level_nama'),
+				'modul_id' => $this->input->post('modul_id'),
+				'submodul_urutan' => $this->input->post('submodul_urutan'),
+				'submodul_root' => $this->input->post('submodul_root'),
+				'submodul_nama' => $this->input->post('submodul_nama'),
+				'submodul_url' => $this->input->post('submodul_url'),
 				'created_by' => $this->session->userdata('nama'),
 				'created_date' => date('Y-m-d H:i:s')
 			);
+			if ($result > 0) {
+				$this->m->reorder();
+			}
 			$this->m->simpan($data);
 			$pesan = array(
 				'warning' => 'Berhasil!',
@@ -51,12 +59,20 @@ class Level extends MY_Controller
 				'pesan' => 'Data berhasil di simpan'
 			);
 		} else {
+			$result = $this->m->get_data();
 			$data = array(
-				'level_nama' => $this->input->post('level_nama'),
+				'modul_id' => $this->input->post('modul_id'),
+				'submodul_urutan' => $this->input->post('submodul_urutan'),
+				'submodul_root' => $this->input->post('submodul_root'),
+				'submodul_nama' => $this->input->post('submodul_nama'),
+				'submodul_url' => $this->input->post('submodul_url'),
 				'updated_by' => $this->session->userdata('nama'),
 				'updated_date' => date('Y-m-d H:i:s')
 			);
 			$this->m->edit($data);
+			if ($result->submodul_urutan != $this->input->post('submodul_urutan')) {
+				$this->m->reorder();
+			}
 			$pesan = array(
 				'warning' => 'Berhasil!',
 				'kode' => 'success',
@@ -70,8 +86,12 @@ class Level extends MY_Controller
 	{
 		$result = $this->m->get_data();
 		$data = array(
-			'level_id' => $result->level_id,
-			'level_nama' => $result->level_nama
+			'submodul_id' => $result->submodul_id,
+			'modul_id' => $result->modul_id,
+			'submodul_urutan' => $result->submodul_urutan,
+			'submodul_root' => $result->submodul_root,
+			'submodul_nama' => $result->submodul_nama,
+			'submodul_url' => $result->submodul_url,
 		);
 		echo json_encode($data);
 	}

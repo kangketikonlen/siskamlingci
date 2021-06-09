@@ -5,9 +5,10 @@
 			placeholder: '-- PILIH LEVEL --',
 			allowClear: true
 		});
+
 		$.ajax({
 			type: "GET",
-			url: "<?= base_url('pengaturan/level/options/') ?>",
+			url: "<?= base_url('sistem/level/options/') ?>",
 			beforeSend: function(xhr) {
 				$("#overlay").fadeIn(300);
 			},
@@ -26,6 +27,7 @@
 				})
 			}
 		});
+
 		$.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings) {
 			return {
 				"iStart": oSettings._iDisplayStart,
@@ -37,6 +39,7 @@
 				"iTotalPages": Math.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength)
 			};
 		};
+
 		var table = $("#dtTable").dataTable({
 			initComplete: function() {
 				$("#overlay").fadeOut(300);
@@ -51,9 +54,6 @@
 			ajax: {
 				"url": "<?= base_url('pengaturan/user/list_data/') ?>",
 				"type": "POST",
-				"beforeSend": function(xhr) {
-					$("#overlay").fadeIn(300);
-				},
 				"error": function(xhr, status, error) {
 					swal(error, "Terjadi kegagalan saat memuat data. Sepertinya internetmu kurang stabil. Silahkan coba kembali saat internetmu stabil.", "error").then((value) => {
 						$("#dtTable").DataTable().ajax.reload(function() {
@@ -63,26 +63,26 @@
 				}
 			},
 			columns: [{
-				render: function(data, type, row, meta) {
-					return meta.row + meta.settings._iDisplayStart + 1 + ".";
+					render: function(data, type, row, meta) {
+						return meta.row + meta.settings._iDisplayStart + 1 + ".";
+					}
+				},
+				{
+					"data": "1"
+				},
+				{
+					"data": "2"
+				},
+				{
+					"data": "3"
+				},
+				{
+					"data": "4"
+				},
+				{
+					"data": "5",
+					"searchable": false
 				}
-			},
-			{
-				"data": "1"
-			},
-			{
-				"data": "2"
-			},
-			{
-				"data": "3"
-			},
-			{
-				"data": "4"
-			},
-			{
-				"data": "5",
-				"searchable": false
-			}
 			],
 			rowCallback: function(row, data, iDisplayIndex) {
 				$("#overlay").fadeOut(300);
@@ -92,11 +92,12 @@
 				$('td:eq(0)', row).html();
 			}
 		});
+
 		$('#Frm').submit(function(e) {
 			e.preventDefault();
 			swal({
 				title: "Anda Yakin Ingin Menyimpan Data?",
-				text: "",
+				text: "Klik CANCEL jika ingin membatalkan!",
 				icon: "warning",
 				buttons: true,
 				dangerMode: true,
@@ -138,11 +139,11 @@
 			});
 		});
 
-		$(document).on('click','#reset',function(e){
+		$(document).on('click', '#reset', function(e) {
 			e.preventDefault();
 			swal({
 				title: "Anda Yakin Ingin Mereset Password?",
-				text: "",
+				text: "Klik CANCEL jika ingin membatalkan!",
 				icon: "warning",
 				buttons: true,
 				dangerMode: true,
@@ -151,7 +152,9 @@
 					$.ajax({
 						type: "POST",
 						url: "<?= base_url('pengaturan/user/reset_password/') ?>",
-						data: {user_id:$(this).attr("data")},
+						data: {
+							user_id: $(this).attr("data")
+						},
 						timeout: 5000,
 						beforeSend: function(xhr) {
 							$("#overlay").fadeIn(300);
@@ -193,20 +196,18 @@
 				},
 				success: function(data) {
 					$("#overlay").fadeOut(300);
-					$("#user_login").attr("disabled", "TRUE");
-					$("#user_login").val("");
-					$("#user_pass").attr("disabled", "TRUE");
-					$("#user_pass").val("");
 					$.each(data, function(key, value) {
 						var ctrl = $('[name=' + key + ']', $('#Frm'));
 						switch (ctrl.prop("type")) {
 							case "select-one":
-							ctrl.val(value).change();
-							break;
+								ctrl.val(value).change();
+								break;
 							default:
-							ctrl.val(value);
+								ctrl.val(value);
 						}
 					});
+					$("#user_pass").attr("readonly", "TRUE");
+					$("#user_pass").val("");
 				},
 				error: function(xhr, status, error) {
 					swal(error, "Terjadi kegagalan saat memuat data. Sepertinya internetmu kurang stabil. Silahkan coba kembali saat internetmu stabil.", "error").then((value) => {
@@ -220,7 +221,7 @@
 		$(document).on('click', '#hapus', function() {
 			swal({
 				title: "Anda Yakin Ingin Menghapus Data?",
-				text: "",
+				text: "Klik CANCEL jika ingin membatalkan!",
 				icon: "warning",
 				buttons: true,
 				dangerMode: true,
@@ -263,10 +264,11 @@
 				}
 			})
 		});
+
 		$(document).on('click', '#random-pass', function() {
 			swal({
 				title: "Anda Yakin Ingin Membuat Password Acak?",
-				text: "",
+				text: "Klik CANCEL jika ingin membatalkan!",
 				icon: "warning",
 				buttons: true,
 				dangerMode: true,

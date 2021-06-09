@@ -14,7 +14,7 @@
 					<tbody></tbody>
 				</table>
 			</div>
-			<div class="card-footer d-flex justify-content-center">
+			<div class="card-footer">
 				<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#frmData"><i class="fa fa-plus"></i> Tambah Data</button>
 			</div>
 		</div>
@@ -23,7 +23,7 @@
 <div class="modal fade" id="frmData">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header bg-warning">
+			<div class="modal-header bg-primary">
 				<h4 class="modal-title">Formulir Hak Akses</h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
@@ -59,9 +59,9 @@
 					</div>
 				</div>
 			</div>
-			<div class="modal-footer d-flex justify-content-center">
+			<div class="modal-footer">
 				<button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-save"></i> Simpan</button>
-				<button type="button" id="random-pass" class="btn btn-sm btn-warning ml-2"><i class="fa fa-key"></i> Random Password</button>
+				<button type="button" id="random-pass" class="btn btn-sm btn-primary ml-2"><i class="fa fa-key"></i> Random Password</button>
 			</div>
 			<?= form_close() ?>
 		</div>
@@ -71,7 +71,7 @@
 <div class="modal fade" id="modalReset">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header bg-warning">
+			<div class="modal-header bg-primary">
 				<h4 class="modal-title">Reset Password</h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
