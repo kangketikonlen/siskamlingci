@@ -35,10 +35,22 @@
 							<input type="text" name="level_nama" id="level_nama" class="form-control form-control-sm" placeholder="Masukkan nama level..." autocomplete="off" required="true">
 						</div>
 					</div>
-					<div class="col-lg-12">
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label for="level_icon">Icon</label>
+							<input type="text" name="level_icon" id="level_icon" class="form-control form-control-sm" placeholder="Masukkan nama level..." autocomplete="off" required="true">
+						</div>
+					</div>
+					<div class="col-lg-6">
 						<div class="form-group">
 							<label for="level_background">#Hex Background</label>
 							<input type="text" name="level_background" id="level_background" class="form-control form-control-sm" placeholder="Masukkan nama level..." autocomplete="off" required="true">
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="form-group">
+							<label for="level_url">Url Level</label>
+							<input type="text" name="level_url" id="level_url" class="form-control form-control-sm" placeholder="Masukkan nama level..." autocomplete="off" required="true">
 						</div>
 					</div>
 				</div>
