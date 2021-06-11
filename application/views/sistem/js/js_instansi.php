@@ -130,13 +130,15 @@
 			success: function(data) {
 				$("#overlay").fadeOut(300);
 				$.each(data, function(key, value) {
-					var ctrl = $('[name=' + key + ']', $('#Frm'));
-					switch (ctrl.prop("type")) {
-						case "select-one":
-							ctrl.val(value).change();
-							break;
-						default:
-							ctrl.val(value);
+					if (key != "instansi_logo" && key != "instansi_background") {
+						var ctrl = $('[name=' + key + ']', $('#Frm'));
+						switch (ctrl.prop("type")) {
+							case "select-one":
+								ctrl.val(value).change();
+								break;
+							default:
+								ctrl.val(value);
+						}
 					}
 				});
 			},
