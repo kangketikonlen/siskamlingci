@@ -12,10 +12,6 @@
 			},
 			success: function(data) {
 				$("#overlay").fadeOut(300);
-				$("#user_login").attr("disabled", "TRUE");
-				$("#user_login").val("");
-				$("#user_pass").attr("disabled", "TRUE");
-				$("#user_pass").val("");
 				$.each(data, function(key, value) {
 					var ctrl = $('[name=' + key + ']', $('#Frm'));
 					switch (ctrl.prop("type")) {
@@ -35,6 +31,7 @@
 				})
 			}
 		});
+
 		$('#Frm').submit(function(e) {
 			e.preventDefault();
 			swal({
@@ -75,26 +72,6 @@
 					})
 				}
 			});
-		});
-		$(document).on('click', '#sandi-baru', function() {
-			swal({
-				title: "Anda Yakin Ingin Mengganti Sandi?",
-				text: "",
-				icon: "warning",
-				buttons: true,
-				dangerMode: true,
-			}).then((Oke) => {
-				if (Oke) {
-					$("#user_login").removeAttr("disabled", "TRUE");
-					$("#user_login").val("");
-					$("#user_pass").removeAttr("disabled", "TRUE");
-					$("#user_pass").val("");
-				} else {
-					swal("Poof!", "Penyimpanan Data Dibatalkan", "error").then((value) => {
-						location.reload();
-					})
-				}
-			})
 		});
 	});
 </script>
