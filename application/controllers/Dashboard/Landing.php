@@ -41,6 +41,7 @@ class Landing extends MY_Controller
 	public function akses($level)
 	{
 		$this->session->set_userdata('level_tmp', $this->session->userdata('level_id'));
+		$this->session->set_userdata('url_tmp', $this->session->userdata('UrlDash'));
 		$this->session->unset_userdata('level_id');
 		$this->session->unset_userdata('UrlDash');
 		$this->session->set_userdata('level_id', $level);
@@ -52,7 +53,9 @@ class Landing extends MY_Controller
 	{
 		$this->session->unset_userdata('level_id');
 		$this->session->set_userdata('level_id', $this->session->userdata('level_tmp'));
+		$this->session->set_userdata('UrlDash', $this->session->userdata('url_tmp'));
 		$this->session->unset_userdata('level_tmp');
+		$this->session->unset_userdata('url_tmp');
 		redirect('portal');
 	}
 

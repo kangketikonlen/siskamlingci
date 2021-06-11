@@ -67,6 +67,7 @@ class User extends MY_Controller
 				$data = array(
 					'level_id' => $this->input->post('level_id'),
 					'user_nama' => $this->input->post('user_nama'),
+					'user_login' => $this->input->post('user_login'),
 					'updated_by' => $this->session->userdata('nama'),
 					'updated_date' => date('Y-m-d H:i:s')
 				);
