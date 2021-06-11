@@ -139,49 +139,6 @@
 			});
 		});
 
-		$(document).on('click', '#reset', function(e) {
-			e.preventDefault();
-			swal({
-				title: "Anda Yakin Ingin Mereset Password?",
-				text: "Klik CANCEL jika ingin membatalkan!",
-				icon: "warning",
-				buttons: true,
-				dangerMode: true,
-			}).then((Oke) => {
-				if (Oke) {
-					$.ajax({
-						type: "POST",
-						url: "<?= base_url('pengaturan/user/reset_password/') ?>",
-						data: {
-							user_id: $(this).attr("data")
-						},
-						timeout: 5000,
-						beforeSend: function(xhr) {
-							$("#overlay").fadeIn(300);
-						},
-						success: function(response) {
-							$("#overlay").fadeOut(300);
-							var data = JSON.parse(response);
-
-							$("#password_reset").html(data.password_reset);
-							$("#modalReset").modal('show');
-						},
-						error: function(xhr, status, error) {
-							swal(error, "Please Ask Support or Refresh the Page!", "error").then((value) => {
-								$("#dtTable").DataTable().ajax.reload(function() {
-									$("#overlay").fadeOut(300)
-								}, false);
-							})
-						}
-					})
-				} else {
-					swal("Poof!", "Reset Password Dibatalkan", "error").then((value) => {
-						location.reload();
-					})
-				}
-			});
-		});
-
 		$(document).on('click', '#edit', function() {
 			$("#frmData").modal('show');
 			jQuery.ajax({
@@ -206,8 +163,6 @@
 								ctrl.val(value);
 						}
 					});
-					$("#user_pass").attr("readonly", "TRUE");
-					$("#user_pass").val("");
 				},
 				error: function(xhr, status, error) {
 					swal(error, "Terjadi kegagalan saat memuat data. Sepertinya internetmu kurang stabil. Silahkan coba kembali saat internetmu stabil.", "error").then((value) => {
@@ -218,6 +173,7 @@
 				}
 			});
 		});
+
 		$(document).on('click', '#hapus', function() {
 			swal({
 				title: "Anda Yakin Ingin Menghapus Data?",
@@ -275,8 +231,8 @@
 			}).then((Oke) => {
 				if (Oke) {
 					var pass = "PWD" + Math.floor(Math.random() * (999 - 100)) + 100;
-					$("#user_pass").val(pass);
-					$("#user_pass").attr('type', 'text');
+					$("#user_pass_baru").val(pass);
+					$("#user_pass_baru").attr('type', 'text');
 				} else {
 					swal("Poof!", "Penyimpanan Data Dibatalkan", "error").then((value) => {
 						location.reload();

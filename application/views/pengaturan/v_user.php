@@ -53,37 +53,17 @@
 					</div>
 					<div class="col-lg-6">
 						<div class="form-group">
-							<label for="user_pass">Kata Sandi</label>
-							<input type="password" name="user_pass" id="user_pass" class="form-control form-control-sm" placeholder="Masukkan password user..." autocomplete="off" required="true">
+							<label for="user_pass_baru">Kata Sandi</label>
+							<input type="password" name="user_pass_baru" id="user_pass_baru" class="form-control form-control-sm" placeholder="Masukkan password user..." autocomplete="off">
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
+				<button type="button" id="random-pass" class="btn btn-sm btn-success"><i class="fa fa-key"></i> Random Password</button>
 				<button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-save"></i> Simpan</button>
-				<button type="button" id="random-pass" class="btn btn-sm btn-primary ml-2"><i class="fa fa-key"></i> Random Password</button>
 			</div>
 			<?= form_close() ?>
-		</div>
-	</div>
-</div>
-
-<div class="modal fade" id="modalReset">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header bg-primary">
-				<h4 class="modal-title">Reset Password</h4>
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-			</div>
-			<div class="modal-body">
-				<div class="row">
-					<div class="col-lg-12">
-						<label>Password Baru</label>
-						<div class="clear"></div>
-						<z id="password_reset"></z>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 </div>

@@ -38,41 +38,37 @@ class User extends MY_Controller
 
 	public function simpan()
 	{
+		$data = $this->input->post();
 		if ($this->input->post('user_id') == "") {
-			$data = array(
-				'level_id' => $this->input->post('level_id'),
-				'user_nama' => $this->input->post('user_nama'),
-				'user_login' => $this->input->post('user_login'),
-				'user_pass' => password_hash($this->input->post('user_pass'), PASSWORD_BCRYPT),
-				'created_by' => $this->session->userdata('nama'),
-				'created_date' => date('Y-m-d H:i:s')
-			);
+			$data['user_pass'] = password_hash($data['user_pass_baru'], PASSWORD_BCRYPT);
+			$data['created_by'] = $this->session->userdata('nama');
+			$data['created_date'] = date('Y-m-d H:i:s');
+
+			unset($data['user_pass_baru']);
+
 			$this->m->simpan($data);
+
 			$pesan = array(
 				'warning' => 'Berhasil!',
 				'kode' => 'success',
 				'pesan' => 'Data berhasil di simpan'
 			);
 		} else {
-			if ($this->input->post('user_pass') != "") {
-				$data = array(
-					'level_id' => $this->input->post('level_id'),
-					'user_nama' => $this->input->post('user_nama'),
-					'user_login' => $this->input->post('user_login'),
-					'user_pass' => password_hash($this->input->post('user_pass'), PASSWORD_BCRYPT),
-					'updated_by' => $this->session->userdata('nama'),
-					'updated_date' => date('Y-m-d H:i:s')
-				);
+			if ($this->input->post('user_pass_baru') != "") {
+				$data['user_pass'] = password_hash($data['user_pass_baru'], PASSWORD_BCRYPT);
+				$data['updated_by'] = $this->session->userdata('nama');
+				$data['updated_date'] = date('Y-m-d H:i:s');
+
+				unset($data['user_pass_baru']);
 			} else {
-				$data = array(
-					'level_id' => $this->input->post('level_id'),
-					'user_nama' => $this->input->post('user_nama'),
-					'user_login' => $this->input->post('user_login'),
-					'updated_by' => $this->session->userdata('nama'),
-					'updated_date' => date('Y-m-d H:i:s')
-				);
+				$data['updated_by'] = $this->session->userdata('nama');
+				$data['updated_date'] = date('Y-m-d H:i:s');
+
+				unset($data['user_pass_baru']);
 			}
+
 			$this->m->edit($data);
+
 			$pesan = array(
 				'warning' => 'Berhasil!',
 				'kode' => 'success',

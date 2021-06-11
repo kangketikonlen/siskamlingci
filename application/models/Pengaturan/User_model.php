@@ -22,22 +22,30 @@ class User_model extends CI_Model
 
 	public function get_data()
 	{
-		return $this->db->where($this->user . '.deleted', false)->where($this->user . '.user_id', $this->input->post('user_id'))->get($this->user)->row();
+		$this->db->where($this->user . '.deleted', false);
+		$this->db->where($this->user . '.user_id', $this->input->post('user_id'));
+		return $this->db->get($this->user)->row();
 	}
 
 	public function edit($data)
 	{
-		return $this->db->where($this->user . '.deleted', false)->where($this->user . '.user_id', $this->input->post('user_id'))->update($this->user, $data);
+		$this->db->where($this->user . '.deleted', false);
+		$this->db->where($this->user . '.user_id', $this->input->post('user_id'));
+		return $this->db->update($this->user, $data);
 	}
 
 	public function hapus($data)
 	{
-		return $this->db->where($this->user . '.user_id', $this->input->post('user_id'))->update($this->user, $data);
+		$this->db->where($this->user . '.user_id', $this->input->post('user_id'));
+		return $this->db->update($this->user, $data);
 	}
 
 	public function options($src)
 	{
-		$opt = $this->db->like('user_nama', $src, 'both')->where('deleted', FALSE)->or_where('user_id', $src)->get($this->user)->result();
+		$this->db->like('user_nama', $src, 'both');
+		$this->db->where('deleted', FALSE);
+		$this->db->or_where('user_id', $src);
+		$opt = $this->db->get($this->user)->result();
 
 		$data = array();
 		foreach ($opt as $opt) {
