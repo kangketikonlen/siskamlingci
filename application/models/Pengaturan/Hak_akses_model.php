@@ -20,7 +20,9 @@ class Hak_akses_model extends CI_Model
 
 	public function get_level()
 	{
-		return $this->db->where($this->level . '.deleted', FALSE)->where($this->level . '.level_id!=', 1)->get($this->level)->result();
+		$this->db->where($this->level . '.deleted', FALSE);
+		$this->db->where($this->level . '.level_id!=', 1);
+		return $this->db->get($this->level)->result();
 	}
 
 	public function simpan($data)
@@ -35,32 +37,44 @@ class Hak_akses_model extends CI_Model
 
 	public function get_data()
 	{
-		return $this->db->where($this->submodul . '.deleted', false)->where($this->submodul . '.submodul_id', $this->input->post('submodul_id'))->get($this->submodul)->row();
+		$this->db->where($this->submodul . '.deleted', false);
+		$this->db->where($this->submodul . '.submodul_id', $this->input->post('submodul_id'));
+		return $this->db->get($this->submodul)->row();
 	}
 
 	public function get_data_modul()
 	{
-		return $this->db->where($this->modul . '.deleted', false)->where($this->modul . '.modul_id', $this->input->post('modul_id'))->get($this->modul)->row();
+		$this->db->where($this->modul . '.deleted', false);
+		$this->db->where($this->modul . '.modul_id', $this->input->post('modul_id'));
+		return $this->db->get($this->modul)->row();
 	}
 
 	public function edit($data)
 	{
-		return $this->db->where($this->submodul . '.deleted', false)->where($this->submodul . '.submodul_id', $this->input->post('submodul_id'))->update($this->submodul, $data);
+		$this->db->where($this->submodul . '.deleted', false);
+		$this->db->where($this->submodul . '.submodul_id', $this->input->post('submodul_id'));
+		return $this->db->update($this->submodul, $data);
 	}
 
 	public function edit_modul($data)
 	{
-		return $this->db->where($this->modul . '.deleted', false)->where($this->modul . '.modul_id', $this->input->post('modul_id'))->update($this->modul, $data);
+		$this->db->where($this->modul . '.deleted', false);
+		$this->db->where($this->modul . '.modul_id', $this->input->post('modul_id'));
+		return $this->db->update($this->modul, $data);
 	}
 
 	public function hapus($data)
 	{
-		return $this->db->where($this->submodul . '.submodul_id', $this->input->post('submodul_id'))->update($this->submodul, $data);
+		$this->db->where($this->submodul . '.submodul_id', $this->input->post('submodul_id'));
+		return $this->db->update($this->submodul, $data);
 	}
 
 	public function options($src)
 	{
-		$opt = $this->db->like('submodul_nama', $src, 'both')->where('deleted', FALSE)->or_where('submodul_id', $src)->get($this->submodul)->result();
+		$this->db->like('submodul_nama', $src, 'both');
+		$this->db->where('deleted', FALSE);
+		$this->db->or_where('submodul_id', $src);
+		$opt = $this->db->get($this->submodul)->result();
 
 		$data = array();
 		foreach ($opt as $opt) {
