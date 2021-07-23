@@ -39,6 +39,8 @@ class Info extends MY_Controller
 	public function simpan()
 	{
 		$data = $this->input->post();
+		unset($data['info_status_sosmed_control']);
+
 		if ($this->input->post('info_id') == "") {
 			$data['created_by'] = $this->session->userdata('nama');
 			$data['created_date'] = date('Y-m-d H:i:s');

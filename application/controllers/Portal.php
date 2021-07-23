@@ -25,6 +25,8 @@ class Portal extends CI_Controller
 			'footer' => $data['Template'] . "/components/v_footer",
 			'content' => "v_portal"
 		);
+		$data['Info'] = $this->m->get_sysinfo();
+		$data['Instansi'] = $this->m->get_instansi();
 		$this->load->view('v_main', $data);
 	}
 

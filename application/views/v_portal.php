@@ -8,7 +8,7 @@
 							Login<br />
 							<small style="font-size:80%;font-weight:bold">
 								<span class=" d-block d-sm-none justify-content-center pt-1">
-									<?= $this->m->get_instansi()->instansi_nama ?>
+									<?= $Instansi->instansi_nama ?>
 								</span>
 							</small>
 						</h2>
@@ -33,16 +33,18 @@
 							</div>
 						</form><br />
 						<div class="text-center mt-1" style="font-size:small">
-							<div class="text-center my-1" style="font-size:small">
-								Anda bisa masuk dengan menggunakan link dari platform
-								<a href="<?= create_github_url() ?>" class="text-dark"><i class="fab fa-github"></i> Github</a>,
-								<a href="<?= create_google_url() ?>" class="text-success"><i class="fab fa-google"></i> Google</a> dan
-								<a href="<?= create_twitter_url() ?>" class="text-info"><i class="fab fa-twitter"></i> Twitter</a>
-							</div>
-							Crafted with <i class="fa fa-heart text-danger"></i> by <a href="<?= $this->m->get_sysinfo()->info_devs_url; ?>" target="_blank"><?= $this->m->get_sysinfo()->info_devs; ?></a>.<br /><?= $this->m->get_sysinfo()->info_registered; ?> @ <?= date('Y') ?> <span class="d-none d-sm-block">All rights reserved</span>
-							<?php if (!empty($this->m->get_sysinfo()->info_sponsor)) : ?>
+							<?php if (!empty($Info->info_status_sosmed)) : ?>
+								<div class="text-center my-1" style="font-size:small">
+									Anda bisa masuk dengan menggunakan link dari platform
+									<a href="<?= create_github_url() ?>" class="text-dark"><i class="fab fa-github"></i> Github</a>,
+									<a href="<?= create_google_url() ?>" class="text-success"><i class="fab fa-google"></i> Google</a> dan
+									<a href="<?= create_twitter_url() ?>" class="text-info"><i class="fab fa-twitter"></i> Twitter</a>
+								</div>
+							<?php endif ?>
+							Crafted with <i class="fa fa-heart text-danger"></i> by <a href="<?= $Info->info_devs_url; ?>" target="_blank"><?= $Info->info_devs; ?></a>.<br /><?= $Info->info_registered; ?> @ <?= date('Y') ?> <span class="d-none d-sm-block">All rights reserved</span>
+							<?php if (!empty($Info->info_sponsor)) : ?>
 								<span class="d-block d-sm-none justify-content-center pt-1">
-									Sponsored by<br /><a href="<?= $this->m->get_sysinfo()->info_sponsor_url ?>" target="_blank"><img src="<?= base_url($this->m->get_sysinfo()->info_sponsor) ?>" alt="" width="100px"></a>
+									Sponsored by<br /><a href="<?= $Info->info_sponsor_url ?>" target="_blank"><img src="<?= base_url($Info->info_sponsor) ?>" alt="" width="100px"></a>
 								</span>
 							<?php endif ?>
 						</div>
@@ -51,20 +53,20 @@
 						<div class="banner-text rounded-right p-3">
 							<div class="d-flex align-items-center">
 								<div class="col w-auto">
-									<img src="<?= base_url($this->m->get_instansi()->instansi_logo) ?>" alt="" width="100px">
+									<img src="<?= base_url($Instansi->instansi_logo) ?>" alt="" width="100px">
 								</div>
 								<div class="w-100">
-									<h3 style="font-size:150%"><?= $this->m->get_sysinfo()->info_name; ?> <?= $this->m->get_instansi()->instansi_nama ?> <br />
-										<small style="font-size:60%"><?= $this->m->get_instansi()->instansi_alamat ?> (<?= $this->m->get_instansi()->instansi_kontak ?>)</small>
+									<h3 style="font-size:150%"><?= $Info->info_name; ?> <?= $Instansi->instansi_nama ?> <br />
+										<small style="font-size:60%"><?= $Instansi->instansi_alamat ?> (<?= $Instansi->instansi_kontak ?>)</small>
 									</h3>
 								</div>
 							</div>
 							<p class="m-0 text-justify">
 								Silahkan mengisi formulir di samping menggunakan username dan password yang telah di berikan oleh administrator atau anda buat sebelumnya.
-								<?php if (!empty($this->m->get_sysinfo()->info_sponsor)) : ?>
+								<?php if (!empty($Info->info_sponsor)) : ?>
 									Sistem ini di sponsori oleh : <br />
 									<span class="d-flex justify-content-center pt-1">
-										<a href="<?= $this->m->get_sysinfo()->info_sponsor_url ?>" target="_blank"><img src="<?= base_url($this->m->get_sysinfo()->info_sponsor) ?>" alt="" width="200px"></a>
+										<a href="<?= $Info->info_sponsor_url ?>" target="_blank"><img src="<?= base_url($Info->info_sponsor) ?>" alt="" width="200px"></a>
 									</span>
 								<?php endif ?>
 							</p>

@@ -16,6 +16,14 @@
 						break;
 					default:
 						ctrl.val(value);
+						if (key == "info_status_sosmed") {
+							if (value == 1) {
+								$("#info_status_sosmed_control").prop('checked', true);
+							} else {
+								$("#info_status_sosmed_control").prop('checked', false);
+							}
+							console.log(value)
+						}
 				}
 			});
 		},
@@ -25,6 +33,14 @@
 					$("#overlay").fadeOut(300)
 				}, false);
 			})
+		}
+	});
+
+	$("#info_status_sosmed_control").change(function() {
+		if (this.checked) {
+			$("#info_status_sosmed").val(1);
+		} else {
+			$("#info_status_sosmed").val(0);
 		}
 	});
 

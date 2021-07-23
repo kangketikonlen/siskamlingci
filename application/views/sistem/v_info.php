@@ -51,6 +51,15 @@
 								<input type="text" name="info_sponsor_url" id="info_sponsor_url" class="form-control form-control-sm" placeholder="Contoh https://www.konami.com/..." autocomplete="off">
 							</div>
 						</div>
+						<div class="col-lg-12">
+							<div class="form-group">
+								<div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+									<input type="hidden" name="info_status_sosmed" id="info_status_sosmed">
+									<input type="checkbox" class="custom-control-input" id="info_status_sosmed_control">
+									<label class="custom-control-label" for="info_status_sosmed_control">Aktifkan registrasi dan login melalui sosial media?</label>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="card-footer">
