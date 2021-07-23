@@ -22,7 +22,7 @@
 		processing: true,
 		serverSide: true,
 		ajax: {
-			"url": "<?= base_url('pengaturan/fitur/list_data/') ?>",
+			"url": "<?= base_url('sistem/hak_akses_modul/list_data/') ?>",
 			"type": "POST",
 			"beforeSend": function(xhr) {
 				$("#overlay").fadeIn(300);
@@ -77,7 +77,7 @@
 			if (Oke) {
 				$.ajax({
 					type: "POST",
-					url: "<?= base_url('pengaturan/fitur/simpan/') ?>",
+					url: "<?= base_url('sistem/hak_akses_modul/simpan/') ?>",
 					data: $("#Frm").serialize(),
 					beforeSend: function(xhr) {
 						$("#overlay").fadeIn(300);
@@ -114,7 +114,7 @@
 		$("#frmData").modal();
 		jQuery.ajax({
 			type: "POST",
-			url: "<?= base_url('pengaturan/fitur/get_data/') ?>",
+			url: "<?= base_url('sistem/hak_akses_modul/get_data/') ?>",
 			dataType: 'json',
 			data: {
 				level_id: $(this).attr("data")

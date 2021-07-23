@@ -52,7 +52,7 @@
 			processing: true,
 			serverSide: true,
 			ajax: {
-				"url": "<?= base_url('pengaturan/user/list_data/') ?>",
+				"url": "<?= base_url('sistem/user/list_data/') ?>",
 				"type": "POST",
 				"error": function(xhr, status, error) {
 					swal(error, "Terjadi kegagalan saat memuat data. Sepertinya internetmu kurang stabil. Silahkan coba kembali saat internetmu stabil.", "error").then((value) => {
@@ -105,7 +105,7 @@
 				if (Oke) {
 					$.ajax({
 						type: "POST",
-						url: "<?= base_url('pengaturan/user/simpan/') ?>",
+						url: "<?= base_url('sistem/user/simpan/') ?>",
 						data: $("#Frm").serialize(),
 						timeout: 5000,
 						beforeSend: function(xhr) {
@@ -143,7 +143,7 @@
 			$("#frmData").modal('show');
 			jQuery.ajax({
 				type: "POST",
-				url: "<?= base_url('pengaturan/user/get_data/') ?>",
+				url: "<?= base_url('sistem/user/get_data/') ?>",
 				dataType: 'json',
 				data: {
 					user_id: $(this).attr("data")
@@ -185,7 +185,7 @@
 				if (Oke) {
 					$.ajax({
 						type: "POST",
-						url: "<?= base_url('pengaturan/user/hapus/') ?>",
+						url: "<?= base_url('sistem/user/hapus/') ?>",
 						data: {
 							user_id: $(this).attr("data")
 						},

@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
-class Hak_akses_model extends CI_Model
+class Hak_akses_fitur_model extends CI_Model
 {
 	protected $level = "ak_data_system_level";
 	protected $modul = "ak_data_system_modul";

@@ -58,7 +58,7 @@
 			processing: true,
 			serverSide: true,
 			ajax: {
-				"url": "<?= base_url('pengaturan/hak_akses/list_data/') ?>",
+				"url": "<?= base_url('sistem/hak_akses_fitur/list_data/') ?>",
 				"type": "POST",
 				"data": function(d) {
 					return $.extend({}, d, {
@@ -116,7 +116,7 @@
 				if (Oke) {
 					$.ajax({
 						type: "POST",
-						url: "<?= base_url('pengaturan/hak_akses/simpan/') ?>",
+						url: "<?= base_url('sistem/hak_akses_fitur/simpan/') ?>",
 						data: $("#Frm").serialize(),
 						timeout: 5000,
 						beforeSend: function(xhr) {
@@ -170,7 +170,7 @@
 				if (Oke) {
 					$.ajax({
 						type: "POST",
-						url: "<?= base_url('pengaturan/hak_akses/simpan_modul/') ?>",
+						url: "<?= base_url('sistem/hak_akses_fitur/simpan_modul/') ?>",
 						data: $("#FrmSetup").serialize(),
 						timeout: 5000,
 						beforeSend: function(xhr) {
@@ -216,7 +216,7 @@
 			$("#frmData").modal('show');
 			jQuery.ajax({
 				type: "POST",
-				url: "<?= base_url('pengaturan/hak_akses/get_data/') ?>",
+				url: "<?= base_url('sistem/hak_akses_fitur/get_data/') ?>",
 				dataType: 'json',
 				data: {
 					submodul_id: $(this).attr("data")
@@ -263,7 +263,7 @@
 			$("#frmSetup").modal('show');
 			jQuery.ajax({
 				type: "POST",
-				url: "<?= base_url('pengaturan/hak_akses/get_data_modul/') ?>",
+				url: "<?= base_url('sistem/hak_akses_fitur/get_data_modul/') ?>",
 				dataType: 'json',
 				data: {
 					modul_id: $(this).attr("data")

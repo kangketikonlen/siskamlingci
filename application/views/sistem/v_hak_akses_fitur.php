@@ -107,4 +107,4 @@
 		</div>
 	</div>
 </div>
-<?php $this->load->view('pengaturan/js/js_hak_akses') ?>
+<?php $this->load->view('sistem/js/js_hak_akses_fitur') ?>

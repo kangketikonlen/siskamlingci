@@ -46,4 +46,4 @@
 		</div>
 	</div>
 </div>
-<?php $this->load->view('pengaturan/js/js_fitur') ?>
+<?php $this->load->view('sistem/js/js_hak_akses_modul') ?>

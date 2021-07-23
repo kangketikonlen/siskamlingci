@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
-class Fitur extends MY_Controller
+class Hak_akses_modul extends MY_Controller
 {
 	public function __construct()
 	{
@@ -8,15 +8,15 @@ class Fitur extends MY_Controller
 		if (!$isLogin) {
 			redirect('portal');
 		} else {
-			$this->load->model('Pengaturan/Fitur_model', 'm');
+			$this->load->model('Sistem/Hak_akses_modul_model', 'm');
 		}
 	}
 
 	public function index()
 	{
-		$data['Root'] = "Pengaturan";
-		$data['Title'] = "Akses Fitur";
-		$data['Breadcrumb'] = array('Pengaturan');
+		$data['Root'] = "Sistem";
+		$data['Title'] = "Daftar Hak Akses Modul";
+		$data['Breadcrumb'] = array('Sistem');
 		$data['Template'] = "templates/private";
 		$data['Components'] = array(
 			'main' => "/v_private",
@@ -24,7 +24,7 @@ class Fitur extends MY_Controller
 			'sidebar' => $data['Template'] . "/components/v_sidebar",
 			'navbar' => $data['Template'] . "/components/v_navbar",
 			'footer' => $data['Template'] . "/components/v_footer",
-			'content' => 'pengaturan/v_fitur'
+			'content' => 'sistem/v_hak_akses_modul'
 		);
 		$this->load->view('v_main', $data);
 	}
