@@ -52,10 +52,14 @@ class Level extends MY_Controller
 
 			$url = explode("/", $data['level_url']);
 
-			$this->create_controller($url);
-			$this->create_model($url);
-			$this->create_view($url);
-			$this->create_js($url);
+			$isFileExists = file_exists('./application/controllers/' . ucfirst($url[0]) . '/' . ucfirst($url[1] . '.php'));
+
+			if (empty($isFileExists)) {
+				$this->create_controller($url);
+				$this->create_model($url);
+				$this->create_view($url);
+				$this->create_js($url);
+			}
 
 			$this->m->simpan($data);
 
