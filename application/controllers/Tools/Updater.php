@@ -9,6 +9,7 @@ class Updater extends MY_Controller
 			$this->session->sess_destroy();
 			redirect('portal');
 		} else {
+			$this->load->library('migration');
 			$this->load->model('Tools/Updater_model', 'm');
 		}
 	}

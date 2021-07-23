@@ -29,7 +29,7 @@ $config['migration_enabled'] = TRUE;
 |       defaults to 'sequential' for backward compatibility with CI2.
 |
 */
-$config['migration_type'] = 'timestamp';
+$config['migration_type'] = 'sequential';
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +43,7 @@ $config['migration_type'] = 'timestamp';
 | will migrate up. This must be set.
 |
 */
-$config['migration_table'] = 'migrations';
+$config['migration_table'] = 'ak_data_system_migration';
 
 /*
 |--------------------------------------------------------------------------
@@ -81,4 +81,4 @@ $config['migration_version'] = 0;
 | Also, writing permission is required within the migrations path.
 |
 */
-$config['migration_path'] = APPPATH . 'migrations/';
+$config['migration_path'] = APPPATH . 'database/';
