@@ -1,5 +1,11 @@
 <script>
 	$(document).ready(function() {
+		$('#level_type').select2({
+			theme: 'bootstrap4',
+			placeholder: '-- PILIH TIPE HALAMAN --',
+			allowClear: true
+		});
+
 		$.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings) {
 			return {
 				"iStart": oSettings._iDisplayStart,
@@ -123,7 +129,7 @@
 						var ctrl = $('[name=' + key + ']', $('#Frm'));
 						switch (ctrl.prop("type")) {
 							case "select-one":
-								append_select2(value);
+								ctrl.val(value).change();
 								break;
 							default:
 								ctrl.val(value);

@@ -39,6 +39,13 @@ class Level extends MY_Controller
 	public function simpan()
 	{
 		$data = $this->input->post();
+		// Create slugs
+		if ($data['level_type'] == "Dashboard") {
+			$string = str_replace(' ', '_', $data['level_nama']);
+			$data['level_url'] = 'dashboard/' . strtolower($string);
+		} else {
+			$data['level_url'] = "dashboard/landing";
+		}
 		if ($this->input->post('level_id') == "") {
 			$data['created_by'] = $this->session->userdata('nama');
 			$data['created_date'] = date('Y-m-d H:i:s');

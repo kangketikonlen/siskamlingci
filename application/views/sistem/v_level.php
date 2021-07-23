@@ -49,8 +49,12 @@
 					</div>
 					<div class="col-lg-12">
 						<div class="form-group">
-							<label for="level_url">Url Level</label>
-							<input type="text" name="level_url" id="level_url" class="form-control form-control-sm" placeholder="Masukkan nama level..." autocomplete="off" required="true">
+							<label for="level_type">Tipe Halaman</label>
+							<select name="level_type" id="level_type" class="form-control form-control-sm" required="true">
+								<option value=""></option>
+								<option value="Landing">Landing</option>
+								<option value="Dashboard">Dashboard</option>
+							</select>
 						</div>
 					</div>
 				</div>
