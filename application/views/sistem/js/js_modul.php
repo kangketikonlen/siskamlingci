@@ -46,10 +46,7 @@
 					"data": "3"
 				},
 				{
-					"data": "4"
-				},
-				{
-					"data": "5",
+					"data": "4",
 					"searchable": false
 				}
 			],
