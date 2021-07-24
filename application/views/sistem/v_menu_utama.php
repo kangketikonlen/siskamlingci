@@ -30,21 +30,21 @@
 				<div class="row">
 					<div class="col-lg-6">
 						<div class="form-group">
-							<label for="modul_urutan">Urutan</label>
-							<input type="hidden" name="modul_id" id="modul_id">
-							<input type="number" min="0" name="modul_urutan" id="modul_urutan" class="form-control form-control-sm" placeholder="urutan <?= strtolower($Title) ?>..." autocomplete="off" required="true">
+							<label for="menu_urutan">Urutan</label>
+							<input type="hidden" name="menu_id" id="menu_id">
+							<input type="number" min="0" name="menu_urutan" id="menu_urutan" class="form-control form-control-sm" autocomplete="off" required="true">
 						</div>
 					</div>
 					<div class="col-lg-6">
 						<div class="form-group">
-							<label for="modul_icon">Icon</label>
-							<input type="text" name="modul_icon" id="modul_icon" class="form-control form-control-sm" placeholder="icon <?= strtolower($Title) ?>..." autocomplete="off" required="true">
+							<label for="menu_icon">Icon</label>
+							<input type="text" name="menu_icon" id="menu_icon" class="form-control form-control-sm" autocomplete="off" required="true">
 						</div>
 					</div>
 					<div class="col-lg-12">
 						<div class="form-group">
-							<label for="modul_nama">Nama</label>
-							<input type="text" name="modul_nama" id="modul_nama" class="form-control form-control-sm" placeholder="nama <?= strtolower($Title) ?>..." autocomplete="off" required="true">
+							<label for="menu_nama">Nama</label>
+							<input type="text" name="menu_nama" id="menu_nama" class="form-control form-control-sm" autocomplete="off" required="true">
 						</div>
 					</div>
 				</div>
@@ -56,4 +56,4 @@
 		</div>
 	</div>
 </div>
-<?php $this->load->view('sistem/js/js_modul') ?>
+<?php $this->load->view('sistem/js/js_menu_utama') ?>

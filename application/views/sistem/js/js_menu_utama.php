@@ -26,7 +26,7 @@
 				[1, "asc"]
 			],
 			ajax: {
-				"url": "<?= base_url('sistem/modul/list_data/') ?>",
+				"url": "<?= base_url('sistem/menu_utama/list_data/') ?>",
 				"type": "POST",
 				"error": function(xhr, status, error) {
 					swal(error, "Terjadi kegagalan saat memuat data. Sepertinya internetmu kurang stabil. Silahkan coba kembali saat internetmu stabil.", "error").then((value) => {
@@ -70,7 +70,7 @@
 				if (Oke) {
 					$.ajax({
 						type: "POST",
-						url: "<?= base_url('sistem/modul/simpan/') ?>",
+						url: "<?= base_url('sistem/menu_utama/simpan/') ?>",
 						data: $("#Frm").serialize(),
 						beforeSend: function(xhr) {
 							$("#overlay").fadeIn(300);
@@ -106,10 +106,10 @@
 			$("#frmData").modal('show');
 			jQuery.ajax({
 				type: "POST",
-				url: "<?= base_url('sistem/modul/get_data/') ?>",
+				url: "<?= base_url('sistem/menu_utama/get_data/') ?>",
 				dataType: 'json',
 				data: {
-					modul_id: $(this).attr("data")
+					menu_id: $(this).attr("data")
 				},
 				beforeSend: function(xhr) {
 					$("#overlay").fadeIn(300);
@@ -147,9 +147,9 @@
 				if (Oke) {
 					$.ajax({
 						type: "POST",
-						url: "<?= base_url('sistem/modul/hapus/') ?>",
+						url: "<?= base_url('sistem/menu_utama/hapus/') ?>",
 						data: {
-							modul_id: $(this).attr("data")
+							menu_id: $(this).attr("data")
 						},
 						beforeSend: function(xhr) {
 							$("#overlay").fadeIn(300);

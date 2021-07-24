@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
-class Modul extends MY_Controller
+class Menu_utama extends MY_Controller
 {
 	public function __construct()
 	{
@@ -9,14 +9,14 @@ class Modul extends MY_Controller
 			$this->session->sess_destroy();
 			redirect('portal');
 		} else {
-			$this->load->model('Sistem/Modul_model', 'm');
+			$this->load->model('Sistem/Menu_utama_model', 'm');
 		}
 	}
 
 	public function index()
 	{
 		$data['Root'] = "Sistem";
-		$data['Title'] = "Daftar Modul Utama";
+		$data['Title'] = "Menu Utama";
 		$data['Breadcrumb'] = array('Sistem');
 		$data['Template'] = "templates/private";
 		$data['Components'] = array(
@@ -25,7 +25,7 @@ class Modul extends MY_Controller
 			'sidebar' => $data['Template'] . "/components/v_sidebar",
 			'navbar' => $data['Template'] . "/components/v_navbar",
 			'footer' => $data['Template'] . "/components/v_footer",
-			'content' => "sistem/v_modul"
+			'content' => "sistem/v_menu_utama"
 		);
 		$this->load->view('v_main', $data);
 	}
