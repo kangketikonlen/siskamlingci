@@ -1,10 +1,10 @@
 <p align="center">
  <br />
  <samp>
-  <b><a rel="nofollow noopener noreferrer" target="_blank" href="https://github.com/kangketikonlen/siskamlingci">SISKAMLINGCI</a></b>
+  <b><a rel="nofollow noopener noreferrer" target="_blank" href="https://github.com/kangketikonlen/siskamlingci">🗿 SISKAMLINGCI 🗿</a></b>
   <br />
   Template awal pembuatan project menggunakan framework Codeigniter<br />
-  Sebuah Sistem Keamanan Lingkungan Codeigniter, supaya anda tetap berada di jalan yang benar
+  Sebuah Sistem Keamanan Lingkungan Codeigniter, supaya ngoding tetap ceria dan berada di jalan yang benar
  </samp>
  <br />
  <img src="https://raw.githubusercontent.com/kangketikonlen/kangketikonlen/main/assets/watollie.gif" width="200"/>
@@ -17,7 +17,7 @@
   </p>
   <hr />
   
-  <h2># Instalasi</h2>
+  <h2>⏱ Instalasi</h2>
   <ol>
     <li>Unduh atau clone repositori ini ke dalam webroot server</li>
     <li>Install dependensi <code>composer install</code></li>
@@ -31,7 +31,7 @@
   </ol>
   <hr />
   
-  <h2># Cara Penggunaan</h2>
+  <h2>🧭 Cara Penggunaan</h2>
   <ol>
     <li>Login menggunakan akun default, <br /><code>echo "dXNlcm5hbWU6IHN1cHBvcnQgfCBwYXNzd29yZDogb2xkZXI0NS4sCg===" | base64 --decode</code></li>
     <li>Ubah informasi aplikasi pada menu Sistem > Informasi Aplikasi</li>
@@ -42,7 +42,7 @@
   </ol>
   <hr />
 
-  <h2># Kontribusi</h2>
+  <h2>🤝 Kontribusi</h2>
   Pull Request sangat disambut, untuk perubahan besar silahkan open issue terlebih dahulu untuk mendiskusikan apa yang ingin anda ubah. Dan tentunya, pastikan untuk melakukan test terlebih dahulu.
   <hr />
 
