@@ -1,14 +1,14 @@
 <script>
 	$(document).ready(function() {
-		$('#filter_modul_id').select2({
+		$('#filter_menu_id').select2({
 			theme: 'bootstrap4',
-			placeholder: '-- FILTER MODUL --',
+			placeholder: '-- FILTER MENU UTAMA --',
 			allowClear: true
 		});
 
 		$.ajax({
 			type: "GET",
-			url: "<?= base_url('sistem/modul/options/') ?>",
+			url: "<?= base_url('sistem/menu_utama/options/') ?>",
 			beforeSend: function(xhr) {
 				$("#overlay").fadeIn(300);
 			},
@@ -16,7 +16,7 @@
 				$("#overlay").fadeOut(300);
 				var opts = $.parseJSON(data);
 				$.each(opts, function(i, d) {
-					$("#filter_modul_id").append('<option value="' + d.id + '">' + d.text + '</option>');
+					$("#filter_menu_id").append('<option value="' + d.id + '">' + d.text + '</option>');
 				});
 			},
 			error: function(xhr, status, error) {
@@ -28,7 +28,7 @@
 			}
 		});
 
-		$("#filter_modul_id").change(function() {
+		$("#filter_menu_id").change(function() {
 			$("#dtTable").DataTable().ajax.reload(function() {
 				$("#overlay").fadeOut(300)
 			}, true);
@@ -58,11 +58,11 @@
 			processing: true,
 			serverSide: true,
 			ajax: {
-				"url": "<?= base_url('sistem/hak_akses_fitur/list_data/') ?>",
+				"url": "<?= base_url('sistem/hak_akses_menu/list_data/') ?>",
 				"type": "POST",
 				"data": function(d) {
 					return $.extend({}, d, {
-						'modul_id': $('#filter_modul_id').val(),
+						'menu_id': $('#filter_menu_id').val(),
 					});
 				},
 				"error": function(xhr, status, error) {
@@ -116,7 +116,7 @@
 				if (Oke) {
 					$.ajax({
 						type: "POST",
-						url: "<?= base_url('sistem/hak_akses_fitur/simpan/') ?>",
+						url: "<?= base_url('sistem/hak_akses_menu/simpan/') ?>",
 						data: $("#Frm").serialize(),
 						timeout: 5000,
 						beforeSend: function(xhr) {
@@ -152,9 +152,9 @@
 
 		$('input[type=checkbox]').click(function() {
 			if ($(this).is(':checked')) {
-				$("#submodul_roles").val($("#submodul_roles").val() + "," + $(this).val());
+				$("#submenu_roles").val($("#submenu_roles").val() + "," + $(this).val());
 			} else {
-				$("#submodul_roles").val($("#submodul_roles").val().replace("," + $(this).val(), ""));
+				$("#submenu_roles").val($("#submenu_roles").val().replace("," + $(this).val(), ""));
 			}
 		});
 
@@ -170,7 +170,7 @@
 				if (Oke) {
 					$.ajax({
 						type: "POST",
-						url: "<?= base_url('sistem/hak_akses_fitur/simpan_modul/') ?>",
+						url: "<?= base_url('sistem/hak_akses_menu/simpan_menu/') ?>",
 						data: $("#FrmSetup").serialize(),
 						timeout: 5000,
 						beforeSend: function(xhr) {
@@ -206,9 +206,9 @@
 
 		$('input[type=checkbox]').click(function() {
 			if ($(this).is(':checked')) {
-				$("#modul_roles").val($("#modul_roles").val() + "," + $(this).val());
+				$("#menu_roles").val($("#menu_roles").val() + "," + $(this).val());
 			} else {
-				$("#modul_roles").val($("#modul_roles").val().replace("," + $(this).val(), ""));
+				$("#menu_roles").val($("#menu_roles").val().replace("," + $(this).val(), ""));
 			}
 		});
 
@@ -216,28 +216,28 @@
 			$("#frmData").modal('show');
 			jQuery.ajax({
 				type: "POST",
-				url: "<?= base_url('sistem/hak_akses_fitur/get_data/') ?>",
+				url: "<?= base_url('sistem/hak_akses_menu/get_data/') ?>",
 				dataType: 'json',
 				data: {
-					submodul_id: $(this).attr("data")
+					submenu_id: $(this).attr("data")
 				},
 				beforeSend: function(xhr) {
 					$("#overlay").fadeIn(300);
 				},
 				success: function(data) {
 					$("#overlay").fadeOut(300);
-					split = data.submodul_roles.split(",");
+					split = data.submenu_roles.split(",");
 					$.each(split, function(key, value) {
-						ident = $("#submodul_roles_" + value);
+						ident = $("#submenu_roles_" + value);
 						ident.prop('checked', true);
 					})
 					var n = $('input[type=checkbox]').length + 1;
 					for (i = 1; i <= n; i++) {
-						$("#submodul_roles_" + i).val(i);
+						$("#submenu_roles_" + i).val(i);
 					}
 					$.each(data, function(key, value) {
-						if (key == "submodul_nama") {
-							$("#submodul_nama").text(">" + value + "<");
+						if (key == "submenu_nama") {
+							$("#submenu_nama").text(">" + value + "<");
 						}
 						var ctrl = $('[name=' + key + ']', $('#Frm'));
 						switch (ctrl.prop("type")) {
@@ -263,28 +263,28 @@
 			$("#frmSetup").modal('show');
 			jQuery.ajax({
 				type: "POST",
-				url: "<?= base_url('sistem/hak_akses_fitur/get_data_modul/') ?>",
+				url: "<?= base_url('sistem/hak_akses_menu/get_data_menu/') ?>",
 				dataType: 'json',
 				data: {
-					modul_id: $(this).attr("data")
+					menu_id: $(this).attr("data")
 				},
 				beforeSend: function(xhr) {
 					$("#overlay").fadeIn(300);
 				},
 				success: function(data) {
 					$("#overlay").fadeOut(300);
-					split = data.modul_roles.split(",");
+					split = data.menu_roles.split(",");
 					$.each(split, function(key, value) {
-						ident = $("#modul_roles_" + value);
+						ident = $("#menu_roles_" + value);
 						ident.prop('checked', true);
 					})
 					var n = $('input[type=checkbox]').length + 1;
 					for (i = 1; i <= n; i++) {
-						$("#modul_roles_" + i).val(i);
+						$("#menu_roles_" + i).val(i);
 					}
 					$.each(data, function(key, value) {
-						if (key == "modul_nama") {
-							$("#modul_nama").text(">" + value + "<");
+						if (key == "menu_nama") {
+							$("#menu_nama").text(">" + value + "<");
 						}
 						var ctrl = $('[name=' + key + ']', $('#FrmSetup'));
 						switch (ctrl.prop("type")) {

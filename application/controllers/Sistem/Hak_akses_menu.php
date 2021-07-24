@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
-class Hak_akses_fitur extends MY_Controller
+class Hak_akses_menu extends MY_Controller
 {
 	public function __construct()
 	{
@@ -9,14 +9,14 @@ class Hak_akses_fitur extends MY_Controller
 			$this->session->sess_destroy();
 			redirect('portal');
 		} else {
-			$this->load->model('Sistem/Hak_akses_fitur_model', 'm');
+			$this->load->model('Sistem/Hak_akses_menu_model', 'm');
 		}
 	}
 
 	public function index()
 	{
 		$data['Root'] = "Sistem";
-		$data['Title'] = "Daftar Hak Akses Fitur";
+		$data['Title'] = "Hak Akses Menu";
 		$data['Breadcrumb'] = array('Sistem');
 		$data['Template'] = "templates/private";
 		$data['Components'] = array(
@@ -25,7 +25,7 @@ class Hak_akses_fitur extends MY_Controller
 			'sidebar' => $data['Template'] . "/components/v_sidebar",
 			'navbar' => $data['Template'] . "/components/v_navbar",
 			'footer' => $data['Template'] . "/components/v_footer",
-			'content' => "sistem/v_hak_akses_fitur"
+			'content' => "sistem/v_hak_akses_menu"
 		);
 		$this->load->view('v_main', $data);
 	}
@@ -41,7 +41,7 @@ class Hak_akses_fitur extends MY_Controller
 		$data = $this->input->post();
 		$data['updated_by'] = $this->session->userdata('nama');
 		$data['updated_date'] = date('Y-m-d H:i:s');
-		unset($data['submodul_roles_checked']);
+		unset($data['submenu_roles_checked']);
 
 		$this->m->edit($data);
 
@@ -54,14 +54,14 @@ class Hak_akses_fitur extends MY_Controller
 		echo json_encode($pesan);
 	}
 
-	public function simpan_modul()
+	public function simpan_menu()
 	{
 		$data = $this->input->post();
 		$data['updated_by'] = $this->session->userdata('nama');
 		$data['updated_date'] = date('Y-m-d H:i:s');
-		unset($data['modul_roles_checked']);
+		unset($data['menu_roles_checked']);
 
-		$this->m->edit_modul($data);
+		$this->m->edit_menu($data);
 
 		$pesan = array(
 			'warning' => 'Berhasil!',
@@ -78,9 +78,9 @@ class Hak_akses_fitur extends MY_Controller
 		echo json_encode($result);
 	}
 
-	public function get_data_modul()
+	public function get_data_menu()
 	{
-		$result = $this->m->get_data_modul();
+		$result = $this->m->get_data_menu();
 		echo json_encode($result);
 	}
 

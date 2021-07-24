@@ -2,20 +2,20 @@
 	<div class="col-lg-12">
 		<div class="card">
 			<div class="card-header">
-				<h4 class="card-title">Akses Modul</h4>
+				<h4 class="card-title">Akses menu</h4>
 			</div>
 			<div class="card-body row">
-				<?php foreach ($this->global->get_modul() as $modul) : ?>
+				<?php foreach ($this->global->get_menu() as $menu) : ?>
 					<div class="col-lg-3 col-6">
 						<div class="small-box bg-info">
 							<div class="inner">
-								<h5><?= $modul->modul_nama ?></h5>
-								<small>Urutan ke-<?= $modul->modul_urutan ?>, tipe <?= $modul->modul_tipe ?>, tanggal di buat <?= tgl_indo($modul->created_date) ?>, oleh <?= $modul->created_by ?></small>
+								<h5><?= $menu->menu_nama ?></h5>
+								<small>Urutan ke-<?= $menu->menu_urutan ?>, tipe <?= $menu->menu_tipe ?>, tanggal di buat <?= tgl_indo($menu->created_date) ?>, oleh <?= $menu->created_by ?></small>
 							</div>
 							<div class="icon">
-								<i class="fa <?= $modul->modul_icon ?>"></i>
+								<i class="fa <?= $menu->menu_icon ?>"></i>
 							</div>
-							<a href="#" id="setup" data="<?= $modul->modul_id ?>" class="small-box-footer"> Atur Akses </a>
+							<a href="#" id="setup" data="<?= $menu->menu_id ?>" class="small-box-footer"> Atur Akses </a>
 						</div>
 					</div>
 				<?php endforeach ?>
@@ -23,7 +23,7 @@
 		</div>
 		<div class="card">
 			<div class="card-header">
-				<select name="filter_modul_id" id="filter_modul_id" class="form-control" required="true">
+				<select name="filter_menu_id" id="filter_menu_id" class="form-control" required="true">
 					<option value=""></option>
 				</select>
 			</div>
@@ -31,7 +31,7 @@
 				<table id="dtTable" class="table table-sm table-bordered">
 					<thead>
 						<th>No.</th>
-						<th>Modul</th>
+						<th>menu</th>
 						<th>Root</th>
 						<th>Nama</th>
 						<th>Roles</th>
@@ -54,15 +54,15 @@
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-12">
-						<input type="hidden" name="submodul_id" id="submodul_id">
-						<input type="hidden" name="submodul_roles" id="submodul_roles">
-						<h4 id="submodul_nama"></h4>
+						<input type="hidden" name="submenu_id" id="submenu_id">
+						<input type="hidden" name="submenu_roles" id="submenu_roles">
+						<h4 id="submenu_nama"></h4>
 					</div>
 					<?php foreach ($this->m->get_level() as $level) : ?>
 						<div class="col-lg-6">
 							<div class="form-check">
-								<input type="checkbox" name="submodul_roles_checked[]" id="submodul_roles_<?= $level->level_id ?>" class=" form-check-input" value="<?= $level->level_id ?>">
-								<label class="form-check-label" for="submodul_roles_<?= $level->level_id ?>"><?= $level->level_nama ?></label>
+								<input type="checkbox" name="submenu_roles_checked[]" id="submenu_roles_<?= $level->level_id ?>" class=" form-check-input" value="<?= $level->level_id ?>">
+								<label class="form-check-label" for="submenu_roles_<?= $level->level_id ?>"><?= $level->level_nama ?></label>
 							</div>
 						</div>
 					<?php endforeach ?>
@@ -86,15 +86,15 @@
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-12">
-						<input type="hidden" name="modul_id" id="modul_id">
-						<input type="hidden" name="modul_roles" id="modul_roles">
-						<h4 id="modul_nama"></h4>
+						<input type="hidden" name="menu_id" id="menu_id">
+						<input type="hidden" name="menu_roles" id="menu_roles">
+						<h4 id="menu_nama"></h4>
 					</div>
 					<?php foreach ($this->m->get_level() as $level) : ?>
 						<div class="col-lg-6">
 							<div class="form-check">
-								<input type="checkbox" name="modul_roles_checked[]" id="modul_roles_<?= $level->level_id ?>" class=" form-check-input" value="<?= $level->level_id ?>">
-								<label class="form-check-label" for="modul_roles_<?= $level->level_id ?>"><?= $level->level_nama ?></label>
+								<input type="checkbox" name="menu_roles_checked[]" id="menu_roles_<?= $level->level_id ?>" class=" form-check-input" value="<?= $level->level_id ?>">
+								<label class="form-check-label" for="menu_roles_<?= $level->level_id ?>"><?= $level->level_nama ?></label>
 							</div>
 						</div>
 					<?php endforeach ?>
@@ -107,4 +107,4 @@
 		</div>
 	</div>
 </div>
-<?php $this->load->view('sistem/js/js_hak_akses_fitur') ?>
+<?php $this->load->view('sistem/js/js_hak_akses_menu') ?>
