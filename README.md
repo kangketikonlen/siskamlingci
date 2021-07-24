@@ -7,7 +7,8 @@
   Sebuah Sistem Keamanan Lingkungan Codeigniter, supaya ngoding tetap ceria dan berada di jalan yang benar
  </samp>
  <br />
- <img src="https://raw.githubusercontent.com/kangketikonlen/kangketikonlen/main/assets/watollie.gif" width="200"/>
+ <img src="https://raw.githubusercontent.com/kangketikonlen/kangketikonlen/main/assets/watollie.gif" width="200"/><br />
+ <img src="https://img.shields.io/github/last-commit/kangketikonlen/siskamlingci?style=flat-square" /><br />
 </p>
 
 <samp>
