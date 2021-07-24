@@ -3,7 +3,8 @@
  <samp>
   <b><a rel="nofollow noopener noreferrer" target="_blank" href="https://github.com/kangketikonlen/siskamlingci">SISKAMLINGCI</a></b>
   <br />
-  Template awal pembuatan project menggunakan framework Codeigniter
+  Template awal pembuatan project menggunakan framework Codeigniter<br />
+  Sebuah Sistem Keamanan Lingkungan Codeigniter, supaya anda tetap berada di jalan yang benar
  </samp>
  <br />
  <img src="https://raw.githubusercontent.com/kangketikonlen/kangketikonlen/main/assets/watollie.gif" width="200"/>
