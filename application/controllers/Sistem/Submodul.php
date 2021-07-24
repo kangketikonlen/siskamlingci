@@ -39,6 +39,11 @@ class Submodul extends MY_Controller
 	public function simpan()
 	{
 		$data = $this->input->post();
+		// create slug
+		$modul = $this->m->search_modul($data['modul_id']);
+		$string = str_replace(' ', '_', $data['submodul_root']);
+		$data['submodul_url'] = strtolower($modul->modul_nama) . '/' . strtolower($string);
+		//
 		if ($this->input->post('submodul_id') == "") {
 			$result = $this->m->get_submodul();
 			$submodul = explode("/", $data['submodul_url']);

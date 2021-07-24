@@ -35,9 +35,9 @@
 			<?= form_open("#", array('id' => 'Frm')) ?>
 			<div class="modal-body">
 				<div class="row">
-					<div class="col-lg-6">
+					<div class="col-lg-12">
 						<div class="form-group">
-							<label for="modul_id">Modul</label>
+							<label for="modul_id">Fitur / Menu</label>
 							<input type="hidden" name="submodul_id" id="submodul_id">
 							<select name="modul_id" id="modul_id" class="form-control" required="true">
 								<option value=""></option>
@@ -52,20 +52,19 @@
 					</div>
 					<div class="col-lg-6">
 						<div class="form-group">
-							<label for="submodul_root">Root</label>
+							<label for="submodul_root">Tag</label>
 							<input type="text" name="submodul_root" id="submodul_root" class="form-control" placeholder="Masukkan root <?= strtolower($Title) ?>..." autocomplete="off" required="true">
 						</div>
 					</div>
-					<div class="col-lg-6">
+					<div class="col-lg-12">
 						<div class="form-group">
 							<label for="submodul_nama">Nama</label>
 							<input type="text" name="submodul_nama" id="submodul_nama" class="form-control" placeholder="Masukkan nama <?= strtolower($Title) ?>..." autocomplete="off" required="true">
 						</div>
 					</div>
 					<div class="col-lg-12">
-						<div class="form-group">
-							<label for="submodul_url">URL</label>
-							<input type="text" name="submodul_url" id="submodul_url" class="form-control" placeholder="Masukkan url <?= strtolower($Title) ?>..." autocomplete="off" required="true">
+						<div class="alert alert-danger m-0">
+							<b>Note</b>: Mohon untuk tidak menggunakan karakter spesial atau angka pada kolom isian <strong>Tag</strong>. Karena data tersebut akan dijadikan untuk pembuatan <strong>slug url</strong>. Gunakan alphabet dan spasi saja!. Pastikan data pada <strong>Tag</strong> unique!.
 						</div>
 					</div>
 				</div>
