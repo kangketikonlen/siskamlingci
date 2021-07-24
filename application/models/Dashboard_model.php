@@ -1,23 +1,30 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 class Dashboard_model extends CI_Model
 {
-	protected $modul = "ak_data_system_modul";
-	protected $submodul = "ak_data_system_modul_sub";
+	protected $menu = "ak_data_system_menu";
+	protected $submenu = "ak_data_system_menu_sub";
 	protected $hak_akses = "ak_data_system_hak_akses";
-	protected $jenis_formulir = "ak_data_master_jenis_formulir";
 
-	public function get_modul()
+	public function get_menu()
 	{
-		return $this->db->where($this->modul . '.deleted', FALSE)->order_by($this->modul . '.modul_urutan', 'asc')->get($this->modul)->result();
+		$this->db->where($this->menu . '.deleted', FALSE);
+		$this->db->order_by($this->menu . '.menu_urutan', 'asc');
+		return $this->db->get($this->menu)->result();
 	}
 
-	public function get_submodul($modul)
+	public function get_submenu($menu)
 	{
-		return $this->db->where($this->submodul . '.deleted', FALSE)->order_by($this->submodul . '.submodul_urutan', 'asc')->where($this->submodul . '.modul_id', $modul)->get($this->submodul)->result();
+		$this->db->where($this->submenu . '.deleted', FALSE);
+		$this->db->order_by($this->submenu . '.submenu_urutan', 'asc');
+		$this->db->where($this->submenu . '.menu_id', $menu);
+		return $this->db->get($this->submenu)->result();
 	}
 
 	public function get_hak_akses($sub)
 	{
-		return $this->db->where($this->hak_akses . '.submodul_id', $sub)->where($this->hak_akses . '.level_id', $this->session->userdata('level_id'))->join($this->submodul, $this->submodul . '.submodul_id=' . $this->hak_akses . '.submodul_id')->get($this->hak_akses)->row();
+		$this->db->where($this->hak_akses . '.submenu_id', $sub);
+		$this->db->where($this->hak_akses . '.level_id', $this->session->userdata('level_id'));
+		$this->db->join($this->submenu, $this->submenu . '.submenu_id=' . $this->hak_akses . '.submenu_id');
+		return $this->db->get($this->hak_akses)->row();
 	}
 }
