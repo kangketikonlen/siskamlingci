@@ -15,7 +15,7 @@ class Hak_akses_modul extends MY_Controller
 	public function index()
 	{
 		$data['Root'] = "Sistem";
-		$data['Title'] = "Daftar Hak Akses Modul";
+		$data['Title'] = "Hak Akses Modul";
 		$data['Breadcrumb'] = array('Sistem');
 		$data['Template'] = "templates/private";
 		$data['Components'] = array(
