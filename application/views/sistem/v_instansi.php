@@ -34,31 +34,31 @@
 						<div class="form-group">
 							<label for="instansi_nama">Nama</label>
 							<input type="hidden" name="instansi_id" id="instansi_id">
-							<input type="text" name="instansi_nama" id="instansi_nama" class="form-control form-control-sm" placeholder="Masukkan deskripsi..." autocomplete="off" required="true">
+							<input type="text" name="instansi_nama" id="instansi_nama" class="form-control form-control-sm" placeholder="Masukkan deskripsi <?= strtolower($Title) ?>..." autocomplete="off" required="true">
 						</div>
 					</div>
 					<div class="col-lg-6">
 						<div class="form-group">
 							<label for="instansi_alamat_email">Email</label>
-							<input type="text" name="instansi_alamat_email" id="instansi_alamat_email" class="form-control form-control-sm" placeholder="Masukkan email..." autocomplete="off" required="true">
+							<input type="email" name="instansi_alamat_email" id="instansi_alamat_email" class="form-control form-control-sm" placeholder="Masukkan email <?= strtolower($Title) ?>..." autocomplete="off" required="true">
 						</div>
 					</div>
 					<div class="col-lg-12">
 						<div class="form-group">
 							<label for="instansi_alamat">Alamat</label>
-							<input type="text" name="instansi_alamat" id="instansi_alamat" class="form-control form-control-sm" placeholder="Masukkan alamat..." autocomplete="off" required="true">
+							<input type="text" name="instansi_alamat" id="instansi_alamat" class="form-control form-control-sm" placeholder="Masukkan alamat <?= strtolower($Title) ?>..." autocomplete="off" required="true">
 						</div>
 					</div>
 					<div class="col-lg-6">
 						<div class="form-group">
 							<label for="instansi_website">Website Instansi</label>
-							<input type="text" name="instansi_website" id="instansi_website" class="form-control form-control-sm" placeholder="Masukkan email..." autocomplete="off" required="true">
+							<input type="text" name="instansi_website" id="instansi_website" class="form-control form-control-sm" placeholder="Masukkan website <?= strtolower($Title) ?>..." autocomplete="off" required="true">
 						</div>
 					</div>
 					<div class="col-lg-6">
 						<div class="form-group">
 							<label for="instansi_url_sistem">Url Sistem</label>
-							<input type="text" name="instansi_url_sistem" id="instansi_url_sistem" class="form-control form-control-sm" placeholder="Masukkan email..." autocomplete="off" required="true">
+							<input type="text" name="instansi_url_sistem" id="instansi_url_sistem" class="form-control form-control-sm" placeholder="Masukkan url sistem <?= strtolower($Title) ?>..." autocomplete="off" required="true">
 						</div>
 					</div>
 					<div class="col-lg-12">

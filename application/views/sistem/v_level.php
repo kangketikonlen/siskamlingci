@@ -38,13 +38,13 @@
 					<div class="col-lg-6">
 						<div class="form-group">
 							<label for="level_icon">Icon</label>
-							<input type="text" name="level_icon" id="level_icon" class="form-control form-control-sm" placeholder="Masukkan nama level..." autocomplete="off" required="true">
+							<input type="text" name="level_icon" id="level_icon" class="form-control form-control-sm" placeholder="Masukkan icon level..." autocomplete="off" required="true">
 						</div>
 					</div>
 					<div class="col-lg-6">
 						<div class="form-group">
 							<label for="level_background">#Hex Background</label>
-							<input type="text" name="level_background" id="level_background" class="form-control form-control-sm" placeholder="Masukkan nama level..." autocomplete="off" required="true">
+							<input type="text" name="level_background" id="level_background" class="form-control form-control-sm" placeholder="Masukkan warna level..." autocomplete="off" required="true">
 						</div>
 					</div>
 					<div class="col-lg-12">
@@ -55,6 +55,17 @@
 								<option value="Landing">Landing</option>
 								<option value="Dashboard">Dashboard</option>
 							</select>
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="alert alert-danger">
+							<b>Note 1</b>: Mohon untuk tidak menggunakan karakter spesial atau angka pada kolom isian <strong>Nama</strong>. Karena data tersebut akan dijadikan untuk pembuatan <strong>slug url</strong>. Gunakan alphabet dan spasi saja!. Dan, pastikan data pada <strong>Nama</strong> unique!.
+						</div>
+						<div class="alert alert-light">
+							<b>Note 2</b>: Pembuatan template secara otomatis hanya berlaku <strong>sekali saja</strong>, ketika <strong>input pertama</strong>. Jika ingin mengedit <code>Nama</code> atau <code>Tipe Halaman</code> maka anda harus mengedit atau menghapus <code>file script</code> tersebut secara manual.
+						</div>
+						<div class="alert alert-light m-0">
+							<b>Note 3</b>: Untuk pengisian <code>Icon</code>, silahkan melihat referensi pada halaman <a href="https://cutt.ly/Fm53NAH" class="text-info" target="_blank">Fontawesome</a> dengan format <code>fa-<i>nama-icon</i></code>. Dan, untuk pengisian <code>#Hex Background</code> gunakan kode warna hex dengan format <code>#<i>kodewarna</i></code>. Untuk penjelasan <code>Tipe Halaman</code>, silahkan melihat pada file <a href="https://cutt.ly/Sm58OzX" class="text-info" target="_blank">README.MD</a>.
 						</div>
 					</div>
 				</div>

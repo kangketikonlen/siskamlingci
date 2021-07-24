@@ -32,19 +32,30 @@
 						<div class="form-group">
 							<label for="menu_urutan">Urutan</label>
 							<input type="hidden" name="menu_id" id="menu_id">
-							<input type="number" min="0" name="menu_urutan" id="menu_urutan" class="form-control form-control-sm" autocomplete="off" required="true">
+							<input type="number" min="0" name="menu_urutan" id="menu_urutan" class="form-control form-control-sm" placeholder="Masukkan urutan <?= strtolower($Title) ?>..." autocomplete="off" required="true">
 						</div>
 					</div>
 					<div class="col-lg-6">
 						<div class="form-group">
 							<label for="menu_icon">Icon</label>
-							<input type="text" name="menu_icon" id="menu_icon" class="form-control form-control-sm" autocomplete="off" required="true">
+							<input type="text" name="menu_icon" id="menu_icon" class="form-control form-control-sm" placeholder="Masukkan icon <?= strtolower($Title) ?>..." autocomplete="off" required="true">
 						</div>
 					</div>
 					<div class="col-lg-12">
 						<div class="form-group">
 							<label for="menu_nama">Nama</label>
-							<input type="text" name="menu_nama" id="menu_nama" class="form-control form-control-sm" autocomplete="off" required="true">
+							<input type="text" name="menu_nama" id="menu_nama" class="form-control form-control-sm" placeholder="Masukkan nama <?= strtolower($Title) ?>..." autocomplete="off" required="true">
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="alert alert-danger">
+							<b>Note 1</b>: Mohon untuk tidak menggunakan karakter <i>spesial</i>, <i>angka</i> atau <i>spasi</i> pada kolom isian <strong>Nama</strong>. Karena data tersebut akan dijadikan untuk pembuatan <strong>slug url</strong>. Gunakan kata baris tunggal!. Dan, pastikan data pada <strong>Nama</strong> unique!.
+						</div>
+						<div class="alert alert-light">
+							<b>Note 2</b>: Pembuatan template secara otomatis hanya berlaku <strong>sekali saja</strong>, ketika <strong>input pertama</strong>. Jika ingin mengedit atau menghapus <code>Nama</code> maka anda harus mengedit atau menghapus <code>file script</code> tersebut secara manual.
+						</div>
+						<div class="alert alert-light m-0">
+							<b>Note 3</b>: Untuk pengisian <code>Icon</code>, silahkan melihat referensi pada halaman <a href="https://cutt.ly/Fm53NAH" class="text-info" target="_blank">Fontawesome</a> dengan format <code>fa-<i>nama-icon</i></code>.
 						</div>
 					</div>
 				</div>
