@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
-class Submodul extends MY_Controller
+class Submenu extends MY_Controller
 {
 	public function __construct()
 	{
@@ -9,14 +9,14 @@ class Submodul extends MY_Controller
 			$this->session->sess_destroy();
 			redirect('portal');
 		} else {
-			$this->load->model('Sistem/Submodul_model', 'm');
+			$this->load->model('Sistem/Submenu_model', 'm');
 		}
 	}
 
 	public function index()
 	{
 		$data['Root'] = "Sistem";
-		$data['Title'] = "Daftar Submodul";
+		$data['Title'] = "Submenu";
 		$data['Breadcrumb'] = array('Sistem');
 		$data['Template'] = "templates/private";
 		$data['Components'] = array(
@@ -25,7 +25,7 @@ class Submodul extends MY_Controller
 			'sidebar' => $data['Template'] . "/components/v_sidebar",
 			'navbar' => $data['Template'] . "/components/v_navbar",
 			'footer' => $data['Template'] . "/components/v_footer",
-			'content' => "sistem/v_submodul"
+			'content' => "sistem/v_submenu"
 		);
 		$this->load->view('v_main', $data);
 	}
@@ -40,13 +40,13 @@ class Submodul extends MY_Controller
 	{
 		$data = $this->input->post();
 		// create slug
-		$modul = $this->m->search_modul($data['modul_id']);
-		$string = str_replace(' ', '_', $data['submodul_root']);
-		$data['submodul_url'] = strtolower($modul->modul_nama) . '/' . strtolower($string);
+		$menu = $this->m->search_menu($data['menu_id']);
+		$string = str_replace(' ', '_', $data['submenu_root']);
+		$data['submenu_url'] = strtolower($menu->menu_nama) . '/' . strtolower($string);
 		//
-		if ($this->input->post('submodul_id') == "") {
-			$result = $this->m->get_submodul();
-			$submodul = explode("/", $data['submodul_url']);
+		if ($this->input->post('submenu_id') == "") {
+			$result = $this->m->get_submenu();
+			$submenu = explode("/", $data['submenu_url']);
 			$data['created_by'] = $this->session->userdata('nama');
 			$data['created_date'] = date('Y-m-d H:i:s');
 
@@ -56,10 +56,10 @@ class Submodul extends MY_Controller
 
 			$this->m->simpan($data);
 
-			$this->create_controller($data, $submodul);
-			$this->create_model($submodul);
-			$this->create_view($submodul);
-			$this->create_js($submodul);
+			$this->create_controller($data, $submenu);
+			$this->create_model($submenu);
+			$this->create_view($submenu);
+			$this->create_js($submenu);
 
 			$pesan = array(
 				'warning' => 'Berhasil!',
@@ -73,7 +73,7 @@ class Submodul extends MY_Controller
 
 			$this->m->edit($data);
 
-			if ($result->submodul_urutan != $this->input->post('submodul_urutan')) {
+			if ($result->submenu_urutan != $this->input->post('submenu_urutan')) {
 				$this->m->reorder();
 			}
 
@@ -86,50 +86,50 @@ class Submodul extends MY_Controller
 		echo json_encode($pesan);
 	}
 
-	public function create_controller($data, $submodul)
+	public function create_controller($data, $submenu)
 	{
 		copy(
 			'./samples/controllers/samples.php',
-			'./application/controllers/' . ucfirst($submodul[0]) . '/' . ucfirst($submodul[1]) . '.php'
+			'./application/controllers/' . ucfirst($submenu[0]) . '/' . ucfirst($submenu[1]) . '.php'
 		);
 
-		$path_to_file = './application/controllers/' . ucfirst($submodul[0]) . '/' . ucfirst($submodul[1]) . '.php';
+		$path_to_file = './application/controllers/' . ucfirst($submenu[0]) . '/' . ucfirst($submenu[1]) . '.php';
 		$file_contents = file_get_contents($path_to_file);
-		$file_contents = str_replace("Model_folder/Samples_model", ucfirst($submodul[0]) . '/' . ucfirst($submodul[1] . '_model'), $file_contents);
-		$file_contents = str_replace("Samples_controller", ucfirst($submodul[1]), $file_contents);
-		$file_contents = str_replace("Samples Root", ucfirst($submodul[0]), $file_contents);
-		$file_contents = str_replace("Samples Title", $data['submodul_root'], $file_contents);
-		$file_contents = str_replace("samples_view/v_samples", strtolower($submodul[0]) . '/v_' . strtolower($submodul[1]), $file_contents);
-		$file_contents = str_replace("Samples", ucfirst($submodul[0]), $file_contents);
+		$file_contents = str_replace("Model_folder/Samples_model", ucfirst($submenu[0]) . '/' . ucfirst($submenu[1] . '_model'), $file_contents);
+		$file_contents = str_replace("Samples_controller", ucfirst($submenu[1]), $file_contents);
+		$file_contents = str_replace("Samples Root", ucfirst($submenu[0]), $file_contents);
+		$file_contents = str_replace("Samples Title", $data['submenu_root'], $file_contents);
+		$file_contents = str_replace("samples_view/v_samples", strtolower($submenu[0]) . '/v_' . strtolower($submenu[1]), $file_contents);
+		$file_contents = str_replace("Samples", ucfirst($submenu[0]), $file_contents);
 		file_put_contents($path_to_file, $file_contents);
 	}
 
-	public function create_model($submodul)
+	public function create_model($submenu)
 	{
 		copy(
 			'./samples/models/samples_model.php',
-			'./application/models/' . ucfirst($submodul[0]) . '/' . ucfirst($submodul[1]) . '_model.php'
+			'./application/models/' . ucfirst($submenu[0]) . '/' . ucfirst($submenu[1]) . '_model.php'
 		);
 
-		$path_to_file = './application/models/' . ucfirst($submodul[0]) . '/' . ucfirst($submodul[1]) . '_model.php';
+		$path_to_file = './application/models/' . ucfirst($submenu[0]) . '/' . ucfirst($submenu[1]) . '_model.php';
 		$file_contents = file_get_contents($path_to_file);
-		$file_contents = str_replace("Samples_model", ucfirst($submodul[1] . '_model'), $file_contents);
+		$file_contents = str_replace("Samples_model", ucfirst($submenu[1] . '_model'), $file_contents);
 		file_put_contents($path_to_file, $file_contents);
 	}
 
-	public function create_view($submodul)
+	public function create_view($submenu)
 	{
 		copy(
 			'./samples/views/v_samples.php',
-			'./application/views/' . strtolower($submodul[0]) . '/v_' . strtolower($submodul[1]) . '.php'
+			'./application/views/' . strtolower($submenu[0]) . '/v_' . strtolower($submenu[1]) . '.php'
 		);
 	}
 
-	public function create_js($submodul)
+	public function create_js($submenu)
 	{
 		copy(
 			'./samples/views/js/js_samples.php',
-			'./application/views/' . strtolower($submodul[0]) . '/js/js_' . strtolower($submodul[1]) . '.php'
+			'./application/views/' . strtolower($submenu[0]) . '/js/js_' . strtolower($submenu[1]) . '.php'
 		);
 	}
 

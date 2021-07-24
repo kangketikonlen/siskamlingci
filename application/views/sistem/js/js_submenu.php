@@ -1,14 +1,14 @@
 <script>
 	$(document).ready(function() {
-		$('#modul_id').select2({
+		$('#menu_id').select2({
 			theme: 'bootstrap4',
-			placeholder: '-- PILIH MODUL --',
+			placeholder: '-- PILIH MENU UTAMA --',
 			allowClear: true
 		});
 
 		$.ajax({
 			type: "GET",
-			url: "<?= base_url('sistem/modul/options/') ?>",
+			url: "<?= base_url('sistem/menu_utama/options/') ?>",
 			beforeSend: function(xhr) {
 				$("#overlay").fadeIn(300);
 			},
@@ -16,7 +16,7 @@
 				$("#overlay").fadeOut(300);
 				var opts = $.parseJSON(data);
 				$.each(opts, function(i, d) {
-					$("#modul_id").append('<option value="' + d.id + '">' + d.text + '</option>');
+					$("#menu_id").append('<option value="' + d.id + '">' + d.text + '</option>');
 				});
 			},
 			error: function(xhr, status, error) {
@@ -28,15 +28,15 @@
 			}
 		});
 
-		$('#filter_modul_id').select2({
+		$('#filter_menu_id').select2({
 			theme: 'bootstrap4',
-			placeholder: '-- FILTER MODUL --',
+			placeholder: '-- FILTER MENU UTAMA --',
 			allowClear: true
 		});
 
 		$.ajax({
 			type: "GET",
-			url: "<?= base_url('sistem/modul/options/') ?>",
+			url: "<?= base_url('sistem/menu_utama/options/') ?>",
 			beforeSend: function(xhr) {
 				$("#overlay").fadeIn(300);
 			},
@@ -44,7 +44,7 @@
 				$("#overlay").fadeOut(300);
 				var opts = $.parseJSON(data);
 				$.each(opts, function(i, d) {
-					$("#filter_modul_id").append('<option value="' + d.id + '">' + d.text + '</option>');
+					$("#filter_menu_id").append('<option value="' + d.id + '">' + d.text + '</option>');
 				});
 			},
 			error: function(xhr, status, error) {
@@ -56,7 +56,7 @@
 			}
 		});
 
-		$("#filter_modul_id").change(function() {
+		$("#filter_menu_id").change(function() {
 			$("#dtTable").DataTable().ajax.reload(function() {
 				$("#overlay").fadeOut(300)
 			}, true);
@@ -64,9 +64,9 @@
 
 		$('#frmData').on('show.bs.modal', function(event) {
 			var modal = $(this)
-			var data = $("#filter_modul_id").val();
+			var data = $("#filter_menu_id").val();
 			console.log(data);
-			modal.find('#modul_id').val(data).change();
+			modal.find('#menu_id').val(data).change();
 		})
 
 		$.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings) {
@@ -96,11 +96,11 @@
 				[1, "asc"]
 			],
 			ajax: {
-				"url": "<?= base_url('sistem/submodul/list_data/') ?>",
+				"url": "<?= base_url('sistem/submenu/list_data/') ?>",
 				"type": "POST",
 				"data": function(d) {
 					return $.extend({}, d, {
-						'modul_id': $('#filter_modul_id').val(),
+						'menu_id': $('#filter_menu_id').val(),
 					});
 				},
 				"error": function(xhr, status, error) {
@@ -152,7 +152,7 @@
 				if (Oke) {
 					$.ajax({
 						type: "POST",
-						url: "<?= base_url('sistem/submodul/simpan/') ?>",
+						url: "<?= base_url('sistem/submenu/simpan/') ?>",
 						data: $("#Frm").serialize(),
 						timeout: 5000,
 						beforeSend: function(xhr) {
@@ -190,10 +190,10 @@
 			$("#frmData").modal('show');
 			jQuery.ajax({
 				type: "POST",
-				url: "<?= base_url('sistem/submodul/get_data/') ?>",
+				url: "<?= base_url('sistem/submenu/get_data/') ?>",
 				dataType: 'json',
 				data: {
-					submodul_id: $(this).attr("data")
+					submenu_id: $(this).attr("data")
 				},
 				beforeSend: function(xhr) {
 					$("#overlay").fadeIn(300);
@@ -232,9 +232,9 @@
 				if (Oke) {
 					$.ajax({
 						type: "POST",
-						url: "<?= base_url('sistem/submodul/hapus/') ?>",
+						url: "<?= base_url('sistem/submenu/hapus/') ?>",
 						data: {
-							submodul_id: $(this).attr("data")
+							submenu_id: $(this).attr("data")
 						},
 						timeout: 5000,
 						beforeSend: function(xhr) {

@@ -2,7 +2,7 @@
 	<div class="col-lg-12">
 		<div class="card">
 			<div class="card-header">
-				<select name="filter_modul_id" id="filter_modul_id" class="form-control" required="true">
+				<select name="filter_menu_id" id="filter_menu_id" class="form-control" required="true">
 					<option value=""></option>
 				</select>
 			</div>
@@ -10,7 +10,7 @@
 				<table id="dtTable" class="table table-sm table-bordered">
 					<thead>
 						<th>No.</th>
-						<th>Modul</th>
+						<th>Menu</th>
 						<th>Root</th>
 						<th>Nama</th>
 						<th>URL</th>
@@ -37,29 +37,29 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="form-group">
-							<label for="modul_id">Fitur / Menu</label>
-							<input type="hidden" name="submodul_id" id="submodul_id">
-							<select name="modul_id" id="modul_id" class="form-control" required="true">
+							<label for="menu_id">Fitur / Menu</label>
+							<input type="hidden" name="submenu_id" id="submenu_id">
+							<select name="menu_id" id="menu_id" class="form-control" required="true">
 								<option value=""></option>
 							</select>
 						</div>
 					</div>
 					<div class="col-lg-6">
 						<div class="form-group">
-							<label for="submodul_urutan">Urutan</label>
-							<input type="number" name="submodul_urutan" id="submodul_urutan" class="form-control" placeholder="Masukkan urutan <?= strtolower($Title) ?>..." autocomplete="off" required="true">
+							<label for="submenu_urutan">Urutan</label>
+							<input type="number" name="submenu_urutan" id="submenu_urutan" class="form-control" autocomplete="off" required="true">
 						</div>
 					</div>
 					<div class="col-lg-6">
 						<div class="form-group">
-							<label for="submodul_root">Tag</label>
-							<input type="text" name="submodul_root" id="submodul_root" class="form-control" placeholder="Masukkan root <?= strtolower($Title) ?>..." autocomplete="off" required="true">
+							<label for="submenu_root">Tag</label>
+							<input type="text" name="submenu_root" id="submenu_root" class="form-control" required="true">
 						</div>
 					</div>
 					<div class="col-lg-12">
 						<div class="form-group">
-							<label for="submodul_nama">Nama</label>
-							<input type="text" name="submodul_nama" id="submodul_nama" class="form-control" placeholder="Masukkan nama <?= strtolower($Title) ?>..." autocomplete="off" required="true">
+							<label for="submenu_nama">Nama</label>
+							<input type="text" name="submenu_nama" id="submenu_nama" class="form-control" required="true">
 						</div>
 					</div>
 					<div class="col-lg-12">
@@ -76,4 +76,4 @@
 		</div>
 	</div>
 </div>
-<?php $this->load->view('sistem/js/js_submodul') ?>
+<?php $this->load->view('sistem/js/js_submenu') ?>
