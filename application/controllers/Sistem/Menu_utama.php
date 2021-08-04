@@ -39,8 +39,8 @@ class Menu_utama extends MY_Controller
 	public function simpan()
 	{
 		$data = $this->input->post();
-		if ($this->input->post('modul_id') == "") {
-			$result = $this->m->get_modul();
+		if ($this->input->post('menu_id') == "") {
+			$result = $this->m->get_menu();
 			$data['created_by'] = $this->session->userdata('nama');
 			$data['created_date'] = date('Y-m-d H:i:s');
 
@@ -50,20 +50,20 @@ class Menu_utama extends MY_Controller
 
 			$this->m->simpan($data);
 
-			if (!file_exists('./application/controllers/' . ucfirst($data['modul_nama']))) {
-				mkdir('./application/controllers/' . ucfirst($data['modul_nama']), 0777, true);
+			if (!file_exists('./application/controllers/' . ucfirst($data['menu_nama']))) {
+				mkdir('./application/controllers/' . ucfirst($data['menu_nama']), 0777, true);
 			}
 
-			if (!file_exists('./application/models/' . ucfirst($data['modul_nama']))) {
-				mkdir('./application/models/' . ucfirst($data['modul_nama']), 0777, true);
+			if (!file_exists('./application/models/' . ucfirst($data['menu_nama']))) {
+				mkdir('./application/models/' . ucfirst($data['menu_nama']), 0777, true);
 			}
 
-			if (!file_exists('./application/views/' . strtolower($data['modul_nama']))) {
-				mkdir('./application/views/' . strtolower($data['modul_nama']), 0777, true);
+			if (!file_exists('./application/views/' . strtolower($data['menu_nama']))) {
+				mkdir('./application/views/' . strtolower($data['menu_nama']), 0777, true);
 			}
 
-			if (!file_exists('./application/views/' . strtolower($data['modul_nama'] . '/js/'))) {
-				mkdir('./application/views/' . strtolower($data['modul_nama'] . '/js/'), 0777, true);
+			if (!file_exists('./application/views/' . strtolower($data['menu_nama'] . '/js/'))) {
+				mkdir('./application/views/' . strtolower($data['menu_nama'] . '/js/'), 0777, true);
 			}
 
 			$pesan = array(
@@ -76,7 +76,7 @@ class Menu_utama extends MY_Controller
 			$data['updated_by'] = $this->session->userdata('nama');
 			$data['updated_date'] = date('Y-m-d H:i:s');
 
-			if ($result->modul_urutan != $this->input->post('modul_urutan')) {
+			if ($result->menu_urutan != $this->input->post('menu_urutan')) {
 				$this->m->reorder();
 			}
 
