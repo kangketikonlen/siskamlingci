@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.5-10.5.9-MariaDB)
 # Database: siskamlingci
-# Generation Time: 2021-07-24 08:47:29 +0000
+# Generation Time: 2021-08-04 08:08:07 +0000
 # ************************************************************
 
 
@@ -48,7 +48,7 @@ LOCK TABLES `ak_data_system_info` WRITE;
 
 INSERT INTO `ak_data_system_info` (`info_id`, `info_name`, `info_full_name`, `info_devs`, `info_devs_url`, `info_registered`, `info_sponsor`, `info_sponsor_url`, `info_status_sosmed`, `created_by`, `created_date`, `updated_by`, `updated_date`, `deleted`)
 VALUES
-	(1,'SISKAMLINGCI','Sistem Keamanan Lingkungan Codeigniter','Kangketik','https://kangketik.web.id','KANGKETIK DEVELOPER','','',0,'System','2021-05-23 22:51:12','Support System','2021-07-23 15:21:44',0);
+	(1,'SISKAMLINGCI','Sistem Keamanan Lingkungan Codeigniter','Kangketik','https://kangketik.web.id','KANGKETIK DEVELOPER','','',0,'System','2021-05-23 22:51:12','Support System','2021-08-04 14:59:53',0);
 
 /*!40000 ALTER TABLE `ak_data_system_info` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -136,16 +136,76 @@ CREATE TABLE `ak_data_system_log` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-LOCK TABLES `ak_data_system_log` WRITE;
-/*!40000 ALTER TABLE `ak_data_system_log` DISABLE KEYS */;
 
-INSERT INTO `ak_data_system_log` (`id`, `ip_address`, `timestamp`, `data`)
+
+# Dump of table ak_data_system_menu
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `ak_data_system_menu`;
+
+CREATE TABLE `ak_data_system_menu` (
+  `menu_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `menu_urutan` int(11) unsigned NOT NULL,
+  `menu_icon` char(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `menu_nama` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `menu_tipe` enum('Single','Dropdown') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Dropdown',
+  `menu_url` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '#',
+  `menu_roles` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0,1',
+  `created_by` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'System',
+  `created_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_by` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_date` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `deleted` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`menu_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+LOCK TABLES `ak_data_system_menu` WRITE;
+/*!40000 ALTER TABLE `ak_data_system_menu` DISABLE KEYS */;
+
+INSERT INTO `ak_data_system_menu` (`menu_id`, `menu_urutan`, `menu_icon`, `menu_nama`, `menu_tipe`, `menu_url`, `menu_roles`, `created_by`, `created_date`, `updated_by`, `updated_date`, `deleted`)
 VALUES
-	('9cjdbst481s0118kd14hsup3e5ps6lbq','::1',1627028457,X'5F5F63695F6C6173745F726567656E65726174657C693A313632373032383333313B'),
-	('no42eprthjd9g2rtmvk7v89ei6eflqcp','::1',1627116385,X'5F5F63695F6C6173745F726567656E65726174657C693A313632373131363230303B69647C733A313A2231223B6E616D617C733A31343A22537570706F72742053797374656D223B6C6576656C7C733A363A224D6173746572223B706172656E74737C733A313A2231223B496E7374616E73697C733A313A2231223B417070496E666F7C733A32323A225349534B414D4C494E474349204B414E474B4554494B223B446576496E666F7C733A393A224B616E676B6574696B223B55726C4465767C733A32343A2268747470733A2F2F6B616E676B6574696B2E7765622E6964223B4C6F67676564496E7C623A313B6C6576656C5F746D707C733A313A2231223B75726C5F746D707C733A31373A2264617368626F6172642F6C616E64696E67223B6C6576656C5F69647C733A313A2231223B55726C446173687C733A31373A2264617368626F6172642F6C616E64696E67223B'),
-	('v7qvvrfh3g0k6dh7rftfam2cvf0ttuf7','::1',1627042527,X'5F5F63695F6C6173745F726567656E65726174657C693A313632373034323339373B69647C733A313A2231223B6E616D617C733A31343A22537570706F72742053797374656D223B6C6576656C7C733A363A224D6173746572223B706172656E74737C733A313A2231223B496E7374616E73697C733A313A2231223B417070496E666F7C733A32323A225349534B414D4C494E474349204B414E474B4554494B223B446576496E666F7C733A393A224B616E676B6574696B223B55726C4465767C733A32343A2268747470733A2F2F6B616E676B6574696B2E7765622E6964223B4C6F67676564496E7C623A313B6C6576656C5F746D707C733A313A2231223B75726C5F746D707C733A31373A2264617368626F6172642F6C616E64696E67223B6C6576656C5F69647C733A313A2231223B55726C446173687C733A31373A2264617368626F6172642F6C616E64696E67223B');
+	(1,1,'fa-server','Sistem','Dropdown','#','0,1','Support System','2021-06-09 18:34:02','Support System','2021-08-04 14:56:21',0);
 
-/*!40000 ALTER TABLE `ak_data_system_log` ENABLE KEYS */;
+/*!40000 ALTER TABLE `ak_data_system_menu` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table ak_data_system_menu_sub
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `ak_data_system_menu_sub`;
+
+CREATE TABLE `ak_data_system_menu_sub` (
+  `submenu_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `menu_id` bigint(20) unsigned NOT NULL,
+  `submenu_urutan` int(10) unsigned NOT NULL DEFAULT 1,
+  `submenu_root` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `submenu_nama` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `submenu_url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `submenu_roles` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0,1',
+  `created_by` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'System',
+  `created_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_by` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_date` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `deleted` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`submenu_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+LOCK TABLES `ak_data_system_menu_sub` WRITE;
+/*!40000 ALTER TABLE `ak_data_system_menu_sub` DISABLE KEYS */;
+
+INSERT INTO `ak_data_system_menu_sub` (`submenu_id`, `menu_id`, `submenu_urutan`, `submenu_root`, `submenu_nama`, `submenu_url`, `submenu_roles`, `created_by`, `created_date`, `updated_by`, `updated_date`, `deleted`)
+VALUES
+	(1,1,1,'Informasi Sistem','Informasi Sistem','sistem/informasi_sistem','0,1','Support System','2021-06-09 18:35:03','Support System','2021-08-04 14:57:38',0),
+	(2,1,2,'Informasi Instansi','Daftar Instansi','sistem/informasi_instansi','0,1','Support System','2021-06-09 18:35:36','Support System','2021-08-04 14:56:47',0),
+	(3,1,3,'Menu Utama','Daftar Menu','sistem/menu_utama','0,1','Support System','2021-06-09 18:36:22','Support System','2021-08-04 14:56:57',0),
+	(4,1,4,'Submenu','Daftar Submenu','sistem/submenu','0,1','Support System','2021-06-09 18:37:11','Support System','2021-08-04 14:57:05',0),
+	(5,1,5,'Daftar Level','Daftar Level','sistem/daftar_level','0,1','Support System','2021-06-09 18:44:08','Support System','2021-08-04 14:57:10',0),
+	(6,1,7,'Hak Akses Menu','Daftar Hak Akses Menu','sistem/hak_akses_menu','0,1','Support System','2021-06-09 18:45:14','Support System','2021-08-04 14:57:19',0),
+	(7,1,6,'Daftar User','Daftar User','sistem/daftar_user','0,1,2','Support System','2021-06-09 18:46:10','Support System','2021-08-04 14:57:15',0),
+	(8,1,8,'Hak Akses Modul','Daftar Hak Akses Modul','sistem/hak_akses_modul','0,1','Support System','2021-06-09 19:31:57','Support System','2021-08-04 14:57:23',0);
+
+/*!40000 ALTER TABLE `ak_data_system_menu_sub` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
@@ -159,86 +219,6 @@ CREATE TABLE `ak_data_system_migration` (
   `updated_date` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-LOCK TABLES `ak_data_system_migration` WRITE;
-/*!40000 ALTER TABLE `ak_data_system_migration` DISABLE KEYS */;
-
-INSERT INTO `ak_data_system_migration` (`migration_version`, `updated_date`)
-VALUES
-	(8,'2021-07-23 19:20:48');
-
-/*!40000 ALTER TABLE `ak_data_system_migration` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
-# Dump of table ak_data_system_modul
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `ak_data_system_modul`;
-
-CREATE TABLE `ak_data_system_modul` (
-  `modul_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `modul_urutan` int(11) unsigned NOT NULL,
-  `modul_icon` char(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `modul_nama` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `modul_tipe` enum('Single','Dropdown') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Dropdown',
-  `modul_url` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '#',
-  `modul_roles` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0,1',
-  `created_by` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'System',
-  `created_date` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_by` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL ON UPDATE current_timestamp(),
-  `deleted` tinyint(1) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`modul_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-LOCK TABLES `ak_data_system_modul` WRITE;
-/*!40000 ALTER TABLE `ak_data_system_modul` DISABLE KEYS */;
-
-INSERT INTO `ak_data_system_modul` (`modul_id`, `modul_urutan`, `modul_icon`, `modul_nama`, `modul_tipe`, `modul_url`, `modul_roles`, `created_by`, `created_date`, `updated_by`, `updated_date`, `deleted`)
-VALUES
-	(1,1,'fa-server','Sistem','Dropdown','#','0,1','Support System','2021-06-09 18:34:02','Tukang Ketik','2021-07-24 15:46:13',0);
-
-/*!40000 ALTER TABLE `ak_data_system_modul` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
-# Dump of table ak_data_system_modul_sub
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `ak_data_system_modul_sub`;
-
-CREATE TABLE `ak_data_system_modul_sub` (
-  `submodul_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `modul_id` bigint(20) unsigned NOT NULL,
-  `submodul_urutan` int(10) unsigned NOT NULL DEFAULT 1,
-  `submodul_root` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `submodul_nama` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `submodul_url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `submodul_roles` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0,1',
-  `created_by` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'System',
-  `created_date` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_by` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL ON UPDATE current_timestamp(),
-  `deleted` tinyint(1) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`submodul_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-LOCK TABLES `ak_data_system_modul_sub` WRITE;
-/*!40000 ALTER TABLE `ak_data_system_modul_sub` DISABLE KEYS */;
-
-INSERT INTO `ak_data_system_modul_sub` (`submodul_id`, `modul_id`, `submodul_urutan`, `submodul_root`, `submodul_nama`, `submodul_url`, `submodul_roles`, `created_by`, `created_date`, `updated_by`, `updated_date`, `deleted`)
-VALUES
-	(1,1,1,'Informasi Sistem','Informasi Aplikasi','sistem/info','0,1','Support System','2021-06-09 18:35:03','Support System','2021-07-23 15:41:13',0),
-	(2,1,2,'Informasi Instansi','Daftar Instansi','sistem/instansi','0,1','Support System','2021-06-09 18:35:36','Support System','2021-06-09 19:30:35',0),
-	(3,1,3,'Daftar Modul Utama','Fitur / Menu','sistem/modul','0,1','Support System','2021-06-09 18:36:22','Support System','2021-07-24 15:45:08',0),
-	(4,1,4,'Daftar Submodul','Subfitur / Submenu','sistem/submodul','0,1','Support System','2021-06-09 18:37:11','Support System','2021-07-24 15:45:29',0),
-	(5,1,5,'Daftar Level','Daftar Level','sistem/level','0,1','Support System','2021-06-09 18:44:08','Support System','2021-06-09 19:31:23',0),
-	(6,1,7,'Daftar Hak Akses Fitur','Hak Akses Fitur','sistem/hak_akses_fitur','0,1','Support System','2021-06-09 18:45:14','Support System','2021-07-23 15:30:26',0),
-	(7,1,6,'Daftar User','Daftar User','sistem/user','0,1,2','Support System','2021-06-09 18:46:10','Support System','2021-07-23 15:25:44',0),
-	(8,1,8,'Daftar Hak Akses Modul','Hak Akses Modul','sistem/hak_akses_modul','0,1','Support System','2021-06-09 19:31:57','Support System','2021-07-23 15:45:19',0);
-
-/*!40000 ALTER TABLE `ak_data_system_modul_sub` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 # Dump of table ak_data_system_user
@@ -269,7 +249,8 @@ LOCK TABLES `ak_data_system_user` WRITE;
 
 INSERT INTO `ak_data_system_user` (`user_id`, `instansi_id`, `level_id`, `user_nama`, `user_login`, `user_pass`, `user_email`, `user_parents`, `last_login`, `created_by`, `created_date`, `updated_by`, `updated_date`, `deleted`)
 VALUES
-	(1,1,1,'Support System','support','$2y$10$2Veia7zlBUCRtFO3n8uQXuYoK6LBhUcYpGzq01vJAHxtsJDhS9cB2','-',1,'2021-07-24 14:42:12','Administrator','2020-08-18 22:20:54','Support System','2021-07-24 14:42:12',0);
+	(1,1,1,'Support System','support','$2y$10$2Veia7zlBUCRtFO3n8uQXuYoK6LBhUcYpGzq01vJAHxtsJDhS9cB2','-',1,'2021-08-04 15:05:38','Administrator','2020-08-18 22:20:54','Support System','2021-08-04 15:05:38',0),
+	(2,2,2,'Administrator SAMPLE INSTANSI A','admsampleinstansia32','$2y$10$qnWe1pTKRbjCcUKKz0KKZeG6Jj81C7hDLSiVoL2FKxgOLF13pFdLi',NULL,0,NULL,'Support System','2021-08-04 14:55:20',NULL,NULL,0);
 
 /*!40000 ALTER TABLE `ak_data_system_user` ENABLE KEYS */;
 UNLOCK TABLES;
