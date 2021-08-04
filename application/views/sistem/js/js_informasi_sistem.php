@@ -1,7 +1,7 @@
 <script>
 	jQuery.ajax({
 		type: "GET",
-		url: "<?= base_url('sistem/info/get_data/') ?>",
+		url: "<?= base_url('sistem/informasi_sistem/get_data/') ?>",
 		dataType: 'json',
 		beforeSend: function(xhr) {
 			$("#overlay").fadeIn(300);
@@ -56,7 +56,7 @@
 			if (Oke) {
 				$.ajax({
 					type: "POST",
-					url: "<?= base_url('sistem/info/simpan/') ?>",
+					url: "<?= base_url('sistem/informasi_sistem/simpan/') ?>",
 					data: $("#Frm").serialize(),
 					timeout: 5000,
 					beforeSend: function(xhr) {

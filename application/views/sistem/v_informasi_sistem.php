@@ -70,4 +70,4 @@
 		</div>
 	</div>
 </div>
-<?php $this->load->view('sistem/js/js_info') ?>
+<?php $this->load->view('sistem/js/js_informasi_sistem') ?>

@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
-class Info extends MY_Controller
+class Informasi_sistem extends MY_Controller
 {
 	public function __construct()
 	{
@@ -9,7 +9,7 @@ class Info extends MY_Controller
 			$this->session->sess_destroy();
 			redirect('portal');
 		} else {
-			$this->load->model('Sistem/Info_model', 'm');
+			$this->load->model('Sistem/Informasi_sistem_model', 'm');
 		}
 	}
 
@@ -25,7 +25,7 @@ class Info extends MY_Controller
 			'sidebar' => $data['Template'] . "/components/v_sidebar",
 			'navbar' => $data['Template'] . "/components/v_navbar",
 			'footer' => $data['Template'] . "/components/v_footer",
-			'content' => "sistem/v_info"
+			'content' => "sistem/v_informasi_sistem"
 		);
 		$this->load->view('v_main', $data);
 	}

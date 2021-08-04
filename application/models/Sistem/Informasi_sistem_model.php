@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
-class Info_model extends CI_Model
+class Informasi_sistem_model extends CI_Model
 {
 	protected $info = "ak_data_system_info";
 
