@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
-class Instansi extends MY_Controller
+class Informasi_instansi extends MY_Controller
 {
 	public function __construct()
 	{
@@ -9,7 +9,7 @@ class Instansi extends MY_Controller
 			$this->session->sess_destroy();
 			redirect('portal');
 		} else {
-			$this->load->model('Sistem/Instansi_model', 'm');
+			$this->load->model('Sistem/Informasi_instansi_model', 'm');
 		}
 	}
 
@@ -25,7 +25,7 @@ class Instansi extends MY_Controller
 			'sidebar' => $data['Template'] . "/components/v_sidebar",
 			'navbar' => $data['Template'] . "/components/v_navbar",
 			'footer' => $data['Template'] . "/components/v_footer",
-			'content' => "sistem/v_instansi"
+			'content' => "sistem/v_informasi_instansi"
 		);
 		$this->load->view('v_main', $data);
 	}

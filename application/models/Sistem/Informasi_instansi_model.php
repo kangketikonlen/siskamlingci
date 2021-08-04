@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
-class Instansi_model extends CI_Model
+class Informasi_instansi_model extends CI_Model
 {
 	protected $instansi = "ak_data_system_instansi";
 	protected $user = "ak_data_system_user";

@@ -25,7 +25,7 @@
 		processing: true,
 		serverSide: true,
 		ajax: {
-			"url": "<?= base_url('sistem/instansi/list_data/') ?>",
+			"url": "<?= base_url('sistem/informasi_instansi/list_data/') ?>",
 			"type": "POST",
 			"error": function(xhr, status, error) {
 				swal(error, "Terjadi kegagalan saat memuat data. Sepertinya internetmu kurang stabil. Silahkan coba kembali saat internetmu stabil.", "error").then((value) => {
@@ -78,7 +78,7 @@
 			if (Oke) {
 				$.ajax({
 					type: "POST",
-					url: "<?= base_url('sistem/instansi/simpan/') ?>",
+					url: "<?= base_url('sistem/informasi_instansi/simpan/') ?>",
 					data: new FormData(this),
 					processData: false,
 					contentType: false,
@@ -119,7 +119,7 @@
 		$("#frmData").modal('show');
 		jQuery.ajax({
 			type: "POST",
-			url: "<?= base_url('sistem/instansi/get_data/') ?>",
+			url: "<?= base_url('sistem/informasi_instansi/get_data/') ?>",
 			dataType: 'json',
 			data: {
 				instansi_id: $(this).attr("data")
@@ -163,7 +163,7 @@
 			if (Oke) {
 				$.ajax({
 					type: "POST",
-					url: "<?= base_url('sistem/instansi/hapus/') ?>",
+					url: "<?= base_url('sistem/informasi_instansi/hapus/') ?>",
 					data: {
 						instansi_id: $(this).attr("data")
 					},
@@ -211,7 +211,7 @@
 			if (Oke) {
 				$.ajax({
 					type: "POST",
-					url: "<?= base_url('sistem/instansi/import/') ?>",
+					url: "<?= base_url('sistem/informasi_instansi/import/') ?>",
 					data: new FormData(this),
 					cache: false,
 					contentType: false,

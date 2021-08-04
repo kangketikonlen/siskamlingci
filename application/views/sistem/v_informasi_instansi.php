@@ -96,4 +96,4 @@
 		</div>
 	</div>
 </div>
-<?php $this->load->view('sistem/js/js_instansi') ?>
+<?php $this->load->view('sistem/js/js_informasi_instansi') ?>
