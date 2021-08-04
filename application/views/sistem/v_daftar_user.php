@@ -67,4 +67,4 @@
 		</div>
 	</div>
 </div>
-<?php $this->load->view('sistem/js/js_user') ?>
+<?php $this->load->view('sistem/js/js_daftar_user') ?>

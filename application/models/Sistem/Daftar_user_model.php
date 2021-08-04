@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
-class User_model extends CI_Model
+class Daftar_user_model extends CI_Model
 {
 	protected $user = "ak_data_system_user";
 	protected $level = "ak_data_system_level";

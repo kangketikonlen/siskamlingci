@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
-class User extends MY_Controller
+class Daftar_user extends MY_Controller
 {
 	public function __construct()
 	{
@@ -9,7 +9,7 @@ class User extends MY_Controller
 			$this->session->sess_destroy();
 			redirect('portal');
 		} else {
-			$this->load->model('Sistem/User_model', 'm');
+			$this->load->model('Sistem/Daftar_user_model', 'm');
 		}
 	}
 
@@ -25,7 +25,7 @@ class User extends MY_Controller
 			'sidebar' => $data['Template'] . "/components/v_sidebar",
 			'navbar' => $data['Template'] . "/components/v_navbar",
 			'footer' => $data['Template'] . "/components/v_footer",
-			'content' => "sistem/v_user"
+			'content' => "sistem/v_daftar_user"
 		);
 		$this->load->view('v_main', $data);
 	}
