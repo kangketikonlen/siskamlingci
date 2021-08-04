@@ -77,4 +77,4 @@
 		</div>
 	</div>
 </div>
-<?php $this->load->view('sistem/js/js_level') ?>
+<?php $this->load->view('sistem/js/js_daftar_level') ?>

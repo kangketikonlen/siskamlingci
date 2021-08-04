@@ -30,7 +30,7 @@
 			processing: true,
 			serverSide: true,
 			ajax: {
-				"url": "<?= base_url('sistem/level/list_data/') ?>",
+				"url": "<?= base_url('sistem/daftar_level/list_data/') ?>",
 				"type": "POST",
 				"error": function(xhr, status, error) {
 					swal(error, "Terjadi kegagalan saat memuat data. Sepertinya internetmu kurang stabil. Silahkan coba kembali saat internetmu stabil.", "error").then((value) => {
@@ -77,7 +77,7 @@
 				if (Oke) {
 					$.ajax({
 						type: "POST",
-						url: "<?= base_url('sistem/level/simpan/') ?>",
+						url: "<?= base_url('sistem/daftar_level/simpan/') ?>",
 						data: $("#Frm").serialize(),
 						timeout: 5000,
 						beforeSend: function(xhr) {
@@ -115,7 +115,7 @@
 			$("#frmData").modal('show');
 			jQuery.ajax({
 				type: "POST",
-				url: "<?= base_url('sistem/level/get_data/') ?>",
+				url: "<?= base_url('sistem/daftar_level/get_data/') ?>",
 				dataType: 'json',
 				data: {
 					level_id: $(this).attr("data")
@@ -157,7 +157,7 @@
 				if (Oke) {
 					$.ajax({
 						type: "POST",
-						url: "<?= base_url('sistem/level/hapus/') ?>",
+						url: "<?= base_url('sistem/daftar_level/hapus/') ?>",
 						data: {
 							level_id: $(this).attr("data")
 						},

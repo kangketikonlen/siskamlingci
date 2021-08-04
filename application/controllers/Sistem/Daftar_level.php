@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
-class Level extends MY_Controller
+class Daftar_level extends MY_Controller
 {
 	public function __construct()
 	{
@@ -9,7 +9,7 @@ class Level extends MY_Controller
 			$this->session->sess_destroy();
 			redirect('portal');
 		} else {
-			$this->load->model('Sistem/Level_model', 'm');
+			$this->load->model('Sistem/Daftar_level_model', 'm');
 		}
 	}
 
@@ -25,7 +25,7 @@ class Level extends MY_Controller
 			'sidebar' => $data['Template'] . "/components/v_sidebar",
 			'navbar' => $data['Template'] . "/components/v_navbar",
 			'footer' => $data['Template'] . "/components/v_footer",
-			'content' => "sistem/v_level"
+			'content' => "sistem/v_daftar_level"
 		);
 		$this->load->view('v_main', $data);
 	}
