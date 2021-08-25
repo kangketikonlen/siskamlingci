@@ -53,7 +53,7 @@
 											<div class="col-lg-3 col-6">
 												<div class="small-box" style="background-color: <?= $level->level_background ?>">
 													<div class="inner text-center">
-														<h4 class="pt-4 pb-4" style="text-transform: uppercase;"><?= $level->level_nama ?></h4>
+														<h5 class="pt-4 pb-4" style="text-transform: uppercase;"><?= $level->level_nama ?></h5>
 													</div>
 													<div class="icon">
 														<i class="fa <?= $level->level_icon ?>"></i>
