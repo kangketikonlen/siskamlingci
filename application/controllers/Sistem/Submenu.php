@@ -123,6 +123,11 @@ class Submenu extends MY_Controller
 			'./samples/views/v_samples.php',
 			'./application/views/' . strtolower($submenu[0]) . '/v_' . strtolower($submenu[1]) . '.php'
 		);
+
+		$path_to_file = './application/views/' . ucfirst($submenu[0]) . '/v_' . ucfirst($submenu[1]) . '.php';
+		$file_contents = file_get_contents($path_to_file);
+		$file_contents = str_replace("samples/js/js_daftar_samples", strtolower($submenu[0] . '/js/js_' . $submenu[1]), $file_contents);
+		file_put_contents($path_to_file, $file_contents);
 	}
 
 	public function create_js($submenu)
@@ -131,6 +136,11 @@ class Submenu extends MY_Controller
 			'./samples/views/js/js_samples.php',
 			'./application/views/' . strtolower($submenu[0]) . '/js/js_' . strtolower($submenu[1]) . '.php'
 		);
+
+		$path_to_file = './application/views/' . strtolower($submenu[0]) . '/js/js_' . strtolower($submenu[1]) . '.php';
+		$file_contents = file_get_contents($path_to_file);
+		$file_contents = str_replace("samples/samples", strtolower($submenu[0] . '/' . $submenu[1]), $file_contents);
+		file_put_contents($path_to_file, $file_contents);
 	}
 
 	public function get_data()

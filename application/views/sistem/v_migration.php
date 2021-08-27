@@ -58,4 +58,4 @@
 		</div>
 	</div>
 </div>
-<?php $this->load->view('samples/js/js_daftar_samples') ?>
+<?php $this->load->view('sistem/js/js_migration') ?>

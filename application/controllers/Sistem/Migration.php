@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
-class Account extends MY_Controller
+class Migration extends MY_Controller
 {
 	public function __construct()
 	{
@@ -9,15 +9,15 @@ class Account extends MY_Controller
 			$this->session->sess_destroy();
 			redirect('portal');
 		} else {
-			$this->load->model('Tools/Account_model', 'm');
+			$this->load->model('Sistem/Migration_model', 'm');
 		}
 	}
 
 	public function index()
 	{
-		$data['Root'] = "Tools";
-		$data['Title'] = "Tools Account";
-		$data['Breadcrumb'] = array('Tools');
+		$data['Root'] = "Sistem";
+		$data['Title'] = "Migration";
+		$data['Breadcrumb'] = array('Sistem');
 		$data['Template'] = "templates/private";
 		$data['Components'] = array(
 			'main' => "/v_private",
@@ -25,7 +25,7 @@ class Account extends MY_Controller
 			'sidebar' => $data['Template'] . "/components/v_sidebar",
 			'navbar' => $data['Template'] . "/components/v_navbar",
 			'footer' => $data['Template'] . "/components/v_footer",
-			'content' => "tools/v_account"
+			'content' => "sistem/v_migration"
 		);
 		$this->load->view('v_main', $data);
 	}

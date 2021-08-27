@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
-class Samples_model extends CI_Model
+class Migration_model extends CI_Model
 {
 	protected $samples = "ak_data_system_samples";
 
