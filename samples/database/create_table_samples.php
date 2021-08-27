@@ -20,11 +20,6 @@ class Migration_Create_table_samples extends CI_Migration
 				'constraint' => 128,
 				'null' => TRUE
 			),
-			$this->prefix . 'unfaedah' => array(
-				'type' => 'VARCHAR',
-				'constraint' => 128,
-				'null' => TRUE
-			),
 			'created_by' => array(
 				'type' => 'VARCHAR',
 				'constraint' => 128,

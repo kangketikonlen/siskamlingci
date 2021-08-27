@@ -30,43 +30,34 @@ class Migration extends MY_Controller
 		$this->load->view('v_main', $data);
 	}
 
-	public function list_data()
-	{
-		header('Content-Type: application/json');
-		echo $this->m->get_list_data();
-	}
-
 	public function simpan()
 	{
-		// Code here
-	}
+		$data = $this->input->post();
 
-	public function get_data()
-	{
-		$result = $this->m->get_data();
-		echo json_encode($result);
-	}
+		$src = './samples/database/create_table_samples.php';
+		$dir = './application/database/';
 
-	public function hapus()
-	{
-		$data = array(
-			'deleted' => TRUE,
-			'updated_by' => $this->session->userdata('nama'),
-			'updated_date' => date('Y-m-d H:i:s')
-		);
-		$this->m->hapus($data);
+		$fi = new FilesystemIterator($dir, FilesystemIterator::SKIP_DOTS);
+		$count = iterator_count($fi);
+		$prefix = str_pad($count, 3, "0", STR_PAD_LEFT);
+		$filename = strtolower(str_replace(" ", "_", $data['migration_name']));
+		$dbname = strtolower("ak_data_" . str_replace(" ", "_", $data['migration_database']));
+		$des = $dir . $prefix . "_create_table_" . $filename . ".php";
+
+		copy($src, $des);
+
+		$file_contents = file_get_contents($des);
+		$file_contents = str_replace("Migration_Create_table_samples", "Migration_create_table_" . $filename, $file_contents);
+		$file_contents = str_replace("ak_data_samples", $dbname, $file_contents);
+		$file_contents = str_replace("samples_", $filename . "_", $file_contents);
+		file_put_contents($des, $file_contents);
+
 		$pesan = array(
 			'warning' => 'Berhasil!',
 			'kode' => 'success',
-			'pesan' => 'Data berhasil di hapus!'
+			'pesan' => 'Data berhasil di simpan'
 		);
-		echo json_encode($pesan);
-	}
 
-	public function options()
-	{
-		$searchTerm = $this->input->post('searchTerm');
-		$response = $this->m->options($searchTerm);
-		echo json_encode($response);
+		echo json_encode($pesan);
 	}
 }
