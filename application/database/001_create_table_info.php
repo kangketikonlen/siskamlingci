@@ -17,27 +17,22 @@ class Migration_Create_table_info extends CI_Migration
 			$this->prefix . 'name' => array(
 				'type' => 'VARCHAR',
 				'constraint' => 128,
-				'default' => "SISKAMLINGCI"
 			),
 			$this->prefix . 'full_name' => array(
 				'type' => 'VARCHAR',
 				'constraint' => 128,
-				'default' => "Sistem Keamanan Lingkungan Codeigniter"
 			),
 			$this->prefix . 'devs' => array(
 				'type' => 'VARCHAR',
 				'constraint' => 128,
-				'default' => "Kangketik"
 			),
 			$this->prefix . 'devs_url' => array(
 				'type' => 'VARCHAR',
 				'constraint' => 128,
-				'default' => "https://kangketik.web.id"
 			),
 			$this->prefix . 'registered' => array(
 				'type' => 'VARCHAR',
 				'constraint' => 128,
-				'default' => "KANGKETIK DEVELOPER"
 			),
 			$this->prefix . 'sponsor' => array(
 				'type' => 'VARCHAR',
@@ -66,28 +61,15 @@ class Migration_Create_table_info extends CI_Migration
 				'default' => NULL,
 				'null' => TRUE
 			),
-			'updated_date datetime default current_timestamp on update current_timestamp',
+			'updated_date datetime on update current_timestamp',
 			'deleted' => array(
 				'type' => 'TINYINT',
 				'constraint' => 1,
-				'default' => 1
+				'default' => 0
 			),
 		);
 
 		return $fields;
-	}
-
-	private function seed_sample()
-	{
-		$fields_data = $this->db->field_data($this->table_name);
-		$fields = $this->db->list_fields($this->table_name);
-		$no = 0;
-		foreach ($fields_data as $fields_data) {
-			$data = array(
-				$fields[$no++] => $fields_data->default
-			);
-		}
-		$this->db->insert($this->table_name, $data);
 	}
 
 	public function up()
@@ -100,8 +82,6 @@ class Migration_Create_table_info extends CI_Migration
 		$this->dbforge->add_key($this->prefix . 'id', TRUE);
 		// Create table
 		$this->dbforge->create_table($this->table_name, TRUE);
-		// Seed database
-		$this->seed_sample();
 	}
 
 	public function down()

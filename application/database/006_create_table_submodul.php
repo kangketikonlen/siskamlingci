@@ -18,28 +18,23 @@ class Migration_Create_table_submodul extends CI_Migration
 				'type' => 'BIGINT',
 				'constraint' => 20,
 				'unsigned' => TRUE,
-				'default' => 1
 			),
 			$this->prefix . 'urutan' => array(
 				'type' => 'BIGINT',
 				'constraint' => 20,
 				'unsigned' => TRUE,
-				'default' => 1
 			),
 			$this->prefix . 'root' => array(
 				'type' => 'VARCHAR',
 				'constraint' => 128,
-				'default' => "Informasi Sistem"
 			),
 			$this->prefix . 'nama' => array(
 				'type' => 'VARCHAR',
 				'constraint' => 128,
-				'default' => "Informasi Aplikasi"
 			),
 			$this->prefix . 'url' => array(
 				'type' => 'VARCHAR',
 				'constraint' => 128,
-				'default' => "sistem/info"
 			),
 			$this->prefix . 'roles' => array(
 				'type' => 'VARCHAR',
@@ -58,11 +53,11 @@ class Migration_Create_table_submodul extends CI_Migration
 				'default' => NULL,
 				'null' => TRUE
 			),
-			'updated_date datetime default current_timestamp on update current_timestamp',
+			'updated_date datetime on update current_timestamp',
 			'deleted' => array(
 				'type' => 'TINYINT',
 				'constraint' => 1,
-				'default' => 1
+				'default' => 0
 			),
 		);
 

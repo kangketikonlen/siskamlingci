@@ -18,40 +18,34 @@ class Migration_Create_table_user extends CI_Migration
 				'type' => 'BIGINT',
 				'constraint' => 20,
 				'unsigned' => TRUE,
-				'default' => 1
 			),
 			'level_id' => array(
 				'type' => 'BIGINT',
 				'constraint' => 20,
 				'unsigned' => TRUE,
-				'default' => 1
 			),
 			$this->prefix . 'nama' => array(
 				'type' => 'VARCHAR',
 				'constraint' => 128,
-				'default' => "Support System"
 			),
 			$this->prefix . 'login' => array(
 				'type' => 'VARCHAR',
 				'constraint' => 128,
-				'default' => "support"
 			),
 			$this->prefix . 'pass' => array(
 				'type' => 'VARCHAR',
 				'constraint' => 128,
-				'default' => "$2y$10$2Veia7zlBUCRtFO3n8uQXuYoK6LBhUcYpGzq01vJAHxtsJDhS9cB2"
 			),
 			$this->prefix . 'email' => array(
 				'type' => 'VARCHAR',
 				'constraint' => 128,
-				'default' => "-"
 			),
 			$this->prefix . 'parents' => array(
 				'type' => 'TINYINT',
 				'constraint' => 1,
 				'default' => 0
 			),
-			'last_login' => array(
+			$this->prefix . '.last_login' => array(
 				'type' => 'DATETIME',
 				'null' => TRUE
 			),
@@ -67,11 +61,11 @@ class Migration_Create_table_user extends CI_Migration
 				'default' => NULL,
 				'null' => TRUE
 			),
-			'updated_date datetime default current_timestamp on update current_timestamp',
+			'updated_date datetime on update current_timestamp',
 			'deleted' => array(
 				'type' => 'TINYINT',
 				'constraint' => 1,
-				'default' => 1
+				'default' => 0
 			),
 		);
 

@@ -18,17 +18,14 @@ class Migration_Create_table_modul extends CI_Migration
 				'type' => 'BIGINT',
 				'constraint' => 20,
 				'unsigned' => TRUE,
-				'default' => 1
 			),
 			$this->prefix . 'icon' => array(
 				'type' => 'VARCHAR',
 				'constraint' => 128,
-				'default' => "fa-server"
 			),
 			$this->prefix . 'nama' => array(
 				'type' => 'VARCHAR',
 				'constraint' => 128,
-				'default' => "Sistem"
 			),
 			$this->prefix . 'dropdown' => array(
 				'type' => 'ENUM("Dropdown","Single")',
@@ -38,12 +35,10 @@ class Migration_Create_table_modul extends CI_Migration
 			$this->prefix . 'url' => array(
 				'type' => 'VARCHAR',
 				'constraint' => 128,
-				'default' => "#"
 			),
 			$this->prefix . 'roles' => array(
 				'type' => 'VARCHAR',
 				'constraint' => 128,
-				'default' => "0,1"
 			),
 			'created_by' => array(
 				'type' => 'VARCHAR',
@@ -57,11 +52,11 @@ class Migration_Create_table_modul extends CI_Migration
 				'default' => NULL,
 				'null' => TRUE
 			),
-			'updated_date datetime default current_timestamp on update current_timestamp',
+			'updated_date datetime on update current_timestamp',
 			'deleted' => array(
 				'type' => 'TINYINT',
 				'constraint' => 1,
-				'default' => 1
+				'default' => 0
 			),
 		);
 
