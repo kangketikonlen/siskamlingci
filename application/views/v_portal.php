@@ -90,14 +90,11 @@
 			},
 			success: function(data) {
 				var response = JSON.parse(data);
-				Toast.fire({
-					text: response.pesan,
-					icon: response.kode
-				}).then(function() {
+				swal(response.warning, response.pesan, response.kode).then((value) => {
 					if (response.kode == "success") {
-						location.href = "<?= base_url() ?>" + response.url;
+						location.reload();
 					}
-				});
+				})
 			},
 			error: function(xhr, httpStatusMessage, customErrorMessage) {
 				$.toast({

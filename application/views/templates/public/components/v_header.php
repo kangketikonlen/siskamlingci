@@ -109,6 +109,10 @@
 		.banner-text p {
 			color: dimgrey;
 		}
+
+		.swal-modal .swal-text {
+			text-align: center;
+		}
 	</style>
 	<script src="<?= base_url('vendor/almasaeed2010/adminlte/plugins/jquery/jquery.min.js') ?>"></script>
 	<script src="<?= base_url('vendor/twbs/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
@@ -117,6 +121,7 @@
 	<script src="<?= base_url('vendor/almasaeed2010/adminlte/plugins/sweetalert2/sweetalert2.all.min.js') ?>"></script>
 	<script src="<?= base_url('vendor/almasaeed2010/adminlte/plugins/pace-progress/pace.min.js') ?>"></script>
 	<script src="<?= base_url('vendor/almasaeed2010/adminlte/plugins/select2/js/select2.full.min.js') ?>"></script>
+	<script src="<?= base_url('assets/plugins/sweetalert.min.js') ?>"></script>
 	<script>
 		const Toast = Swal.mixin({
 			toast: true,
