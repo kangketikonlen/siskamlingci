@@ -72,6 +72,19 @@ class Migration_Create_table_info extends CI_Migration
 		return $fields;
 	}
 
+	private function seed_sample()
+	{
+		$data = array(
+			'info_name' => 'SISKAMLINGCI',
+			'info_full_name' => 'Sistem Keamanan Lingkungan Codeigniter',
+			'info_devs' => 'Kangketik Dev',
+			'info_devs_url' => 'https://kangketik.web.id/',
+			'info_registered' => 'Kangketik',
+			'info_status_sosmed' => 0,
+		);
+		$this->db->insert($this->table_name, $data);
+	}
+
 	public function up()
 	{
 		// Generate fields
@@ -82,6 +95,8 @@ class Migration_Create_table_info extends CI_Migration
 		$this->dbforge->add_key($this->prefix . 'id', TRUE);
 		// Create table
 		$this->dbforge->create_table($this->table_name, TRUE);
+		// Seed database
+		$this->seed_sample();
 	}
 
 	public function down()

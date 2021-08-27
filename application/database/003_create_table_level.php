@@ -63,6 +63,29 @@ class Migration_Create_table_level extends CI_Migration
 		return $fields;
 	}
 
+	private function seed_sample()
+	{
+		$data = array(
+			array(
+				'level_nama' => 'Master',
+				'level_url' => 'dashboard/landing',
+				'level_icon' => 'fa-database',
+				'level_background' => '#53B8BB',
+				'level_type' => 'Landing',
+				'level_show_landing' => '0,1'
+			),
+			array(
+				'level_nama' => 'Administrator',
+				'level_url' => 'dashboard/landing',
+				'level_icon' => 'fa-toolbox',
+				'level_background' => '#D79771',
+				'level_type' => 'Landing',
+				'level_show_landing' => '0,1'
+			),
+		);
+		$this->db->insert_batch($this->table_name, $data);
+	}
+
 	public function up()
 	{
 		// Generate fields
@@ -73,6 +96,8 @@ class Migration_Create_table_level extends CI_Migration
 		$this->dbforge->add_key($this->prefix . 'id', TRUE);
 		// Create table
 		$this->dbforge->create_table($this->table_name, TRUE);
+		// Seed database
+		$this->seed_sample();
 	}
 
 	public function down()

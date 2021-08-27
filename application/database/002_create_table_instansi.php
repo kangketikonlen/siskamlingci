@@ -79,6 +79,21 @@ class Migration_Create_table_instansi extends CI_Migration
 		return $fields;
 	}
 
+	private function seed_sample()
+	{
+		$data = array(
+			'instansi_logo' => '/assets/images/logo/default.png',
+			'instansi_background' => '/assets/images/background/background.jpg',
+			'instansi_nama' => 'KANGKETIK',
+			'instansi_alamat' => 'Jl. Raya Banjaran No. 112 D RT 03 RW.03',
+			'instansi_alamat_email' => 'developer@kangketik.web.id',
+			'instansi_website' => 'https://kangketik.web.id/',
+			'instansi_url_sistem' => 'http://localhost/siskamlingci/',
+			'instansi_kontak' => '085155034228',
+		);
+		$this->db->insert($this->table_name, $data);
+	}
+
 	public function up()
 	{
 		// Generate fields
@@ -89,6 +104,8 @@ class Migration_Create_table_instansi extends CI_Migration
 		$this->dbforge->add_key($this->prefix . 'id', TRUE);
 		// Create table
 		$this->dbforge->create_table($this->table_name, TRUE);
+		// Seed database
+		$this->seed_sample();
 	}
 
 	public function down()

@@ -1,9 +1,9 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
-class Migration_Create_table_modul extends CI_Migration
+class Migration_Create_table_menu extends CI_Migration
 {
-	protected $table_name = "ak_data_system_modul";
-	protected $prefix = "modul_";
+	protected $table_name = "ak_data_system_menu";
+	protected $prefix = "menu_";
 
 	private function generate_fields()
 	{
@@ -65,14 +65,14 @@ class Migration_Create_table_modul extends CI_Migration
 
 	private function seed_sample()
 	{
-		$fields_data = $this->db->field_data($this->table_name);
-		$fields = $this->db->list_fields($this->table_name);
-		$no = 0;
-		foreach ($fields_data as $fields_data) {
-			$data = array(
-				$fields[$no++] => $fields_data->default
-			);
-		}
+		$data = array(
+			'menu_urutan' => 1,
+			'menu_icon' => 'fa-server',
+			'menu_nama' => 'Sistem',
+			'menu_dropdown' => 'Dropdown',
+			'menu_url' => '#',
+			'menu_roles' => '0,1'
+		);
 		$this->db->insert($this->table_name, $data);
 	}
 

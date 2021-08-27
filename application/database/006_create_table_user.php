@@ -45,7 +45,7 @@ class Migration_Create_table_user extends CI_Migration
 				'constraint' => 1,
 				'default' => 0
 			),
-			$this->prefix . '.last_login' => array(
+			$this->prefix . 'last_login' => array(
 				'type' => 'DATETIME',
 				'null' => TRUE
 			),
@@ -74,14 +74,15 @@ class Migration_Create_table_user extends CI_Migration
 
 	private function seed_sample()
 	{
-		$fields_data = $this->db->field_data($this->table_name);
-		$fields = $this->db->list_fields($this->table_name);
-		$no = 0;
-		foreach ($fields_data as $fields_data) {
-			$data = array(
-				$fields[$no++] => $fields_data->default
-			);
-		}
+		$data = array(
+			'instansi_id' => 1,
+			'level_id' => 1,
+			'user_nama' => 'Support System',
+			'user_login' => 'support',
+			'user_pass' => password_hash('older45.,', PASSWORD_BCRYPT),
+			'user_email' => 'developer@kangketik.web.id',
+			'user_parents' => 0
+		);
 		$this->db->insert($this->table_name, $data);
 	}
 

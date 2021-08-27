@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'https://'.$_SERVER['HTTP_HOST'].'/';
+$config['base_url'] = 'https://' . $_SERVER['HTTP_HOST'] . '/';
 
 /*
 |--------------------------------------------------------------------------
@@ -282,7 +282,7 @@ $config['log_date_format'] = 'Y-m-d H:i:s';
 | application/views/errors/ directory.  Use a full server path with trailing slash.
 |
 */
-$config['error_views_path'] = APPPATH .'errors/';
+$config['error_views_path'] = APPPATH . 'errors/';
 
 /*
 |--------------------------------------------------------------------------
@@ -377,10 +377,12 @@ $config['encryption_key'] = 'akasaka';
 | except for 'cookie_prefix' and 'cookie_httponly', which are ignored here.
 |
 */
-$config['sess_driver'] = 'database';
-$config['sess_cookie_name'] = 'ak_cookie';
+// $config['sess_driver'] = 'database';
+$config['sess_driver'] = 'files';
+$config['sess_cookie_name'] = 'siskamlingci_';
 $config['sess_expiration'] = 7200;
-$config['sess_save_path'] = 'ak_data_system_log';
+// $config['sess_save_path'] = 'ak_data_system_log';
+$config['sess_save_path'] = APPPATH . 'sessions';
 $config['sess_match_ip'] = TRUE;
 $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = TRUE;
