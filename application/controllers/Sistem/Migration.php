@@ -38,7 +38,7 @@ class Migration extends MY_Controller
 		$dir = './application/database/';
 
 		$fi = new FilesystemIterator($dir, FilesystemIterator::SKIP_DOTS);
-		$count = iterator_count($fi);
+		$count = iterator_count($fi) + 1;
 		$prefix = str_pad($count, 3, "0", STR_PAD_LEFT);
 		$filename = strtolower(str_replace(" ", "_", $data['migration_name']));
 		$dbname = strtolower("ak_data_" . str_replace(" ", "_", $data['migration_database']));
