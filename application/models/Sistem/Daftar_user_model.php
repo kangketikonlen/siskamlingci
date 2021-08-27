@@ -6,7 +6,7 @@ class Daftar_user_model extends CI_Model
 
 	public function get_list_data()
 	{
-		$this->datatables->select('user_id, level_nama, user_nama, user_login, last_login');
+		$this->datatables->select('user_id, level_nama, user_nama, user_login, user_last_login');
 		$this->datatables->from($this->user);
 		$this->datatables->where($this->user . '.deleted', FALSE);
 		$this->datatables->where($this->user . '.user_id!=', 1);

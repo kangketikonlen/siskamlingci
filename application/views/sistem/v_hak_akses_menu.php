@@ -7,16 +7,16 @@
 			<div class="card-body row">
 				<?php foreach ($this->global->get_menu() as $menu) : ?>
 					<div class="col-lg-3 col-6">
-						<div class="small-box bg-info">
-							<div class="inner">
-								<h5><?= $menu->menu_nama ?></h5>
-								<small>Urutan ke-<?= $menu->menu_urutan ?>, tipe <?= $menu->menu_tipe ?>, tanggal di buat <?= tgl_indo($menu->created_date) ?>, oleh <?= $menu->created_by ?></small>
+						<a href="#" id="setup" data="<?= $menu->menu_id ?>" class="small-box-footer">
+							<div class="small-box text-light" style="background-color: #3DB2FF">
+								<div class="inner text-center">
+									<h5 class="pt-4 pb-4" style="text-transform: uppercase;"><?= $menu->menu_nama ?></h5>
+								</div>
+								<div class="icon">
+									<i class="fa <?= $menu->menu_icon ?>"></i>
+								</div>
 							</div>
-							<div class="icon">
-								<i class="fa <?= $menu->menu_icon ?>"></i>
-							</div>
-							<a href="#" id="setup" data="<?= $menu->menu_id ?>" class="small-box-footer"> Atur Akses </a>
-						</div>
+						</a>
 					</div>
 				<?php endforeach ?>
 			</div>
