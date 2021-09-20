@@ -6,6 +6,28 @@
 			allowClear: true
 		});
 
+		$.ajax({
+			type: "GET",
+			url: "<?= base_url('samples/samples/options/') ?>",
+			beforeSend: function(xhr) {
+				$("#overlay").fadeIn(300);
+			},
+			success: function(data) {
+				$("#overlay").fadeOut(300);
+				var opts = $.parseJSON(data);
+				$.each(opts, function(i, d) {
+					$("#level_type").append('<option value="' + d.id + '">' + d.text + '</option>');
+				});
+			},
+			error: function(xhr, status, error) {
+				swal(error, "Terjadi kegagalan saat memuat data. Sepertinya internetmu kurang stabil. Silahkan coba kembali saat internetmu stabil.", "error").then((value) => {
+					$("#dtTable").DataTable().ajax.reload(function() {
+						$("#overlay").fadeOut(300)
+					}, false);
+				})
+			}
+		});
+
 		$.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings) {
 			return {
 				"iStart": oSettings._iDisplayStart,

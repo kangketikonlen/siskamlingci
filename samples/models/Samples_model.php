@@ -8,7 +8,6 @@ class Samples_model extends CI_Model
 		$this->datatables->select('samples_id, samples_nama, samples_deskripsi');
 		$this->datatables->from($this->samples);
 		$this->datatables->where($this->samples . '.deleted', FALSE);
-		$this->datatables->where($this->samples . '.samples_id>', 2);
 		$this->datatables->add_column('view', "<button id='edit' class='m-1 btn btn-sm btn-primary' data='$1'><i class='fa fa-pencil-alt'></i></button> <button id='hapus' class='m-1 btn btn-sm btn-danger' data='$1'><i class='fa fa-trash'></i></button>", "samples_id");
 		return $this->datatables->generate();
 	}
@@ -20,22 +19,26 @@ class Samples_model extends CI_Model
 
 	public function get_data()
 	{
-		return $this->db->where($this->samples . '.deleted', false)->where($this->samples . '.samples_id', $this->input->post('samples_id'))->get($this->samples)->row();
+		$this->db->where($this->samples . '.samples_id', $this->input->post('samples_id'));
+		return $this->db->get($this->samples)->row();
 	}
 
 	public function edit($data)
 	{
-		return $this->db->where($this->samples . '.deleted', false)->where($this->samples . '.samples_id', $this->input->post('samples_id'))->update($this->samples, $data);
+		$this->db->where($this->samples . '.samples_id', $this->input->post('samples_id'));
+		return $this->db->update($this->samples, $data);
 	}
 
 	public function hapus($data)
 	{
-		return $this->db->where($this->samples . '.samples_id', $this->input->post('samples_id'))->update($this->samples, $data);
+		$this->db->where($this->samples . '.samples_id', $this->input->post('samples_id'));
+		return $this->db->update($this->samples, $data);
 	}
 
-	public function options($src)
+	public function options()
 	{
-		$opt = $this->db->like('samples_nama', $src, 'both')->where('deleted', FALSE)->where('samples_id!=', 1)->get($this->samples)->result();
+		$this->db->where($this->samples . '.deleted', FALSE);
+		$opt = $this->db->get($this->samples)->result();
 
 		$data = array();
 		foreach ($opt as $opt) {

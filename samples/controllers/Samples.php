@@ -38,7 +38,30 @@ class Samples_controller extends MY_Controller
 
 	public function simpan()
 	{
-		// Code here
+		// $data = $this->input->post();
+
+		// if ($this->input->post('samples_id') == "") {
+		// 	$data['created_by'] = $this->session->userdata('nama');
+		// 	$data['created_date'] = date('Y-m-d H:i:s');
+		// 	$this->m->simpan($data);
+
+		// 	$pesan = array(
+		// 		'warning' => 'Berhasil!',
+		// 		'kode' => 'success',
+		// 		'pesan' => 'Data berhasil di simpan'
+		// 	);
+		// } else {
+		// 	$data['updated_by'] = $this->session->userdata('nama');
+		// 	$data['updated_date'] = date('Y-m-d H:i:s');
+		// 	$this->m->edit($data);
+
+		// 	$pesan = array(
+		// 		'warning' => 'Berhasil!',
+		// 		'kode' => 'success',
+		// 		'pesan' => 'Data berhasil di perbarui'
+		// 	);
+		// }
+		// echo json_encode($pesan);
 	}
 
 	public function get_data()
@@ -65,8 +88,7 @@ class Samples_controller extends MY_Controller
 
 	public function options()
 	{
-		$searchTerm = $this->input->post('searchTerm');
-		$response = $this->m->options($searchTerm);
+		$response = $this->m->options();
 		echo json_encode($response);
 	}
 }
