@@ -7,6 +7,7 @@ class Menu_utama_model extends CI_Model
 	{
 		$this->datatables->select('menu_id, menu_urutan, menu_icon, menu_nama');
 		$this->datatables->from($this->menu);
+		$this->datatables->where($this->menu . '.menu_id>', 1);
 		$this->datatables->where($this->menu . '.deleted', FALSE);
 		$this->datatables->add_column('view', "<button id='edit' class='m-1 btn btn-sm btn-primary' data='$1'><i class='fa fa-pencil-alt'></i></button> <button id='hapus' class='m-1 btn btn-sm btn-danger' data='$1'><i class='fa fa-trash'></i></button>", "menu_id");
 		return $this->datatables->generate();
@@ -40,14 +41,14 @@ class Menu_utama_model extends CI_Model
 		return $this->db->where($this->menu . '.deleted', false)->where($this->menu . '.menu_id', $this->input->post('menu_id'))->update($this->menu, $data);
 	}
 
-	public function hapus($data)
+	public function hapus()
 	{
-		return $this->db->where($this->menu . '.menu_id', $this->input->post('menu_id'))->update($this->menu, $data);
+		return $this->db->where($this->menu . '.menu_id', $this->input->post('menu_id'))->delete($this->menu);
 	}
 
 	public function options($src)
 	{
-		$opt = $this->db->like('menu_nama', $src, 'both')->where('deleted', FALSE)->or_where('menu_id', $src)->get($this->menu)->result();
+		$opt = $this->db->like('menu_nama', $src, 'both')->where('deleted', FALSE)->where('menu_id>', 1)->or_where('menu_id', $src)->get($this->menu)->result();
 
 		$data = array();
 		foreach ($opt as $opt) {

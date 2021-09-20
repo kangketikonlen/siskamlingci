@@ -39,6 +39,12 @@ class Menu_utama extends MY_Controller
 	public function simpan()
 	{
 		$data = $this->input->post();
+
+		$data['menu_cpath'] = './application/controllers/' . ucfirst($data['menu_nama']);
+		$data['menu_mpath'] = './application/models/' . ucfirst($data['menu_nama']);
+		$data['menu_vpath'] = './application/views/' . strtolower($data['menu_nama']);
+		$data['menu_jpath'] = './application/views/' . strtolower($data['menu_nama'] . '/js/');
+
 		if ($this->input->post('menu_id') == "") {
 			$result = $this->m->get_menu();
 			$data['created_by'] = $this->session->userdata('nama');
@@ -48,23 +54,9 @@ class Menu_utama extends MY_Controller
 				$this->m->reorder();
 			}
 
+			$this->create_files($data['menu_nama']);
+
 			$this->m->simpan($data);
-
-			if (!file_exists('./application/controllers/' . ucfirst($data['menu_nama']))) {
-				mkdir('./application/controllers/' . ucfirst($data['menu_nama']), 0777, true);
-			}
-
-			if (!file_exists('./application/models/' . ucfirst($data['menu_nama']))) {
-				mkdir('./application/models/' . ucfirst($data['menu_nama']), 0777, true);
-			}
-
-			if (!file_exists('./application/views/' . strtolower($data['menu_nama']))) {
-				mkdir('./application/views/' . strtolower($data['menu_nama']), 0777, true);
-			}
-
-			if (!file_exists('./application/views/' . strtolower($data['menu_nama'] . '/js/'))) {
-				mkdir('./application/views/' . strtolower($data['menu_nama'] . '/js/'), 0777, true);
-			}
 
 			$pesan = array(
 				'warning' => 'Berhasil!',
@@ -80,6 +72,10 @@ class Menu_utama extends MY_Controller
 				$this->m->reorder();
 			}
 
+			if ($data['menu_nama'] != $result->menu_nama) {
+				$this->rename_files($data['menu_nama'], $result->menu_nama);
+			}
+
 			$this->m->edit($data);
 
 			$pesan = array(
@@ -91,6 +87,62 @@ class Menu_utama extends MY_Controller
 		echo json_encode($pesan);
 	}
 
+	public function create_files($menu)
+	{
+		if (!file_exists('./application/controllers/' . ucfirst($menu))) {
+			mkdir('./application/controllers/' . ucfirst($menu), 0777, true);
+		}
+
+		if (!file_exists('./application/models/' . ucfirst($menu))) {
+			mkdir('./application/models/' . ucfirst($menu), 0777, true);
+		}
+
+		if (!file_exists('./application/views/' . strtolower($menu))) {
+			mkdir('./application/views/' . strtolower($menu), 0777, true);
+		}
+
+		if (!file_exists('./application/views/' . strtolower($menu . '/js/'))) {
+			mkdir('./application/views/' . strtolower($menu . '/js/'), 0777, true);
+		}
+	}
+
+	public function rename_files($menu_new, $menu_old)
+	{
+		rename('./application/controllers/' . ucfirst($menu_old), './application/controllers/' . ucfirst($menu_new));
+
+		rename('./application/models/' . ucfirst($menu_old), './application/models/' . ucfirst($menu_new));
+
+		rename('./application/views/' . strtolower($menu_old), './application/views/' . strtolower($menu_new));
+	}
+
+	public function remove_files($menu)
+	{
+		$this->removeDir('./application/controllers/' . ucfirst($menu));
+
+		$this->removeDir('./application/models/' . ucfirst($menu));
+
+		$this->removeDir('./application/views/' . strtolower($menu));
+	}
+
+	function removeDir($dirname)
+	{
+		if (is_dir($dirname)) {
+			$dir = new RecursiveDirectoryIterator($dirname, RecursiveDirectoryIterator::SKIP_DOTS);
+			foreach (new RecursiveIteratorIterator($dir, RecursiveIteratorIterator::CHILD_FIRST) as $object) {
+				if ($object->isFile()) {
+					unlink($object);
+				} elseif ($object->isDir()) {
+					rmdir($object);
+				} else {
+					throw new Exception('Unknown object type: ' . $object->getFileName());
+				}
+			}
+			rmdir($dirname);
+		} else {
+			throw new Exception('This is not a directory');
+		}
+	}
+
 	public function get_data()
 	{
 		$result = $this->m->get_data();
@@ -99,17 +151,18 @@ class Menu_utama extends MY_Controller
 
 	public function hapus()
 	{
-		$data = array(
-			'deleted' => TRUE,
-			'updated_by' => $this->session->userdata('nama'),
-			'updated_date' => date('Y-m-d H:i:s')
-		);
-		$this->m->hapus($data);
+		$result = $this->m->get_data();
+
+		$this->remove_files($result->menu_nama);
+
+		$this->m->hapus();
+
 		$pesan = array(
 			'warning' => 'Berhasil!',
 			'kode' => 'success',
 			'pesan' => 'Data berhasil di hapus!'
 		);
+
 		echo json_encode($pesan);
 	}
 
