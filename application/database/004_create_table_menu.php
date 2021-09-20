@@ -66,7 +66,7 @@ class Migration_Create_table_menu extends CI_Migration
 	private function seed_sample()
 	{
 		$data = array(
-			'menu_urutan' => 1,
+			'menu_urutan' => 0,
 			'menu_icon' => 'fa-server',
 			'menu_nama' => 'Sistem',
 			'menu_dropdown' => 'Dropdown',
