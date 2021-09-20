@@ -63,6 +63,12 @@
 					</div>
 					<div class="col-lg-12">
 						<div class="form-group">
+							<label for="instansi_kontak">Kontak Instansi</label>
+							<input type="text" name="instansi_kontak" id="instansi_kontak" class="form-control form-control-sm" placeholder="Masukkan kontak instansi <?= strtolower($Title) ?>..." autocomplete="off" required="true">
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="form-group">
 							<label>Logo
 								<small>*Max 10MB | JPG, PNG</small>
 							</label>
