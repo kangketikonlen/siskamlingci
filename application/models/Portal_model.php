@@ -13,7 +13,15 @@ class Portal_model extends CI_Model
 
 	public function get_instansi()
 	{
-		return $this->db->get($this->instansi)->row();
+		$this->db->where($this->instansi . '.instansi_url_sistem', base_url());
+		$data = $this->db->get($this->instansi)->row();
+
+		if (!empty($data)) {
+			return $data;
+		} else {
+			$this->db->where($this->instansi . '.instansi_id', 1);
+			return $this->db->get($this->instansi)->row();
+		}
 	}
 
 	public function cek_validasi()
