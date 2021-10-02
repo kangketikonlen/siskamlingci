@@ -38,12 +38,7 @@ class Hak_akses_modul extends MY_Controller
 
 		$this->m->edit($data);
 
-		$pesan = array(
-			'warning' => 'Berhasil!',
-			'kode' => 'success',
-			'pesan' => 'Data berhasil di perbarui'
-		);
-		echo json_encode($pesan);
+		echo save_success();
 	}
 
 	public function get_data()

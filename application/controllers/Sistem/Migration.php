@@ -46,12 +46,6 @@ class Migration extends MY_Controller
 		$file_contents = str_replace("samples_", $filename . "_", $file_contents);
 		file_put_contents($des, $file_contents);
 
-		$pesan = array(
-			'warning' => 'Berhasil!',
-			'kode' => 'success',
-			'pesan' => 'Data berhasil di simpan'
-		);
-
-		echo json_encode($pesan);
+		echo save_success();
 	}
 }

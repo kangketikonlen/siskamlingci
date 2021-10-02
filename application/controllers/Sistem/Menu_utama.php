@@ -52,11 +52,7 @@ class Menu_utama extends MY_Controller
 
 			$this->m->simpan($data);
 
-			$pesan = array(
-				'warning' => 'Berhasil!',
-				'kode' => 'success',
-				'pesan' => 'Data berhasil di simpan'
-			);
+			echo save_success();
 		} else {
 			$result = $this->m->get_data();
 			$data['updated_by'] = $this->session->userdata('nama');
@@ -72,13 +68,8 @@ class Menu_utama extends MY_Controller
 
 			$this->m->edit($data);
 
-			$pesan = array(
-				'warning' => 'Berhasil!',
-				'kode' => 'success',
-				'pesan' => 'Data berhasil di perbarui'
-			);
+			echo update_success();
 		}
-		echo json_encode($pesan);
 	}
 
 	public function create_files($menu)
@@ -151,13 +142,7 @@ class Menu_utama extends MY_Controller
 
 		$this->m->hapus();
 
-		$pesan = array(
-			'warning' => 'Berhasil!',
-			'kode' => 'success',
-			'pesan' => 'Data berhasil di hapus!'
-		);
-
-		echo json_encode($pesan);
+		echo delete_success();
 	}
 
 	public function options()

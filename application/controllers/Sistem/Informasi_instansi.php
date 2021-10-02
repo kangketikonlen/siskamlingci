@@ -73,12 +73,7 @@ class Informasi_instansi extends MY_Controller
 
 			$this->m->simpan_user($data_user);
 
-			$pesan = array(
-				'warning' => 'Berhasil!',
-				'kode' => 'success',
-				'pesan' => 'Data berhasil di simpan',
-				'upload' => $this->upload->display_errors()
-			);
+			echo save_success();
 		} else {
 			$data['updated_by'] = $this->session->userdata('nama');
 			$data['updated_date'] = date('Y-m-d H:i:s');
@@ -93,13 +88,8 @@ class Informasi_instansi extends MY_Controller
 			}
 			$this->m->edit($data);
 
-			$pesan = array(
-				'warning' => 'Berhasil!',
-				'kode' => 'success',
-				'pesan' => strip_tags($this->upload->display_errors()),
-			);
+			echo update_success();
 		}
-		echo json_encode($pesan);
 	}
 
 	public function get_data()
@@ -116,12 +106,8 @@ class Informasi_instansi extends MY_Controller
 			'updated_date' => date('Y-m-d H:i:s')
 		);
 		$this->m->hapus($data);
-		$pesan = array(
-			'warning' => 'Berhasil!',
-			'kode' => 'success',
-			'pesan' => 'Data berhasil di hapus!'
-		);
-		echo json_encode($pesan);
+
+		echo delete_success();
 	}
 
 	public function options()

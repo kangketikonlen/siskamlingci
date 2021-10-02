@@ -57,23 +57,14 @@ class Daftar_level extends MY_Controller
 
 			$this->m->simpan($data);
 
-			$pesan = array(
-				'warning' => 'Berhasil!',
-				'kode' => 'success',
-				'pesan' => 'Data berhasil di simpan'
-			);
+			echo save_success();
 		} else {
 			$data['updated_by'] = $this->session->userdata('nama');
 			$data['updated_date'] = date('Y-m-d H:i:s');
 			$this->m->edit($data);
 
-			$pesan = array(
-				'warning' => 'Berhasil!',
-				'kode' => 'success',
-				'pesan' => 'Data berhasil di perbarui'
-			);
+			echo update_success();
 		}
-		echo json_encode($pesan);
 	}
 
 	public function create_controller($url)
@@ -133,12 +124,7 @@ class Daftar_level extends MY_Controller
 			'updated_date' => date('Y-m-d H:i:s')
 		);
 		$this->m->hapus($data);
-		$pesan = array(
-			'warning' => 'Berhasil!',
-			'kode' => 'success',
-			'pesan' => 'Data berhasil di hapus!'
-		);
-		echo json_encode($pesan);
+		echo delete_success();
 	}
 
 	public function options()
