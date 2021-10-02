@@ -4,13 +4,7 @@ class Migration extends MY_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$isLogin = $this->session->userdata('LoggedIn');
-		if (!$isLogin) {
-			$this->session->sess_destroy();
-			redirect('portal');
-		} else {
-			$this->load->model('Sistem/Migration_model', 'm');
-		}
+		$this->load->model('Sistem/Migration_model', 'm');
 	}
 
 	public function index()

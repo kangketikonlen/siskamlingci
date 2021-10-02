@@ -4,13 +4,7 @@ class Daftar_level extends MY_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$isLogin = $this->session->userdata('LoggedIn');
-		if (!$isLogin) {
-			$this->session->sess_destroy();
-			redirect('portal');
-		} else {
-			$this->load->model('Sistem/Daftar_level_model', 'm');
-		}
+		$this->load->model('Sistem/Daftar_level_model', 'm');
 	}
 
 	public function index()

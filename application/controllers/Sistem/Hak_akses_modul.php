@@ -4,12 +4,7 @@ class Hak_akses_modul extends MY_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$isLogin = $this->session->userdata('LoggedIn');
-		if (!$isLogin) {
-			redirect('portal');
-		} else {
-			$this->load->model('Sistem/Hak_akses_modul_model', 'm');
-		}
+		$this->load->model('Sistem/Hak_akses_modul_model', 'm');
 	}
 
 	public function index()

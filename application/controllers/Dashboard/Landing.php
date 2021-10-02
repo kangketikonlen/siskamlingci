@@ -1,15 +1,10 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
-class Landing extends MY_Controller
+class Landing extends MY_Dashboard
 {
 	public function __construct()
 	{
 		parent::__construct();
-		$isLogin = $this->session->userdata('LoggedIn');
-		if (!$isLogin) {
-			redirect('portal');
-		} else {
-			$this->load->model('Dashboard/Landing_model', 'm');
-		}
+		$this->load->model('Dashboard/Landing_model', 'm');
 	}
 
 	public function index()
