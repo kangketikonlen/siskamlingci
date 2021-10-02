@@ -96,8 +96,7 @@ class Informasi_instansi extends MY_Controller
 			$pesan = array(
 				'warning' => 'Berhasil!',
 				'kode' => 'success',
-				'pesan' => 'Data berhasil di perbarui',
-				'upload' => $this->upload->display_errors()
+				'pesan' => strip_tags($this->upload->display_errors()),
 			);
 		}
 		echo json_encode($pesan);
