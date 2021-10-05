@@ -40,12 +40,42 @@ function import_success()
 	return json_encode($pesan);
 }
 
+function save_failed()
+{
+	$pesan = array(
+		'warning' => 'Gagal!',
+		'kode' => 'error',
+		'pesan' => 'Data tdak berhasil di simpan'
+	);
+	return json_encode($pesan);
+}
+
+function double_input()
+{
+	$pesan = array(
+		'warning' => 'Gagal!',
+		'kode' => 'error',
+		'pesan' => 'Data sudah terinput'
+	);
+	return json_encode($pesan);
+}
+
 function import_failed()
 {
 	$pesan = array(
 		'warning' => 'Gagal!',
 		'kode' => 'error',
 		'pesan' => 'Data gagal di import'
+	);
+	return json_encode($pesan);
+}
+
+function activate_failed()
+{
+	$pesan = array(
+		'warning' => 'Gagal!',
+		'kode' => 'error',
+		'pesan' => 'Data gagal di aktifkan, data aktif tidak boleh ganda'
 	);
 	return json_encode($pesan);
 }
