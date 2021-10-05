@@ -5,6 +5,7 @@
 			var dataUrl = "<?= base_url('sistem/migration/simpan/') ?>";
 			var dataReq = new FormData(this);
 			saveRequest(dataUrl, dataReq);
+			$("#migration_name").focus();
 		});
 	});
 </script>
