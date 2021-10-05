@@ -20,24 +20,19 @@
 
 		fetchOption(optUrl, filterMenu);
 
-		filterMenu.change(function() {
-			$("#dtTable").DataTable().ajax.reload(function() {
-				$("#overlay").fadeOut(300)
-			}, true);
-		});
-
 		$('#frmData').on('show.bs.modal', function(event) {
 			var modal = $(this)
 			var data = filterMenu.val();
-			console.log(data);
 			modal.find('#menu_id').val(data).change();
 		})
 
 		var tableUrl = "<?= base_url('sistem/submenu/list_data/') ?>";
 
-		var tableReq = {
-			'menu_id': filterMenu.val(),
-		};
+		function dataParam(d) {
+			return $.extend({}, d, {
+				"menu_id": filterMenu.val()
+			});
+		}
 
 		var listsColumn = [{
 				"data": "1"
@@ -60,7 +55,11 @@
 			}
 		];
 
-		dtTable(tableUrl, listsColumn, tableReq);
+		dtTable(tableUrl, listsColumn, dataParam);
+
+		filterMenu.change(function() {
+			$("#dtTable").DataTable().ajax.url(tableUrl + "?menu_id=" + $(this).val()).load();
+		});
 
 		$('#Frm').submit(function(e) {
 			e.preventDefault();
