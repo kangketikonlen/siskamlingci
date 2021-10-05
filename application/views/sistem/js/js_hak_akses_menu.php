@@ -11,12 +11,6 @@
 
 		fetchOption(optUrl, filterMenu);
 
-		filterMenu.change(function() {
-			$("#dtTable").DataTable().ajax.reload(function() {
-				$("#overlay").fadeOut(300)
-			}, true);
-		});
-
 		var tableUrl = "<?= base_url('sistem/hak_akses_menu/list_data/') ?>";
 
 		var tableReq = {
@@ -47,6 +41,10 @@
 		];
 
 		dtTable(tableUrl, listsColumn, tableReq);
+
+		filterMenu.change(function() {
+			$("#dtTable").DataTable().ajax.url(tableUrl + "?menu_id=" + $(this).val()).load();
+		});
 
 		$('#Frm').submit(function(e) {
 			e.preventDefault();
