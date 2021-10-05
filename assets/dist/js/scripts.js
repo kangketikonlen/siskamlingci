@@ -50,7 +50,7 @@ $(document).ready(function () {
 	});
 });
 
-function dtTable(dataUrl, listsColumn, tableReq) {
+function dtTable(dataUrl, listsColumn) {
 	$.fn.dataTableExt.oApi.fnPagingInfo = function (oSettings) {
 		return {
 			"iStart": oSettings._iDisplayStart,
@@ -77,9 +77,6 @@ function dtTable(dataUrl, listsColumn, tableReq) {
 		ajax: {
 			"url": dataUrl,
 			"type": "POST",
-			"data": function (d) {
-				return $.extend({}, d, tableReq);
-			},
 			"error": function (xhr, status, error) {
 				swal(error, "Terjadi kegagalan saat memuat data. Sepertinya internetmu kurang stabil. Silahkan coba kembali saat internetmu stabil.", "error").then((value) => {
 					$("#dtTable").DataTable().ajax.reload(function () {
@@ -123,6 +120,19 @@ function fetchOption(optUrl, optId) {
 	});
 }
 
+function requestGet(dataUrl, dataReq) {
+	return new Promise(function (resolve, reject) {
+		var xhr = new XMLHttpRequest();
+		xhr.onload = function () {
+			resolve(this.responseText);
+		};
+		xhr.onerror = reject;
+		xhr.open('GET', dataUrl);
+		xhr.setRequestHeader("Content-type", "application/json");
+		xhr.send(dataReq);
+	});
+}
+
 function requestPost(dataUrl, dataReq) {
 	$.ajax({
 		type: "POST",
@@ -131,6 +141,36 @@ function requestPost(dataUrl, dataReq) {
 		processData: false,
 		contentType: false,
 		cache: false,
+		beforeSend: function (xhr) {
+			$("#overlay").fadeIn(300);
+		},
+		success: function (response) {
+			$("#overlay").fadeOut(300);
+			var data = JSON.parse(response);
+			swal(data.warning, data.pesan, data.kode).then((value) => {
+				if (data.kode == "success") {
+					$("#dtTable").DataTable().ajax.reload(function () {
+						$("#overlay").fadeOut(300)
+					}, false);
+					$("#frmData").modal('hide');
+				}
+			})
+		},
+		error: function (xhr, status, error) {
+			swal(error, "Please Ask Support or Refresh the Page!", "error").then((value) => {
+				$("#dtTable").DataTable().ajax.reload(function () {
+					$("#overlay").fadeOut(300)
+				}, false);
+			})
+		}
+	})
+}
+
+function requestNormalPost(dataUrl, dataReq) {
+	$.ajax({
+		type: "POST",
+		url: dataUrl,
+		data: dataReq,
 		beforeSend: function (xhr) {
 			$("#overlay").fadeIn(300);
 		},
@@ -200,6 +240,24 @@ function saveRequest(dataUrl, dataReq) {
 	}).then((Oke) => {
 		if (Oke) {
 			requestPost(dataUrl, dataReq);
+		} else {
+			swal("Poof!", "Penyimpanan Data Dibatalkan", "error").then((value) => {
+				location.reload();
+			})
+		}
+	});
+}
+
+function updateRequest(dataUrl, dataReq) {
+	swal({
+		title: "Anda Yakin Ingin Merubah Data?",
+		text: "Klik CANCEL jika ingin membatalkan!",
+		icon: "warning",
+		buttons: true,
+		dangerMode: true,
+	}).then((Oke) => {
+		if (Oke) {
+			requestNormalPost(dataUrl, dataReq);
 		} else {
 			swal("Poof!", "Penyimpanan Data Dibatalkan", "error").then((value) => {
 				location.reload();
