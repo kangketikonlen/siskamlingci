@@ -11,6 +11,9 @@
 	<!-- Right navbar links -->
 	<ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
 		<li class="nav-item">
+			<a id="updateDB" class="nav-link" href="#" role="button"><i class="fa fa-database"></i> Update</a>
+		</li>
+		<li class="nav-item">
 			<a class="nav-link" href="<?= base_url('dashboard/landing/logout') ?>" role="button"><i class="fa fa-sign-out-alt"></i> Keluar</a>
 		</li>
 	</ul>

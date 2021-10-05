@@ -54,6 +54,11 @@ class Landing extends MY_Dashboard
 		redirect('portal');
 	}
 
+	public function update_database()
+	{
+		$this->load->library('migration');
+	}
+
 	public function logout()
 	{
 		$this->session->sess_destroy();
