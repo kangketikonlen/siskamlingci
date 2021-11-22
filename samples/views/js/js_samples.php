@@ -36,7 +36,7 @@
 			e.preventDefault();
 			var dataUrl = "<?= base_url('samples/samples/simpan/') ?>";
 			var dataReq = new FormData(this);
-			saveRequest(dataUrl, dataReq);
+			updateRequest(dataUrl, dataReq);
 		});
 
 		$(document).on('click', '#edit', function() {
@@ -54,7 +54,7 @@
 			var dataReq = {
 				samples_id: $(this).attr("data")
 			};
-			saveRequest(dataUrl, dataReq);
+			updateRequest(dataUrl, dataReq);
 		});
 	});
 </script>
