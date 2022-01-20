@@ -97,17 +97,27 @@ class Daftar_level extends MY_Controller
 	public function create_view($submodul)
 	{
 		copy(
-			'./samples/views/v_samples.php',
+			'./samples/views/v_samples_dashboard.php',
 			'./application/views/dashboard/' . '/v_' . strtolower($submodul[1]) . '.php'
 		);
+
+		$path_to_file = './application/views/dashboard/v_' . ucfirst($submodul[1]) . '.php';
+		$file_contents = file_get_contents($path_to_file);
+		$file_contents = str_replace("samples/js/js_daftar_samples", strtolower($submodul[0] . '/js/js_' . $submodul[1]), $file_contents);
+		file_put_contents($path_to_file, $file_contents);
 	}
 
 	public function create_js($submodul)
 	{
 		copy(
-			'./samples/views/js/js_samples.php',
+			'./samples/views/js/js_samples_dashboard.php',
 			'./application/views/dashboard/js/js_' . strtolower($submodul[1]) . '.php'
 		);
+
+		$path_to_file = './application/views/dashboard/js/js_' . strtolower($submodul[1]) . '.php';
+		$file_contents = file_get_contents($path_to_file);
+		$file_contents = str_replace("samples/samples", strtolower($submodul[0] . '/' . $submodul[1]), $file_contents);
+		file_put_contents($path_to_file, $file_contents);
 	}
 
 	public function get_data()

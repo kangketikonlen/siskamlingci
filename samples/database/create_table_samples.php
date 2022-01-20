@@ -17,8 +17,7 @@ class Migration_Create_table_samples extends CI_Migration
 			),
 			$this->prefix . 'deskripsi' => array(
 				'type' => 'VARCHAR',
-				'constraint' => 128,
-				'null' => TRUE
+				'constraint' => 128
 			),
 			'created_by' => array(
 				'type' => 'VARCHAR',

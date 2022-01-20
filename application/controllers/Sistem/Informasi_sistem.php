@@ -35,7 +35,19 @@ class Informasi_sistem extends MY_Controller
 		$data = $this->input->post();
 		unset($data['info_status_sosmed_control']);
 
+		$config['upload_path'] = "./assets/images/sponsor/";
+		$config['allowed_types'] = 'jpg|png';
+		$config['encrypt_name'] = TRUE;
+		$config['max_size'] = '10240';
+
+		$this->load->library('upload', $config);
+		$this->upload->initialize($config);
+
 		if ($this->input->post('info_id') == "") {
+			if ($this->upload->do_upload("info_sponsor_image")) {
+				$upl = $this->upload->data();
+				$data['info_sponsor_image'] = '/assets/images/sponsor/' . $upl['file_name'];
+			}
 			$data['created_by'] = $this->session->userdata('nama');
 			$data['created_date'] = date('Y-m-d H:i:s');
 			$this->m->simpan($data);
