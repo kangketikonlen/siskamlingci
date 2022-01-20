@@ -36,9 +36,6 @@
 							<?php if (!empty($Info->info_status_sosmed)) : ?>
 								<div class="text-center my-1" style="font-size:small">
 									Anda bisa masuk dengan menggunakan link dari platform
-									<a href="<?= create_github_url() ?>" class="text-dark"><i class="fab fa-github"></i> Github</a>,
-									<a href="<?= create_google_url() ?>" class="text-success"><i class="fab fa-google"></i> Google</a> dan
-									<a href="<?= create_twitter_url() ?>" class="text-info"><i class="fab fa-twitter"></i> Twitter</a>
 								</div>
 							<?php endif ?>
 							Crafted with <i class="fa fa-heart text-danger"></i> by <a href="<?= $Info->info_devs_url; ?>" target="_blank"><?= $Info->info_devs; ?></a>.<br /><?= $Info->info_registered; ?> @ <?= date('Y') ?> <span class="d-none d-sm-block">All rights reserved</span>
