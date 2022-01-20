@@ -6,8 +6,8 @@
 					<thead>
 						<th>No.</th>
 						<th>Nama</th>
-						<th>#Hex</th>
-						<th><i class="fa fa-cogs"></i></th>
+						<th>Url</th>
+						<th>Tipe</th>
 					</thead>
 					<tbody></tbody>
 				</table>

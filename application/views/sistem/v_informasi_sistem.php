@@ -53,6 +53,19 @@
 						</div>
 						<div class="col-lg-12">
 							<div class="form-group">
+								<label>Logo
+									<small>*Max 10MB | JPG, PNG</small>
+								</label>
+								<div class="input-group">
+									<div class="custom-file">
+										<input type="file" name="info_sponsor_image" id="info_sponsor_image" class="custom-file-input">
+										<label class="custom-file-label" for="info_sponsor_image">Choose file</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-12">
+							<div class="form-group">
 								<div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
 									<input type="hidden" name="info_status_sosmed" id="info_status_sosmed">
 									<input type="checkbox" class="custom-control-input" id="info_status_sosmed_control">

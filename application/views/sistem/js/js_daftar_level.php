@@ -1,10 +1,7 @@
 <script>
 	$(document).ready(function() {
-		$('#level_type').select2({
-			theme: 'bootstrap4',
-			placeholder: '-- PILIH TIPE HALAMAN --',
-			allowClear: true
-		});
+		var typeMenu = $("#level_type");
+		createSelect2(typeMenu, "Pilih tipe halaman");
 
 		var tableUrl = "<?= base_url('sistem/daftar_level/list_data/') ?>";
 
@@ -20,18 +17,28 @@
 				"data": "2"
 			},
 			{
-				"data": "3",
-				"searchable": false
+				"data": "3"
 			}
 		];
 
-		dtTable(tableUrl, listsColumn);
+		dtTable(tableUrl, listsColumn, {
+			"<?= $this->security->get_csrf_token_name() ?>": "<?= $this->security->get_csrf_hash() ?>"
+		});
 
 		$('#Frm').submit(function(e) {
 			e.preventDefault();
 			var dataUrl = "<?= base_url('sistem/daftar_level/simpan/') ?>";
 			var dataReq = new FormData(this);
-			saveRequest(dataUrl, dataReq);
+			confirmSave().then(function(status) {
+				if (status) {
+					requests(dataUrl, "POST", dataReq).then(function(results) {
+						var msg = JSON.parse(results);
+						pesan(msg.warning, msg.kode, msg.pesan, true);
+					}).catch(function(err) {
+						pesan("Error " + err.status, "error", "Request " + err.statusText);
+					});
+				}
+			})
 		});
 
 		$(document).on('click', '#edit', function() {

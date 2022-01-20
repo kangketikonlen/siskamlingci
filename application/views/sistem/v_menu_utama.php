@@ -7,7 +7,6 @@
 						<th>No.</th>
 						<th>Icon</th>
 						<th>Nama</th>
-						<th><i class="fa fa-cogs"></i></th>
 					</thead>
 					<tbody></tbody>
 				</table>

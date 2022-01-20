@@ -1,15 +1,14 @@
 <script>
 	$(document).ready(function() {
-		// var levelMenu = $('#level_id');
+		// // option filter menu
+		// var samplesMenu = $('#samples_id');
 		// var optUrl = "<?= base_url('samples/samples/options/') ?>";
-
-		// levelMenu.select2({
-		// 	theme: 'bootstrap4',
-		// 	placeholder: '-- FILTER MENU UTAMA --',
-		// 	allowClear: true
+		// createSelect2(samplesMenu, "Filter level");
+		// requests(optUrl, "GET", {}).then(function(results) {
+		// 	populateOption(samplesMenu, results);
+		// }).catch(function(err) {
+		// 	pesan("Error " + err.status, "error", "Request " + err.statusText);
 		// });
-
-		// fetchOption(optUrl, levelMenu);
 
 		// var tableUrl = "<?= base_url('samples/samples/list_data/') ?>";
 
@@ -25,36 +24,68 @@
 		// 		"data": "2"
 		// 	},
 		// 	{
-		// 		"data": "3",
+		// 		"data": "3"
+		// 	},
+		// 	{
+		// 		"data": "4"
+		// 	},
+		// 	{
+		// 		"data": "5",
 		// 		"searchable": false
 		// 	}
 		// ];
 
-		// dtTable(tableUrl, listsColumn);
+		// dtTable(tableUrl, listsColumn, {
+		// 	"<?= $this->security->get_csrf_token_name() ?>": "<?= $this->security->get_csrf_hash() ?>"
+		// });
 
 		$('#Frm').submit(function(e) {
 			e.preventDefault();
 			var dataUrl = "<?= base_url('samples/samples/simpan/') ?>";
 			var dataReq = new FormData(this);
-			updateRequest(dataUrl, dataReq);
+			confirmSave().then(function(response) {
+				if (response) {
+					requests(dataUrl, "POST", dataReq).then(function(result) {
+						var data = JSON.parse(result);
+						pesan(data.warning, data.kode, data.pesan);
+					}).catch(function(e) {
+						pesan("Error " + e.status, "error", e.statusText);
+					})
+				}
+			})
 		});
 
 		$(document).on('click', '#edit', function() {
-			$("#frmData").modal('show');
-			var dataUrl = "<?= base_url('samples/samples/get_data/') ?>";
-			var reqData = {
-				samples_id: $(this).attr("data")
-			};
-			requestEdit(dataUrl, reqData);
+			var dataUrl = "<?= base_url('samples/samples/get_data?') ?>";
+			var id = $(this).attr("data");
+			confirmUpdate().then(function(response) {
+				if (response) {
+					requests(dataUrl + encodeURI("user_id=" + id), "GET", {}).then(function(results) {
+						$("#frmData").modal({
+							backdrop: "static",
+							keyboard: false
+						});
+						spreadEdit(results, $("#Frm"));
+					}).catch(function(e) {
+						pesan("Error " + e.status, "error", e.statusText);
+					})
+				}
+			})
 		});
 
 		$(document).on('click', '#hapus', function() {
-			e.preventDefault();
-			var dataUrl = "<?= base_url('samples/samples/hapus/') ?>";
-			var dataReq = {
-				samples_id: $(this).attr("data")
-			};
-			updateRequest(dataUrl, dataReq);
+			var dataUrl = "<?= base_url('samples/samples/hapus?') ?>";
+			var id = $(this).attr("data");
+			confirmDelete().then(function(response) {
+				if (response) {
+					requests(dataUrl + encodeURI("user_id=" + id), "DELETE", {}).then(function(results) {
+						var data = JSON.parse(results);
+						pesan(data.warning, data.kode, data.pesan);
+					}).catch(function(e) {
+						pesan("Error " + e.status, "error", e.statusText);
+					})
+				}
+			})
 		});
 	});
 </script>

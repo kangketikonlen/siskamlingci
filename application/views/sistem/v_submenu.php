@@ -14,7 +14,6 @@
 						<th>Root</th>
 						<th>Nama</th>
 						<th>URL</th>
-						<th><i class="fa fa-cogs"></i></th>
 					</thead>
 					<tbody></tbody>
 				</table>
@@ -53,13 +52,13 @@
 					<div class="col-lg-6">
 						<div class="form-group">
 							<label for="submenu_root">Tag</label>
-							<input type="text" name="submenu_root" id="submenu_root" class="form-control" placeholder="Masukkan tag <?= strtolower($Title) ?>..." required="true">
+							<input type="text" name="submenu_root" id="submenu_root" class="form-control" placeholder="Masukkan tag <?= strtolower($Title) ?>..." autocomplete="off" required="true">
 						</div>
 					</div>
 					<div class="col-lg-12">
 						<div class="form-group">
 							<label for="submenu_nama">Nama</label>
-							<input type="text" name="submenu_nama" id="submenu_nama" class="form-control" placeholder="Masukkan nama <?= strtolower($Title) ?>..." required="true">
+							<input type="text" name="submenu_nama" id="submenu_nama" class="form-control" placeholder="Masukkan nama <?= strtolower($Title) ?>..." autocomplete="off" required="true">
 						</div>
 					</div>
 					<div class="col-lg-12">

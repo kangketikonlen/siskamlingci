@@ -15,7 +15,9 @@
 		}
 	];
 
-	dtTable(tableUrl, listsColumn);
+	dtTable(tableUrl, listsColumn, {
+		"<?= $this->security->get_csrf_token_name() ?>": "<?= $this->security->get_csrf_hash() ?>"
+	});
 
 	$('input[type=checkbox]').click(function() {
 		if ($(this).is(':checked')) {
@@ -29,52 +31,27 @@
 		e.preventDefault();
 		var dataUrl = "<?= base_url('sistem/hak_akses_modul/simpan/') ?>";
 		var dataReq = new FormData(this);
-		saveRequest(dataUrl, dataReq);
+		confirmSave().then(function(response) {
+			if (response) {
+				requests(dataUrl, "POST", dataReq).then(function(result) {
+					var data = JSON.parse(result);
+					pesan(data.warning, data.kode, data.pesan, true);
+				})
+			}
+		})
 	});
 
 	$(document).on('click', '#edit', function() {
-		$("#frmData").modal();
-		jQuery.ajax({
-			type: "POST",
-			url: "<?= base_url('sistem/hak_akses_modul/get_data/') ?>",
-			dataType: 'json',
-			data: {
-				level_id: $(this).attr("data")
-			},
-			beforeSend: function(xhr) {
-				$("#overlay").fadeIn(300);
-			},
-			success: function(data) {
-				$("#overlay").fadeOut(300);
-				split = data.level_show_landing.split(",");
-				$.each(split, function(key, value) {
-					ident = $("#level_show_landing_" + value);
-					ident.prop('checked', true);
-					console.log(value)
-				})
-				var n = $('input[type=checkbox]').length + 1;
-				for (i = 1; i <= n; i++) {
-					$("#level_show_landing_" + i).val(i);
-				}
-				$.each(data, function(key, value) {
-					if (key == "level_nama") {
-						$("#level_nama").text(">" + value + "<");
-					}
-					var ctrl = $('[name=' + key + ']', $('#Frm'));
-					switch (ctrl.prop("type")) {
-						case "select-one":
-							ctrl.val(value).change();
-							break;
-						default:
-							ctrl.val(value);
-					}
-				});
-			},
-			error: function(xhr, status, error) {
-				swal(error, "Terjadi kegagalan saat memuat data. Sepertinya internetmu kurang stabil. Silahkan coba kembali saat internetmu stabil.", "error").then((value) => {
-					$("#dtTable").DataTable().ajax.reload(function() {
-						$("#overlay").fadeOut(300)
-					}, false);
+		var dataUrl = "<?= base_url('sistem/hak_akses_modul/get_data?') ?>";
+		var id = $(this).attr("data");
+		confirmUpdate().then(function(response) {
+			if (response) {
+				requests(dataUrl + encodeURI("level_id=" + id), "GET", {}).then(function(results) {
+					$("#frmData").modal({
+						backdrop: "static",
+						keyboard: false
+					});
+					spreadLanding(results, $("#Frm"));
 				})
 			}
 		});

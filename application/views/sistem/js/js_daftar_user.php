@@ -1,15 +1,14 @@
 <script>
 	$(document).ready(function() {
+		// option filter menu
 		var levelMenu = $('#level_id');
 		var optUrl = "<?= base_url('sistem/daftar_level/options/') ?>";
-
-		levelMenu.select2({
-			theme: 'bootstrap4',
-			placeholder: '-- FILTER MENU UTAMA --',
-			allowClear: true
+		createSelect2(levelMenu, "Filter level");
+		requests(optUrl, "GET", {}).then(function(results) {
+			populateOption(levelMenu, results);
+		}).catch(function(err) {
+			pesan("Error " + err.status, "error", "Request " + err.statusText);
 		});
-
-		fetchOption(optUrl, levelMenu);
 
 		var tableUrl = "<?= base_url('sistem/daftar_user/list_data/') ?>";
 
@@ -36,28 +35,51 @@
 			}
 		];
 
-		dtTable(tableUrl, listsColumn);
+		dtTable(tableUrl, listsColumn, {
+			"<?= $this->security->get_csrf_token_name() ?>": "<?= $this->security->get_csrf_hash() ?>"
+		});
 
 		$('#Frm').submit(function(e) {
 			e.preventDefault();
 			var dataUrl = "<?= base_url('sistem/daftar_user/simpan/') ?>";
 			var dataReq = new FormData(this);
-			saveRequest(dataUrl, dataReq);
+			confirmSave().then(function(response) {
+				if (response) {
+					requests(dataUrl, "POST", dataReq).then(function(result) {
+						var data = JSON.parse(result);
+						pesan(data.warning, data.kode, data.pesan, true);
+					})
+				}
+			})
 		});
 
 		$(document).on('click', '#edit', function() {
-			$("#frmData").modal('show');
-			var dataUrl = "<?= base_url('sistem/daftar_user/get_data/') ?>";
-			var reqData = {
-				user_id: $(this).attr("data")
-			};
-			requestEdit(dataUrl, reqData);
+			var dataUrl = "<?= base_url('sistem/daftar_user/get_data?') ?>";
+			var id = $(this).attr("data");
+			confirmUpdate().then(function(response) {
+				if (response) {
+					requests(dataUrl + encodeURI("user_id=" + id), "GET", {}).then(function(results) {
+						$("#frmData").modal({
+							backdrop: "static",
+							keyboard: false
+						});
+						spreadEdit(results, $("#Frm"));
+					})
+				}
+			})
 		});
 
 		$(document).on('click', '#hapus', function() {
-			var dataUrl = "<?= base_url('sistem/daftar_user/hapus/') ?>";
-			var dataReq = new FormData(this);
-			saveRequest(dataUrl, dataReq);
+			var dataUrl = "<?= base_url('sistem/daftar_user/hapus?') ?>";
+			var id = $(this).attr("data");
+			confirmDelete().then(function(response) {
+				if (response) {
+					requests(dataUrl + encodeURI("user_id=" + id), "DELETE", {}).then(function(results) {
+						var data = JSON.parse(results);
+						pesan(data.warning, data.kode, data.pesan, true);
+					})
+				}
+			})
 		});
 
 		$(document).on('click', '#random-pass', function() {
