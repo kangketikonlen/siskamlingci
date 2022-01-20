@@ -18,7 +18,7 @@ class Hak_akses_modul_model extends CI_Model
 	public function get_data()
 	{
 		$this->db->where($this->level . '.deleted', false);
-		$this->db->where($this->level . '.level_id', $this->input->post('level_id'));
+		$this->db->where($this->level . '.level_id', $this->input->get('level_id'));
 		return $this->db->get($this->level)->row();
 	}
 

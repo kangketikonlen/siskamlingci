@@ -29,7 +29,7 @@ class Informasi_instansi_model extends CI_Model
 	public function get_data()
 	{
 		$this->db->where($this->instansi . '.deleted', false);
-		$this->db->where($this->instansi . '.instansi_id', $this->input->post('instansi_id'));
+		$this->db->where($this->instansi . '.instansi_id', $this->input->get('instansi_id'));
 		return $this->db->get($this->instansi)->row();
 	}
 
@@ -42,7 +42,7 @@ class Informasi_instansi_model extends CI_Model
 
 	public function hapus($data)
 	{
-		$this->db->where($this->instansi . '.instansi_id', $this->input->post('instansi_id'));
+		$this->db->where($this->instansi . '.instansi_id', $this->input->get('instansi_id'));
 		return $this->db->update($this->instansi, $data);
 	}
 

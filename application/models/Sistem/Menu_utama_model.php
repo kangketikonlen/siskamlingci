@@ -46,9 +46,10 @@ class Menu_utama_model extends CI_Model
 		return $this->db->where($this->menu . '.menu_id', $this->input->post('menu_id'))->delete($this->menu);
 	}
 
-	public function options($src)
+	public function options()
 	{
-		$opt = $this->db->like('menu_nama', $src, 'both')->where('deleted', FALSE)->where('menu_id>', 0)->or_where('menu_id', $src)->get($this->menu)->result();
+		$this->db->where('deleted', FALSE);
+		$opt = $this->db->get($this->menu)->result();
 
 		$data = array();
 		foreach ($opt as $opt) {

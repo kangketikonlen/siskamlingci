@@ -38,14 +38,14 @@ class Hak_akses_menu_model extends CI_Model
 	public function get_data()
 	{
 		$this->db->where($this->submenu . '.deleted', false);
-		$this->db->where($this->submenu . '.submenu_id', $this->input->post('submenu_id'));
+		$this->db->where($this->submenu . '.submenu_id', $this->input->get('submenu_id'));
 		return $this->db->get($this->submenu)->row();
 	}
 
 	public function get_data_menu()
 	{
 		$this->db->where($this->menu . '.deleted', false);
-		$this->db->where($this->menu . '.menu_id', $this->input->post('menu_id'));
+		$this->db->where($this->menu . '.menu_id', $this->input->get('menu_id'));
 		return $this->db->get($this->menu)->row();
 	}
 

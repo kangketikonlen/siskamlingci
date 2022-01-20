@@ -23,7 +23,7 @@ class Daftar_user_model extends CI_Model
 	public function get_data()
 	{
 		$this->db->where($this->user . '.deleted', false);
-		$this->db->where($this->user . '.user_id', $this->input->post('user_id'));
+		$this->db->where($this->user . '.user_id', $this->input->get('user_id'));
 		return $this->db->get($this->user)->row();
 	}
 
@@ -36,7 +36,7 @@ class Daftar_user_model extends CI_Model
 
 	public function hapus($data)
 	{
-		$this->db->where($this->user . '.user_id', $this->input->post('user_id'));
+		$this->db->where($this->user . '.user_id', $this->input->get('user_id'));
 		return $this->db->update($this->user, $data);
 	}
 

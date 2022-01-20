@@ -5,7 +5,7 @@ class Daftar_level_model extends CI_Model
 
 	public function get_list_data()
 	{
-		$this->datatables->select('level_id, level_nama, level_background');
+		$this->datatables->select('level_id, level_nama, level_url, level_type');
 		$this->datatables->from($this->level);
 		$this->datatables->where($this->level . '.deleted', FALSE);
 		$this->datatables->where($this->level . '.level_id>', 2);
