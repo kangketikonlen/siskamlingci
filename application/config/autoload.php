@@ -20,7 +20,8 @@ $autoload['libraries'] = array(
 	'pagination',
 	'encryption',
 	'form_validation',
-	'datatables'
+	'datatables',
+	'migration'
 );
 
 /*
