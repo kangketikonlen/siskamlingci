@@ -66,6 +66,16 @@ function pesan(kode, status, pesan, table) {
 	});
 }
 
+function pesanThenReload(kode, status, pesan, table) {
+	swal(String(kode), String(pesan), String(status)).then(() => {
+		if (table) {
+			location.reload();
+		} else {
+			location.reload();
+		}
+	});
+}
+
 function spreadEdit(results, formID) {
 	var data = JSON.parse(results);
 	$.each(data, function (key, value) {
