@@ -1,3 +1,23 @@
+function confirmLogin() {
+	return new Promise(function (resolve, reject) {
+		swal({
+			title: "Anda Yakin Ingin Melakukan Login?",
+			text: "Klik CANCEL jika ingin membatalkan!",
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+		}).then((Oke) => {
+			if (Oke) {
+				return resolve(true);
+			} else {
+				swal("Poof!", "Penyimpanan Data Dibatalkan", "error").then((value) => {
+					return reject;
+				})
+			}
+		});
+	});
+}
+
 function confirmSave() {
 	return new Promise(function (resolve, reject) {
 		swal({
