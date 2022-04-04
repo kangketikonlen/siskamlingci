@@ -81,7 +81,7 @@ class Migration_Create_table_user extends CI_Migration
 			'user_login' => 'support',
 			'user_pass' => password_hash('older45.,', PASSWORD_BCRYPT),
 			'user_email' => 'developer@kangketik.web.id',
-			'user_parents' => 0
+			'user_parents' => 1
 		);
 		$this->db->insert($this->table_name, $data);
 	}

@@ -130,15 +130,7 @@ class Migration_Create_table_submenu extends CI_Migration
 				'submenu_nama' => 'Daftar Hak Akses Modul',
 				'submenu_url' => 'sistem/hak_akses_modul',
 				'submenu_roles' => '0,1'
-			),
-			array(
-				'menu_id' => 1,
-				'submenu_urutan' => 9,
-				'submenu_root' => 'Migration',
-				'submenu_nama' => 'Migration',
-				'submenu_url' => 'sistem/migration',
-				'submenu_roles' => '0,1'
-			),
+			)
 		);
 		$this->db->insert_batch($this->table_name, $data);
 	}

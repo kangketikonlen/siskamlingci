@@ -76,10 +76,10 @@ class Migration_Create_table_level extends CI_Migration
 			),
 			array(
 				'level_nama' => 'Administrator',
-				'level_url' => 'dashboard/landing',
+				'level_url' => 'dashboard/administrator',
 				'level_icon' => 'fa-toolbox',
 				'level_background' => '#D79771',
-				'level_type' => 'Landing',
+				'level_type' => 'Dashboard',
 				'level_show_landing' => '0,1'
 			),
 		);
