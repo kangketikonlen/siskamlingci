@@ -8,12 +8,13 @@ class Hak_akses_menu_model extends CI_Model
 	public function get_list_data()
 	{
 		$this->datatables->select('submenu_id, menu_nama, submenu_root, submenu_nama, submenu_roles');
+		$this->datatables->join($this->menu, $this->menu . '.menu_id=' . $this->submenu . '.menu_id');
 		$this->datatables->from($this->submenu);
 		if ($this->input->get('menu_id') != "") {
 			$this->datatables->where($this->submenu . '.menu_id', $this->input->get('menu_id'));
 		}
+		$this->datatables->where($this->submenu . '.menu_id>', 1);
 		$this->datatables->where($this->submenu . '.deleted', FALSE);
-		$this->datatables->join($this->menu, $this->menu . '.menu_id=' . $this->submenu . '.menu_id');
 		$this->datatables->add_column('view', "<button id='edit' class='m-1 btn btn-sm btn-primary' data='$1'><i class='fa fa-pencil-alt'></i></button>", "submenu_id");
 		return $this->datatables->generate();
 	}
@@ -21,7 +22,7 @@ class Hak_akses_menu_model extends CI_Model
 	public function get_level()
 	{
 		$this->db->where($this->level . '.deleted', FALSE);
-		$this->db->where($this->level . '.level_id!=', 1);
+		$this->db->where($this->level . '.level_id>', 1);
 		return $this->db->get($this->level)->result();
 	}
 
