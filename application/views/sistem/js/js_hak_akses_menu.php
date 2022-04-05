@@ -106,6 +106,7 @@
 					requests(dataUrl, "POST", dataReq).then(function(result) {
 						var data = JSON.parse(result);
 						pesan(data.warning, data.kode, data.pesan, true);
+						$('#frmSetup').modal('hide');
 					})
 				}
 			})
