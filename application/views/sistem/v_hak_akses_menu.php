@@ -6,18 +6,20 @@
 			</div>
 			<div class="card-body row">
 				<?php foreach ($this->global->get_menu() as $menu) : ?>
-					<div class="col-lg-3 col-6">
-						<a href="#" id="setup" data="<?= $menu->menu_id ?>" class="small-box-footer">
-							<div class="small-box text-light" style="background-color: #3DB2FF">
-								<div class="inner text-center">
-									<h5 class="pt-4 pb-4" style="text-transform: uppercase;"><?= $menu->menu_nama ?></h5>
+					<?php if ($menu->menu_id > 1) : ?>
+						<div class="col-lg-3 col-6">
+							<a href="#" id="setup" data="<?= $menu->menu_id ?>" class="small-box-footer">
+								<div class="small-box text-light" style="background-color: #3DB2FF">
+									<div class="inner text-center">
+										<h5 class="pt-4 pb-4" style="text-transform: uppercase;"><?= $menu->menu_nama ?></h5>
+									</div>
+									<div class="icon">
+										<i class="fa <?= $menu->menu_icon ?>"></i>
+									</div>
 								</div>
-								<div class="icon">
-									<i class="fa <?= $menu->menu_icon ?>"></i>
-								</div>
-							</div>
-						</a>
-					</div>
+							</a>
+						</div>
+					<?php endif ?>
 				<?php endforeach ?>
 			</div>
 		</div>
