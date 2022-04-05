@@ -4,7 +4,14 @@
 			<a href="<?= base_url() ?>" class="h4"><?= $Instansi->instansi_nama ?></a>
 		</div>
 		<div class="card-body">
-			<p class="login-box-msg">Sign in to start your session</p>
+			<?php if ($this->session->userdata('pesan')) : ?>
+				<div class="alert alert-warning text-justify text-sm">
+					<h6><i class="fa fa-exclamation-triangle"></i> Peringatan</h6>
+					<?= $this->session->userdata('pesan') ?>. Silahkan login kembali
+				</div>
+			<?php else : ?>
+				<p class="login-box-msg">Silahkan login untuk masuk ke sistem</p>
+			<?php endif ?>
 			<?= form_open("", array('id' => 'Frm')) ?>
 			<div class="input-group mb-3">
 				<input type="text" id="user_login" class="form-control" name="user_login" required="true" autocomplete="off" placeholder="Username">
