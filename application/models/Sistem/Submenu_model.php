@@ -12,7 +12,7 @@ class Submenu_model extends CI_Model
 		if ($this->input->get('menu_id') != "") {
 			$this->datatables->where($this->submenu . '.menu_id', $this->input->get('menu_id'));
 		}
-		$this->datatables->where($this->submenu . '.menu_id>', 0);
+		$this->datatables->where($this->submenu . '.menu_id>', 1);
 		$this->datatables->where($this->submenu . '.deleted', FALSE);
 		$this->datatables->add_column('view', "<button id='edit' class='m-1 btn btn-sm btn-primary' data='$1'><i class='fa fa-pencil-alt'></i></button> <button id='hapus' class='m-1 btn btn-sm btn-danger' data='$1'><i class='fa fa-trash'></i></button>", "submenu_id");
 		return $this->datatables->generate();
